@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Houses from './component/Houses';
+import background from './assets/BG/BG.png';
 
 export default function CalendrierAvent() {
   const [joursOuverts, setJoursOuverts] = useState({});
@@ -37,11 +38,14 @@ export default function CalendrierAvent() {
     { id: 24, couleur: 'bg-slate-500', texteCouleur: 'text-slate-950', taille: 'h-48 w-24', position: 'top-2 right-96 z-0' },
   ];
 
-  return (
-    <div className="relative w-full h-full bg-[#1b1947] overflow-hidden flex flex-col justify-between select-none mx-auto">
-      <div className="relative w-[1100px] h-full mx-auto">
-        <Houses />
-      </div>
+return (
+  <div
+    className="relative w-full h-screen overflow-hidden bg-[#1b1947] bg-cover bg-center bg-no-repeat"
+    style={{ backgroundImage: `url(${background})` }}
+  >
+    <div className="relative w-full flex-1 min-h-0 mx-auto">
+      <Houses />
     </div>
-  );
+  </div>
+);
 }
