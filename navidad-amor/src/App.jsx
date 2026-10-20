@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Houses from './component/Houses';
 import background from './assets/BG/BG.png';
+import BackgroundElements from './component/BackgroundElements';
 
 export default function CalendrierAvent() {
   const [joursOuverts, setJoursOuverts] = useState({});
@@ -40,9 +41,10 @@ export default function CalendrierAvent() {
 
 return (
   <div
-    className="relative w-full h-screen overflow-hidden bg-[#1b1947] bg-cover bg-center bg-no-repeat"
+    className="relative w-full h-screen bg-[#1b1947] m-0 p-0 bg-cover bg-center bg-no-repeat overflow-hidden"
     style={{ backgroundImage: `url(${background})` }}
   >
+    <BackgroundElements />
     <div className="relative w-full flex-1 min-h-0 mx-auto">
       <Houses />
     </div>

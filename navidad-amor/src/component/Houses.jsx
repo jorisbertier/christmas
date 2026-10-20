@@ -25,9 +25,6 @@ import maison21 from '../assets/house/Maison 21.png';
 import maison22 from '../assets/house/Maison 22.png';
 import maison23 from '../assets/house/Maison 23.png';
 import maison24 from '../assets/house/Maison 24.png';
-import dunegauche from '../assets/3plan/Dune gauche.png';
-import dunedroite from '../assets/3plan/Dune droite.png';
-import nuage from '../assets/3plan/Nuage.png';
 
 export default function Houses() {
     const [joursOuverts, setJoursOuverts] = useState({});
@@ -38,31 +35,30 @@ export default function Houses() {
 
   // Tableau associant les composants importés aux positions Figma d'origine
     const maisons = [
-        { id: 20, src: dunegauche, taille: 'w-[300] h-[300px]', position: 'top-[35px] right-[800px] z-0' },
         { id: 20, src: maison20, taille: 'w-[150px] h-[150px]', position: 'top-[10px] right-[560px] z-0' },
-        { id: 24, src: maison24, taille: 'w-[210px] h-[210px]', position: 'top-[20px] right-[365px] z-0' },
-        { id: 4, src: maison4, taille: 'w-[170px] h-[170px]', position: 'top-[70px] right-[240px] z-0' },
-        { id: 18, src: maison18, taille: 'w-[150px] h-[150px]', position: 'top-[80px] right-[450px] z-0' },
-        { id: 16, src: maison16, taille: 'w-[170px] h-[170px]', position: 'top-[80px] right-[160px] z-0' },
+        { id: 24, src: maison24, taille: 'w-[210px] h-[210px]', position: 'top-[10px] right-[365px] z-0' },
+        { id: 4, src: maison4, taille: 'w-[170px] h-[170px]', position: 'top-[50px] right-[240px] z-0' },
+        { id: 18, src: maison18, taille: 'w-[150px] h-[150px]', position: 'top-[70px] right-[450px] z-0' },
+        { id: 16, src: maison16, taille: 'w-[170px] h-[170px]', position: 'top-[70px] right-[160px] z-0' },
         { id: 8, src: maison8, taille: 'w-[160px] h-[160px]', position: 'top-[95px] right-[520px] z-0' },
-        { id: 1, src: maison1, taille: 'w-[110px] h-[110px]', position: 'top-[274px] left-1/2 -translate-x-1/2 z-20'},
         { id: 14, src: maison14, taille: 'w-[140px] h-[140px]', position: 'top-[116px] right-[600px] z-0' },
-        { id: 15, src: maison15, taille: 'w-[200px] h-[140px]', position: 'top-[306px] right-[525px] z-10' },
+        { id: 15, src: maison15, taille: 'w-[170px] h-[170px]', position: 'top-[248px] right-[525px] z-10' },
         { id: 9, src: maison9, taille: 'w-[140px] h-[140px]', position: 'top-[95px] right-[740px] z-0' },
-        { id: 12, src: maison12, taille: 'w-[110px] h-[110px]', position: 'top-[276px] right-[630px] z-10' },
-        { id: 13, src: maison13, taille: 'w-[140px] h-[140px]', position: 'top-[262px] right-[410px] z-10' },
-        { id: 10, src: maison10, taille: 'w-[170px] h-[170px]', position: 'top-[220px] right-[310px] z-50' },
-        { id: 22, src: maison22, taille: 'w-[140px] h-[140px]', position: 'top-[246px] right-[245px] z-50' },
-        { id: 23, src: maison23, taille: 'w-[140px] h-[140px]', position: 'top-[177px] right-[440px] z-0' },
+        { id: 12, src: maison12, taille: 'w-[110px] h-[110px]', position: 'top-[272px] right-[630px] z-10' },
+        { id: 13, src: maison13, taille: 'w-[140px] h-[140px]', position: 'top-[260px] right-[410px] z-10' },
+        { id: 10, src: maison10, taille: 'w-[170px] h-[170px]', position: 'top-[200px] right-[310px] z-10' },
+        { id: 1, src: maison1, taille: 'w-[110px] h-[110px]', position: 'top-[288px] left-1/2 -translate-x-1/2 z-10'},
+        { id: 23, src: maison23, taille: 'w-[140px] h-[140px]', position: 'top-[174px] right-[440px] z-0' },
         { id: 3, src: maison3, taille: 'w-[140px] h-[140px]', position: 'top-[150px] right-[680px] z-0' },
         { id: 6, src: maison6, taille: 'w-[140px] h-[140px]', position: 'top-[210px] right-[525px] z-0' },
         { id: 17, src: maison17, taille: 'w-[140px] h-[140px]', position: 'top-[195px] right-[600px] z-0' },
-        { id: 21, src: maison21, taille: 'w-[140px] h-[140px]', position: 'top-[120px] right-[330px] z-0' },
-        { id: 2, src: maison2, taille: 'w-[140px] h-[140px]', position: 'top-[170px] right-[350px] z-0' },
-        { id: 5, src: maison5, taille: 'w-[140px] h-[140px]', position: 'top-[180px] right-[250px] z-0' },
+        { id: 21, src: maison21, taille: 'w-[140px] h-[140px]', position: 'top-[80px] right-[330px] z-0' },
+        { id: 2, src: maison2, taille: 'w-[140px] h-[140px]', position: 'top-[160px] right-[350px] z-0' },
+        { id: 5, src: maison5, taille: 'w-[140px] h-[140px]', position: 'top-[146px] right-[250px] z-0' },
         { id: 11, src: maison11, taille: 'w-[170px] h-[170px]', position: 'top-[190px] right-[140px] z-0' },
-        { id: 7, src: maison7, taille: 'w-[180px] h-[180px]', position: 'top-[170px] right-[740px] z-0' },
+        { id: 7, src: maison7, taille: 'w-[190px] h-[190px]', position: 'top-[155px] right-[740px] z-0' },
         { id: 19, src: maison19, taille: 'w-[140px] h-[140px]', position: 'top-[240px] right-[680px] z-0' },
+        { id: 22, src: maison22, taille: 'w-[140px] h-[140px]', position: 'top-[232px] right-[245px] z-0' },
     ];
 
     return (
@@ -114,7 +110,7 @@ export default function Houses() {
                     onClick={() => toggleJour(m.id)}
                     className="w-full h-full object-contain pointer-events-auto cursor-pointer
                     transition-all duration-300 ease-out origin-bottom
-                    hover:scale-110 hover:-translate-y-4 hover:brightness-110"
+                    hover:scale-110 hover:-translate-y-3 hover:brightness-110"
                 />
 
                 {/* CALQUE DU NUMÉRO SUPERPOSÉ (Ignore aussi les clics pour laisser l'image en dessous les capter) */}

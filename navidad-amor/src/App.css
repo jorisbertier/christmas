@@ -9,9 +9,13 @@
   box-sizing: border-box;
 }
 
+html,
 body {
+  width: 100%;
+  min-height: 100%;
   margin: 0;
-  background: #07111f;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 button {
