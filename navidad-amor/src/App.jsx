@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Houses from './component/Houses';
+import Village from './component/Village';
 import background from './assets/BG/BG.png';
 import BackgroundElements from './component/BackgroundElements';
+
 
 export default function CalendrierAvent() {
   const [joursOuverts, setJoursOuverts] = useState({});
@@ -46,7 +47,7 @@ return (
   >
     <BackgroundElements />
     <div className="relative w-full flex-1 min-h-0 mx-auto">
-      <Houses />
+      <Village />
     </div>
   </div>
 );

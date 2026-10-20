@@ -7,6 +7,7 @@ import nuage from '../assets/3plan/Nuage.png';
 import subtract from '../assets/2plan/Subtract.png';
 import firstplan from '../assets/1plan/1er plan.png';
 import secondplan from '../assets/2plan/2e plan.png';
+import LightGarland from './LightGarland';
 
 export default function BackgroundElements() {
     return (
@@ -54,11 +55,34 @@ export default function BackgroundElements() {
                 className="absolute h-[370px] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
             
+            <div className="absolute bottom-0 inset-x-0 aspect-[1440/370]">
             <img
                 src={firstplan}
                 alt=""
                 className="absolute h-[350px] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
+            {/* First fir */}
+            <LightGarland width={11} numberBulbs={6} decale={false} className="bottom-[70%] left-0 rotate-[5deg] z-30" />
+            <LightGarland width={13} numberBulbs={6} decale={true} className="bottom-[62%] left-0 rotate-[340deg] z-30" />
+            <LightGarland width={14} numberBulbs={6} className="bottom-[35%] left-0 rotate-[5deg] z-30" />
+
+            <LightGarland width={9} numberBulbs={6} decale={true} className="bottom-[50%] left-[14%] rotate-[345deg] z-30" />
+            <LightGarland width={9} numberBulbs={6} className="bottom-[30%] left-[14%] rotate-[5deg] z-30" />
+
+            <LightGarland width={6} numberBulbs={6} className="bottom-[27%] left-[21%] rotate-[335deg] z-30" />
+            <LightGarland width={9} numberBulbs={6} decale={true} className="bottom-[15%] left-[21%] rotate-[5deg] z-30" />
+
+            <LightGarland width={6} numberBulbs={6} decale={true} className="bottom-[15%] left-[31%] rotate-[30deg] z-30" />
+            <LightGarland width={9} numberBulbs={6} className="bottom-[6%] left-[30%] rotate-[5deg] z-30" />
+            
+            <LightGarland width={11} numberBulbs={6} className="bottom-[55%] -right-[5%] rotate-[5deg] z-30" />
+            <LightGarland width={15} numberBulbs={6} decale={true} className="bottom-[40%] -right-[7%] rotate-[25deg] z-30" />
+            <LightGarland width={20} numberBulbs={7} className="bottom-[30%] -right-[9%] rotate-[350deg] z-30" />
+            
+            <LightGarland width={8} numberBulbs={6} className="bottom-[25%] right-[17%] rotate-[10deg] z-30" />
+            <LightGarland width={9} numberBulbs={7} decale={true} className="bottom-[15%] right-[16%] rotate-[350deg] z-30" />
+            
+            </div>
 
         </div>
     );

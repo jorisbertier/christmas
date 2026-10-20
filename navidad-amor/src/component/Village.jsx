@@ -26,7 +26,7 @@ import maison22 from '../assets/house/Maison 22.png';
 import maison23 from '../assets/house/Maison 23.png';
 import maison24 from '../assets/house/Maison 24.png';
 
-export default function Houses() {
+export default function Village() {
     const [joursOuverts, setJoursOuverts] = useState({});
 
     const toggleJour = (id) => {
