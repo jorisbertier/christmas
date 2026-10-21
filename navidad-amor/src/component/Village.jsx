@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { surprises } from "../data/surprises";
+import SurprisePage from "./SurprisePage";
 
 // IMPORTATION EXPLICITE DE TOUTES LES MAISONS
 import maison1 from '../assets/house/Maison 1.png';
@@ -25,6 +27,14 @@ import maison21 from '../assets/house/Maison 21.png';
 import maison22 from '../assets/house/Maison 22.png';
 import maison23 from '../assets/house/Maison 23.png';
 import maison24 from '../assets/house/Maison 24.png';
+import SecretNoel from './Day/SecretNoel';
+
+// Associe les jours à leurs composants.
+// const composants = {
+//   2: SecretNoel,
+// //   5: LettreAmour,
+// //   8: QuizAmour,
+// };
 
 export default function Village() {
     const [joursOuverts, setJoursOuverts] = useState({});
@@ -42,14 +52,14 @@ export default function Village() {
         { id: 16, src: maison16, taille: 'w-[170px] h-[170px]', position: 'top-[70px] right-[160px] z-0' },
         { id: 8, src: maison8, taille: 'w-[160px] h-[160px]', position: 'top-[95px] right-[520px] z-0' },
         { id: 14, src: maison14, taille: 'w-[140px] h-[140px]', position: 'top-[116px] right-[600px] z-0' },
-        { id: 15, src: maison15, taille: 'w-[170px] h-[170px]', position: 'top-[248px] right-[525px] z-10' },
+        { id: 15, src: maison15, taille: 'w-[170px] h-[170px]', position: 'top-[260px] right-[525px] z-10' },
         { id: 9, src: maison9, taille: 'w-[140px] h-[140px]', position: 'top-[95px] right-[740px] z-0' },
         { id: 12, src: maison12, taille: 'w-[110px] h-[110px]', position: 'top-[272px] right-[630px] z-10' },
         { id: 13, src: maison13, taille: 'w-[140px] h-[140px]', position: 'top-[260px] right-[410px] z-10' },
         { id: 10, src: maison10, taille: 'w-[170px] h-[170px]', position: 'top-[200px] right-[310px] z-10' },
         { id: 1, src: maison1, taille: 'w-[110px] h-[110px]', position: 'top-[288px] left-1/2 -translate-x-1/2 z-10'},
         { id: 23, src: maison23, taille: 'w-[140px] h-[140px]', position: 'top-[174px] right-[440px] z-0' },
-        { id: 3, src: maison3, taille: 'w-[140px] h-[140px]', position: 'top-[150px] right-[680px] z-0' },
+        { id: 3, src: maison3, taille: 'w-[140px] h-[140px]', position: 'top-[138px] right-[680px] z-0' },
         { id: 6, src: maison6, taille: 'w-[140px] h-[140px]', position: 'top-[210px] right-[525px] z-0' },
         { id: 17, src: maison17, taille: 'w-[140px] h-[140px]', position: 'top-[195px] right-[600px] z-0' },
         { id: 21, src: maison21, taille: 'w-[140px] h-[140px]', position: 'top-[80px] right-[330px] z-0' },
@@ -60,6 +70,53 @@ export default function Village() {
         { id: 19, src: maison19, taille: 'w-[140px] h-[140px]', position: 'top-[240px] right-[680px] z-0' },
         { id: 22, src: maison22, taille: 'w-[140px] h-[140px]', position: 'top-[232px] right-[245px] z-0' },
     ];
+
+    // débloquer les maisons en fonction de la date actuelle
+    
+    const [messageInterdit, setMessageInterdit] = useState(null);
+    const [surpriseOuverte, setSurpriseOuverte] = useState(null);
+    const [composantOuvert, setComposantOuvert] = useState(null);
+
+    const maintenant = new Date();
+
+    const jourAutorise =
+    maintenant.getFullYear() < 2026
+        ? 0
+        : maintenant.getFullYear() > 2026
+        ? 24
+        : maintenant.getMonth() < 9
+            ? 0
+            : maintenant.getMonth() > 9
+            ? 24
+            : Math.min(maintenant.getDate(), 24);
+    // decembre = 11
+const cliquerMaison = (id) => {
+    if (id > jourAutorise) {
+        setMessageInterdit(id);
+        return;
+    }
+
+    setMessageInterdit(null);
+    setJoursOuverts((prev) => ({
+        ...prev,
+        [id]: true,
+    }));
+
+    // Ouvre la surprise correspondant au jour cliqué
+    setComposantOuvert(id);
+    setSurpriseOuverte(null);
+};
+
+    useEffect(() => {
+        if (messageInterdit === null) return;
+
+        const timer = setTimeout(() => {
+            setMessageInterdit(null);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [messageInterdit]);
+
 
     return (
         <div className="relative w-full h-full min-h-0 overflow-hidden">
@@ -95,36 +152,111 @@ export default function Village() {
 
         {/* CLUSTER CENTRAL DU VILLAGE */}
         <div className="relative flex-1 w-full max-w-[1100px] mx-auto min-h-[580px] mt-24 mb-12">
-            {maisons.map((m) => {
-            const ouvert = joursOuverts[m.id];
-            return (
-                /* 1. La div conteneur gère la taille/position mais ignore les clics fantômes grâce à pointer-events-none */
-                <div
-                key={m.id}
-                className={`absolute ${m.position} ${m.taille} pointer-events-none`}
-                >
-                {/* 2. L'image réactive les pointer-events, porte l'interaction et les animations exactes */}
-                <img 
-                    src={m.src} 
-                    alt={`Maison ${m.id}`} 
-                    onClick={() => toggleJour(m.id)}
-                    className="w-full h-full object-contain pointer-events-auto cursor-pointer
-                    transition-all duration-300 ease-out origin-bottom
-                    hover:scale-110 hover:-translate-y-3 hover:brightness-110"
-                />
 
-                {/* CALQUE DU NUMÉRO SUPERPOSÉ (Ignore aussi les clics pour laisser l'image en dessous les capter) */}
-                <div className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[35%] h-[28%] flex items-center justify-center rounded-t-full pointer-events-none">
-                    {/* <span className={`font-bold text-sm md:text-base drop-shadow-md transition-colors duration-300 ${ouvert ? 'text-yellow-400 font-extrabold scale-125 animate-pulse' : 'text-slate-800'}`}>
-                    {m.id}
-                    </span> */}
-                    {ouvert && (
-                    <div className="absolute inset-0 bg-yellow-400/30 rounded-t-full blur-md animate-pulse" />
-                    )}
-                </div>
-                </div>
-            );
-            })}
+{maisons.map((m) => {
+  const ouvert = joursOuverts[m.id];
+
+  return (
+    <div
+      key={m.id}
+      className={`absolute ${m.position} ${m.taille} pointer-events-none group`}
+    >
+      {/* Maison : animations de survol conservées */}
+      <img
+        src={m.src}
+        alt={`Maison ${m.id}`}
+        onClick={() => cliquerMaison(m.id)}
+        className="
+          relative z-10
+          w-full h-full object-contain
+          pointer-events-auto cursor-pointer
+          origin-bottom
+          transition-all duration-300 ease-out
+          group-hover:scale-110
+          group-hover:-translate-y-2
+          group-hover:brightness-110
+        "
+      />
+
+      {/* Médaillon du numéro */}
+      <div
+        className="
+          absolute z-20
+          top-[12%] left-1/2 -translate-x-1/2
+          pointer-events-none
+          transition-all duration-300 ease-out
+          opacity-0 scale-50 -translate-y-2
+          group-hover:opacity-100
+          group-hover:scale-100
+          group-hover:-translate-y-1
+        "
+      >
+        <div
+          className={`
+            relative flex items-center justify-center
+            w-10 h-10 rounded-full
+            border-2 border-amber-200/90
+            shadow-[0_0_15px_rgba(255,215,100,0.65)]
+            ${ouvert
+              ? "bg-amber-300 text-indigo-950"
+              : "bg-[#202047]/95 text-amber-100"
+            }
+          `}
+        >
+          <div className="absolute inset-1 rounded-full border border-white/30" />
+
+          <span className="relative z-10 font-serif font-bold text-lg drop-shadow-sm">
+            {m.id}
+          </span>
+        </div>
+
+        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-1 bg-amber-300/80 rounded-full blur-sm" />
+      </div>
+
+      {/* Halo si la case est ouverte */}
+      {ouvert && (
+        <div
+          className="
+            absolute z-0
+            top-[15%] left-1/2 -translate-x-1/2
+            w-12 h-12 rounded-full
+            bg-amber-300/20 blur-xl
+            pointer-events-none
+          "
+        />
+      )}
+    </div>
+  );
+})}
+{messageInterdit !== null && (
+  <div className="
+    fixed bottom-8 left-1/2 -translate-x-1/2
+    z-[100] w-max max-w-[90vw]
+    rounded-xl border border-amber-200/50
+    bg-[#202047]/95 px-5 py-3
+    text-center text-amber-100 shadow-xl
+    animate-pulse
+  ">
+    <p className="font-serif text-lg">
+      🔒 Encore un peu de patience...
+    </p>
+    <p className="mt-1 text-sm">
+      Ta surprise du {messageInterdit} décembre
+      n'est pas encore disponible 🎁
+    </p>
+    <button
+      onClick={() => setMessageInterdit(null)}
+      className="mt-2 text-xs text-amber-300 underline pointer-events-auto"
+    >
+      D'accord ❤️
+    </button>
+  </div>
+)}
+<SurprisePage
+  jour={composantOuvert}
+  onClose={() => setComposantOuvert(null)}
+/>
+
         </div>
 
         {/* FINITION OMBRE DE NEIGE SOL */}

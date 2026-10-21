@@ -52,14 +52,14 @@ export default function BackgroundElements() {
             <img
                 src={secondplan}
                 alt=""
-                className="absolute h-[370px] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
+                className="absolute h-[57%] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
             
             <div className="absolute bottom-0 inset-x-0 aspect-[1440/370]">
             <img
                 src={firstplan}
                 alt=""
-                className="absolute h-[350px] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
+                className="absolute h-[98%] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
             {/* First fir */}
             <LightGarland width={11} numberBulbs={6} decale={false} className="bottom-[70%] left-0 rotate-[5deg] z-30" />
