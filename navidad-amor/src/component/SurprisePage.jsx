@@ -1,11 +1,17 @@
 import SurpriseModal from "./SurpriseModal";
 import SecretNoel from "./Day/SecretNoel";
 import SecretCard from "./Day/SecretCard";
+import GiftSled from "./Day/GiftSled";
+import CadeauTraineau from "./Day/CadeauTraineau";
+import ChristmasBall from "./Day/ChristmasBall";
 
 const composants = {
   1: SurpriseModal,
   2: SecretNoel,
   3: SecretCard,
+  4: GiftSled,
+  5: CadeauTraineau,
+  6: ChristmasBall,
 };
 
 export default function SurprisePage({ jour, onClose }) {
