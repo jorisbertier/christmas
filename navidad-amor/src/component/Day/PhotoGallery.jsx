@@ -38,7 +38,7 @@ const PHOTOS = [
 const TEXTS = {
   date: "13 de diciembre",
   title: "Galería de nuestras fotos",
-  subtitle: "Un pequeño álbum con tres de nuestros momentos favoritos",
+  subtitle: "Un pequeño álbum mis tres momentos favoritos contigo en 2026",
   hint: "Toca una foto para verla de cerca",
   hintBack: "Toca de nuevo para volver al álbum",
   allSeen: "Las has visto todas ✨ ¿Ya probaste la estrella y las luces?",

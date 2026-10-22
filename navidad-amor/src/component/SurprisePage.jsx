@@ -6,6 +6,8 @@ import CadeauTraineau from "./Day/CadeauTraineau";
 import ChristmasBall from "./Day/ChristmasBall";
 import ChristmasAlbum from "./Day/ChristmasAlbum";
 import PhotoGallery from "./Day/PhotoGallery";
+import ChristmasVillage from "./Day/ChristmasVillage";
+import Christmaschoir from "./Day/Christmaschoir";
 
 const composants = {
   1: SurpriseModal,
@@ -15,16 +17,36 @@ const composants = {
   5: CadeauTraineau,
   6: ChristmasBall,
   7: ChristmasAlbum,
-  8: PhotoGallery
+  8: PhotoGallery,
+  9: ChristmasVillage,
+  10: Christmaschoir
 };
 
 // piano
 // judbox
 // village de noel entier (patinage , spain, maison etc) à chaque clique 
 // spectacle de danse style moulin rouge ambiance de noel
-// chorale qui chantent 
-// jeu style le cluedo
-// proposer de rendre le village interactif en ajoutant des éléments cliquables dans le village en fond entre 2 choix aurore boreal etc( avec un localstorage pour ses choix donc ) (ex: patinoire, sapin, maison) qui déclenchent des animations ou des surprises
+// chorale qui chantent ( ce soir les habitants de ton village se sont réunis pour chanter des chants de Noël. Tu peux les écouter et même chanter avec eux !)
+// jeu style le cluedo de noel (avec des indices et des personnages)
+// jeu de souvenirs avec des pairs de nous et noel
+// jeu de devinettes sur noel
+// jeu la machine a pince // jeu de memoire (Une séquence de couleurs et de sons apparaît : rouge, bleu, vert, jaune… Elle doit la reproduire dans le bon ordre. Chaque niveau ajoute une couleur et accélère le rythme.Difficulté : elle doit atteindre le niveau 8 avant la fin du temps.)
+// la chasse au objets (elle doit trouver des objets cachés dans le village de noel et les ramener à la maison du pere noel avant la fin du temps. Chaque objet trouvé rapporte des points. Difficulté : elle doit trouver au moins 10 objets avant la fin du temps.)
+// Une image de Noël remplie de détails apparaît. Elle doit trouver 8 objets précis cachés dans le décor.Difficulté : certains objets sont minuscules ou partiellement dissimulés.
+// remise de prix 2026 
+// la bombe de noel Un compte à rebours démarre. Elle doit résoudre trois petites énigmes : un code numérique, une suite logique et un mot à déchiffrer.
+// constelation de noel
+// choix entre 3  cadeaux (dulce, aventura, romantico) et selon le choix elle a une surprise differente
+// la proposition du date repas de noel par video conference (avec un petit message d'amour et un lien pour se connecter à la date de noel)
+// le musee de couple (avec des photos de nous et des souvenirs)
+// cours de francais
+// quiz duel amoureux 5 questions poser et a la fin elle regarde le match donc 5 questions pour elle et 5 pour moi
+// lettre d amour
+// la liste du pere noel
+// generateur de compliment absurde
+// maison secrete (bonus 25)
+// proposer de rendre le village interactif en ajoutant des éléments cliquables dans le village en fond entre 2 choix 
+// (aurore boreal ou etoiles filantes choix entre 2 chansons au total 5 choix qui affecte sont village etc( avec un localstorage pour ses choix donc ) (ex: patinoire, sapin, maison) qui déclenchent des animations ou des surprises
 
 export default function SurprisePage({ jour, onClose }) {
   const Composant = composants[jour];
