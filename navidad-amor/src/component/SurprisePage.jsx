@@ -5,6 +5,7 @@ import GiftSled from "./Day/GiftSled";
 import CadeauTraineau from "./Day/CadeauTraineau";
 import ChristmasBall from "./Day/ChristmasBall";
 import ChristmasAlbum from "./Day/ChristmasAlbum";
+import PhotoGallery from "./Day/PhotoGallery";
 
 const composants = {
   1: SurpriseModal,
@@ -13,8 +14,17 @@ const composants = {
   4: GiftSled,
   5: CadeauTraineau,
   6: ChristmasBall,
-  7: ChristmasAlbum
+  7: ChristmasAlbum,
+  8: PhotoGallery
 };
+
+// piano
+// judbox
+// village de noel entier (patinage , spain, maison etc) à chaque clique 
+// spectacle de danse style moulin rouge ambiance de noel
+// chorale qui chantent 
+// jeu style le cluedo
+// proposer de rendre le village interactif en ajoutant des éléments cliquables dans le village en fond entre 2 choix aurore boreal etc( avec un localstorage pour ses choix donc ) (ex: patinoire, sapin, maison) qui déclenchent des animations ou des surprises
 
 export default function SurprisePage({ jour, onClose }) {
   const Composant = composants[jour];
