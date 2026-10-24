@@ -1310,31 +1310,133 @@ export default function ChristmasChoir() {
   const sparkId = useRef(0);
   const [playing, setPlaying] = useState(false);
   const [sparks, setSparks] = useState([]);
+  // const musique = new Audio("/audio/choir/choir1.mp3");
   useSnow(canvasRef);
+  const CHOIR_TRACKS = [
+  "/audio/choir/choir1.mp3",
+  "/audio/choir/choir2.mp3",
+  "/audio/choir/choir3.mp3",
+  "/audio/choir/choir4.mp3",
+  "/audio/choir/choir5.mp3",
+];
+const trackIndexRef = useRef(0);
 
-  useEffect(
-    () => () => {
-      timers.current.forEach(clearTimeout);
-      if (playerRef.current) playerRef.current.stop();
-    },
-    []
-  );
+const stopMusic = () => {
+  const audio = playerRef.current;
 
-  const toggleMusic = (e) => {
-    e.stopPropagation();
-    if (playing) {
-      if (playerRef.current) playerRef.current.stop();
-      playerRef.current = null;
-      setPlaying(false);
-    } else {
-      try {
-        playerRef.current = createCarolPlayer();
-        setPlaying(Boolean(playerRef.current));
-      } catch (err) {
+  if (audio) {
+    // Invalider le lecteur avant de l'arrêter
+    playerRef.current = null;
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.removeAttribute("src");
+    audio.load();
+  }
+
+  setPlaying(false);
+};
+
+const startMusic = async () => {
+  // Évite de démarrer plusieurs lecteurs simultanément
+  if (playerRef.current) return;
+
+  const audio = new Audio(CHOIR_TRACKS[trackIndexRef.current]);
+  audio.volume = 0.7;
+  audio.loop = false;
+
+  playerRef.current = audio;
+
+  audio.addEventListener("ended", () => {
+    // Ne rien relancer si la musique a été arrêtée
+    if (playerRef.current !== audio) return;
+
+    // Passer au morceau suivant, puis revenir au premier
+    trackIndexRef.current =
+      (trackIndexRef.current + 1) % CHOIR_TRACKS.length;
+
+    audio.src = CHOIR_TRACKS[trackIndexRef.current];
+
+    audio.play().catch(() => {
+      if (playerRef.current === audio) {
         setPlaying(false);
       }
+    });
+  });
+
+  try {
+    await audio.play();
+
+    if (playerRef.current === audio) {
+      setPlaying(true);
     }
+  } catch (error) {
+    if (playerRef.current === audio) {
+      playerRef.current = null;
+    }
+
+    setPlaying(false);
+  }
+};
+
+const toggleMusic = (e) => {
+  e.stopPropagation();
+
+  if (playing) {
+    stopMusic();
+  } else {
+    startMusic();
+  }
+};
+  
+  // useEffect(
+  //   () => () => {
+  //     timers.current.forEach(clearTimeout);
+  //     if (playerRef.current) playerRef.current.stop();
+  //   },
+  //   []
+  // );
+useEffect(() => {
+  const handleStopChoir = () => {
+    stopMusic();
   };
+
+  window.addEventListener("stop-christmas-choir", handleStopChoir);
+
+  startMusic();
+
+  return () => {
+    window.removeEventListener("stop-christmas-choir", handleStopChoir);
+
+    const audio = playerRef.current;
+
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.removeAttribute("src");
+      audio.load();
+      playerRef.current = null;
+    }
+
+    timers.current.forEach(clearTimeout);
+  };
+}, []);
+  // const toggleMusic = (e) => {
+  //   e.stopPropagation();
+  //   if (playing) {
+  //     if (playerRef.current) playerRef.current.stop();
+  //     playerRef.current = null;
+  //     setPlaying(false);
+  //   } else {
+  //     try {
+  //       playerRef.current = createCarolPlayer();
+  //       // musique.play().catch(() => {});
+  //       setPlaying(Boolean(playerRef.current));
+  //     } catch (err) {
+  //       setPlaying(false);
+  //     }
+  //   }
+  // };
 
   const onScene = useCallback((e) => {
     const svg = svgRef.current;
@@ -1423,11 +1525,15 @@ export default function ChristmasChoir() {
       <canvas ref={canvasRef} className="ch-snow" />
 
       <footer className="ch-foot">
-        <button type="button" className="ch-btn" onClick={toggleMusic} aria-pressed={playing}>
+        <p className="ch-hint absolute -top-10" aria-live="polite">{playing ? TEXTS.hintOn : TEXTS.hintOff}</p>
+        <div>
+          <p className="ch-hint" aria-live="polite">¡Esta noche los habitantes del pueblo de Margo se han reunido para ofrecer una hermosa velada de villancicos bajo la nieve.</p>
+          <p className="ch-hint" aria-live="polite">Al caer la noche, las luces del pueblo brillan con más fuerza y las voces de sus habitantes se unen en una dulce melodía navideña</p>
+        </div>
+        {/* <button type="button" className="ch-btn" onClick={toggleMusic} aria-pressed={playing}>
           <NoteIcon />
           {playing ? TEXTS.stop : TEXTS.play}
-        </button>
-        <p className="ch-hint" aria-live="polite">{playing ? TEXTS.hintOn : TEXTS.hintOff}</p>
+        </button> */}
       </footer>
     </div>
   );
