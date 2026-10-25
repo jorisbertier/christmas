@@ -228,34 +228,34 @@ const cliquerMaison = (id) => {
     </div>
   );
 })}
-{messageInterdit !== null && (
-  <div className="
-    fixed bottom-8 left-1/2 -translate-x-1/2
-    z-[100] w-max max-w-[90vw]
-    rounded-xl border border-amber-200/50
-    bg-[#202047]/95 px-5 py-3
-    text-center text-amber-100 shadow-xl
-    animate-pulse
-  ">
-    <p className="font-serif text-lg">
-      🔒 Encore un peu de patience...
-    </p>
-    <p className="mt-1 text-sm">
-      Ta surprise du {messageInterdit} décembre
-      n'est pas encore disponible 🎁
-    </p>
-    <button
-      onClick={() => setMessageInterdit(null)}
-      className="mt-2 text-xs text-amber-300 underline pointer-events-auto"
-    >
-      D'accord ❤️
-    </button>
-  </div>
-)}
-<SurprisePage
-  jour={composantOuvert}
-  onClose={() => setComposantOuvert(null)}
-/>
+        {messageInterdit !== null && (
+          <div className="
+            fixed bottom-8 left-1/2 -translate-x-1/2
+            z-[100] w-max max-w-[90vw]
+            rounded-xl border border-amber-200/50
+            bg-[#202047]/95 px-5 py-3
+            text-center text-amber-100 shadow-xl
+            animate-pulse
+          ">
+            <p className="font-serif text-lg">
+              🔒 Encore un peu de patience...
+            </p>
+            <p className="mt-1 text-sm">
+              Ta surprise du {messageInterdit} décembre
+              n'est pas encore disponible 🎁
+            </p>
+            <button
+              onClick={() => setMessageInterdit(null)}
+              className="mt-2 text-xs text-amber-300 underline pointer-events-auto"
+            >
+              D'accord ❤️
+            </button>
+          </div>
+        )}
+        <SurprisePage
+          jour={composantOuvert}
+          onClose={() => setComposantOuvert(null)}
+        />
 
         </div>
 

@@ -9,7 +9,11 @@ import PhotoGallery from "./Day/PhotoGallery";
 import ChristmasVillage from "./Day/ChristmasVillage";
 import Christmaschoir from "./Day/Christmaschoir";
 import ClockMystery from "./Day/Game/ClockMystery";
-
+import ChristmasLoveLetter from "./Day/ChristmasLoveLetter";
+import CinemaIntro from "./Day/CinemaIntro";
+import ChristmasScene from "./Day/ChristmasScene";
+import CoupleQuiz from "./Day/CoupleQuiz";
+import ChristmasAwards from "./Day/ChristmasAwardS";
 const composants = {
   1: SurpriseModal,
   2: SecretNoel,
@@ -22,6 +26,11 @@ const composants = {
   9: ChristmasVillage,
   10: Christmaschoir,
   11 : ClockMystery,
+  12: ChristmasLoveLetter,
+  13: CinemaIntro,
+  14: ChristmasScene,
+  15: CoupleQuiz,
+  16: ChristmasAwards
 };
 
 // piano
@@ -30,7 +39,6 @@ const composants = {
 // spectacle de danse style moulin rouge ambiance de noel
 // chorale qui chantent ( ce soir les habitants de ton village se sont réunis pour chanter des chants de Noël. Tu peux les écouter et même chanter avec eux !)
 // jeu style le cluedo de noel (avec des indices et des personnages)
-// jeu de souvenirs avec des pairs de nous et noel
 // jeu de devinettes sur noel
 // jeu la machine a pince // jeu de memoire (Une séquence de couleurs et de sons apparaît : rouge, bleu, vert, jaune… Elle doit la reproduire dans le bon ordre. Chaque niveau ajoute une couleur et accélère le rythme.Difficulté : elle doit atteindre le niveau 8 avant la fin du temps.)
 // la chasse au objets (elle doit trouver des objets cachés dans le village de noel et les ramener à la maison du pere noel avant la fin du temps. Chaque objet trouvé rapporte des points. Difficulté : elle doit trouver au moins 10 objets avant la fin du temps.)

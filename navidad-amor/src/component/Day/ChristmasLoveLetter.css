@@ -1,0 +1,103 @@
+/* ChristmasLoveLetter.css — uniquement transform / opacity animés (GPU), aucun filter sur la chaîne 3D */
+
+@keyframes cll-enter{from{opacity:0;transform:translateY(30px) scale(.7)}to{opacity:1;transform:none}}
+@keyframes cll-float{0%,100%{transform:translateY(-6px) rotateY(-5deg)}50%{transform:translateY(6px) rotateY(5deg)}}
+@keyframes cll-fall{from{transform:translate3d(0,-8vh,0)}to{transform:translate3d(var(--dx),108vh,0)}}
+@keyframes cll-rise{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translateY(-70vh) scale(1.1)}}
+@keyframes cll-glow{0%,100%{opacity:.15}50%{opacity:.9}}
+@keyframes cll-twinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1.1) rotate(45deg)}}
+@keyframes cll-crack-l{to{transform:translate(-80%,70%) rotate(-30deg);opacity:0}}
+@keyframes cll-crack-r{to{transform:translate(80%,70%) rotate(30deg);opacity:0}}
+@keyframes cll-burst{0%{opacity:1;transform:translate(0,0) scale(.4)}100%{opacity:0;transform:translate(var(--bx),var(--by)) scale(1.2) rotate(120deg)}}
+@keyframes cll-unfold{0%{opacity:0;transform:perspective(1400px) translateY(18vh) rotateX(-86deg) scale(.5)}45%{opacity:1}100%{opacity:1;transform:perspective(1400px) none}}
+@keyframes cll-ink{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes cll-border{from{opacity:0}to{opacity:1}}
+@keyframes cll-beat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.14)}}
+
+/* ---------- scène 3D : scene(perspective) > btn > float > tilt > env > pièces ---------- */
+.cll-scene{perspective:1300px;perspective-origin:50% 35%}
+.cll-btn{transform-style:preserve-3d;cursor:default;outline:none;-webkit-tap-highlight-color:transparent}
+.cll-btn.cll-idle{cursor:pointer}
+.cll-btn:focus-visible .cll-env{outline:3px solid rgba(243,207,107,.8);outline-offset:10px}
+.cll-float{transform-style:preserve-3d;animation:cll-float 5s ease-in-out infinite}
+.cll-float.cll-paused{animation-play-state:paused}
+.cll-tilt{
+  transform-style:preserve-3d;will-change:transform;
+  transform:rotateX(calc(12deg + var(--rx,0deg))) rotateY(var(--ry,0deg)) scale(var(--s,1));
+  transition:transform .3s ease-out;
+}
+.cll-idle:hover .cll-tilt{--s:1.07}
+
+.cll-env{position:relative;width:min(82vw,360px);aspect-ratio:3/2;transform-style:preserve-3d}
+.cll-env>*{position:absolute}
+.cll-shadow{left:4%;right:4%;bottom:-16%;height:16%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),transparent 70%);transform:translateZ(-40px)}
+
+/* intérieur (visible quand le rabat est ouvert) */
+.cll-back{inset:0;border-radius:4px;transform:translateZ(0);
+  background:radial-gradient(circle at 50% 40%,#a8202f,#6f0e1b 70%);}
+.cll-back::after{content:"";position:absolute;inset:0;opacity:.25;
+  background-image:radial-gradient(#e6c364 1px,transparent 1.3px);background-size:9px 9px}
+
+/* feuille cachée dans l'enveloppe */
+.cll-sheet{left:7%;top:5%;width:86%;height:84%;border-radius:3px;will-change:transform;
+  background:linear-gradient(170deg,#fffaf0,#efe1c2);
+  transform:translate3d(0,0,1px);
+  transition:transform .9s cubic-bezier(.3,.7,.2,1),opacity .35s ease;
+  box-shadow:0 -2px 10px rgba(0,0,0,.25)}
+.cll-sheet i{position:absolute;left:12%;width:76%;height:1px;background:rgba(181,138,76,.3)}
+.cll-env--out .cll-sheet{transform:translate3d(0,-62%,1px)}
+.cll-env--gone .cll-sheet{opacity:0}
+
+/* poche avant + rabat */
+.cll-pocket{inset:0;width:100%;height:100%;transform:translateZ(2px)}
+.cll-flap{left:0;top:0;width:100%;height:56%;transform-origin:50% 0;transform-style:preserve-3d;
+  will-change:transform;transform:translateZ(3px);transition:transform .95s cubic-bezier(.45,0,.2,1)}
+.cll-env--open .cll-flap{transform:translateZ(3px) rotateX(-196deg);transition-delay:.4s}
+.cll-flap svg{position:absolute;inset:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cll-flap .cll-inside{transform:rotateX(180deg)}
+
+/* ruban : disparaît quand le nœud est défait */
+.cll-band{transition:opacity .5s ease .2s}
+.cll-env--open .cll-band{opacity:0}
+
+/* nœud + houx + pin */
+.cll-bow{left:50%;top:41%;width:46%;transform:translate3d(-50%,-50%,10px);
+  transition:transform .75s cubic-bezier(.4,0,.2,1),opacity .6s ease .1s;will-change:transform}
+.cll-bow svg{display:block;width:100%;height:auto}
+.cll-env--open .cll-bow{transform:translate3d(-50%,-85%,70px) rotate(12deg) scale(1.2);opacity:0}
+
+/* sceau */
+.cll-seal{left:50%;top:60%;width:15%;aspect-ratio:1;transform:translate3d(-50%,-50%,7px)}
+.cll-half{position:absolute;inset:0}
+.cll-half-l{clip-path:inset(0 50% 0 0)}
+.cll-half-r{clip-path:inset(0 0 0 50%)}
+.cll-env--open .cll-half-l{animation:cll-crack-l .7s ease-in .15s forwards}
+.cll-env--open .cll-half-r{animation:cll-crack-r .7s ease-in .15s forwards}
+.cll-wax{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 32% 28%,#fff1b8,#e0b441 38%,#a9741a 78%,#7a4f10);
+  box-shadow:0 2px 6px rgba(0,0,0,.5),inset 0 0 0 2px rgba(255,235,170,.45),inset 0 0 0 5px rgba(150,100,20,.35)}
+.cll-wax-glow{position:absolute;inset:-60%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,226,150,.95),transparent 62%);opacity:.15;animation:cll-glow 2.4s ease-in-out infinite}
+.cll-idle:hover .cll-wax-glow{animation:none;opacity:1}
+.cll-env--open .cll-wax-glow{animation:none;opacity:1}
+
+.cll-star{font-size:14px;color:#ffe08a;opacity:0;animation:cll-twinkle 2.6s ease-in-out infinite;transform:translateZ(14px)}
+.cll-burst{left:50%;top:60%;transform:translateZ(16px);pointer-events:none}
+.cll-burst span{position:absolute;color:#ffd978}
+
+/* ---------- décor ---------- */
+.cll-flake{animation:cll-fall var(--d) linear var(--l) infinite;will-change:transform}
+.cll-spark{animation:cll-rise var(--d) ease-out var(--l) infinite}
+
+/* ---------- lettre (inchangée) ---------- */
+.cll-paper{background:
+  radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.7),transparent 55%),
+  radial-gradient(ellipse at 90% 100%,rgba(190,140,70,.22),transparent 55%),
+  linear-gradient(170deg,#fbf3df,#f1e3c3);
+  box-shadow:0 30px 70px rgba(0,0,0,.55),inset 0 0 60px rgba(160,110,50,.18)}
+.cll-bigheart{animation:cll-beat 1.4s ease-in-out infinite}
+
+@media (prefers-reduced-motion:reduce){
+  .cll-float,.cll-spark,.cll-star,.cll-wax-glow{animation:none!important}
+  .cll-flake{display:none}
+}
