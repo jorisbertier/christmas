@@ -1172,21 +1172,456 @@ function Envelope({ open, shake }) {
 }
 
 
+
 function Drum({ playing }) {
   return (
-    <svg viewBox="0 0 220 190" style={{ height: "100%", maxHeight: "100%", overflow: "visible" }} aria-hidden="true">
-      {[0, 0.4, 0.8].map((d) => <circle key={d} className="pr-ring" cx="110" cy="96" r="40" fill="none" stroke="#ffd45a" strokeWidth="3" style={{ animationDelay: `${d}s`, animationPlayState: playing ? "running" : "paused" }} />)}
-      <path d="M70 180L110 120L150 180" stroke="#7a4a12" strokeWidth="6" fill="none" strokeLinecap="round" />
-      <path d="M50 76V122Q110 148 170 122V76Z" fill="url(#prDrum)" stroke="#5a0a14" strokeWidth="2" />
-      {Array.from({ length: 12 }, (_, i) => <path key={i} d={`M${56 + i * 10} 82L${62 + i * 10} 130`} stroke="#fff3bf" strokeOpacity=".55" strokeWidth="2" />)}
-      <ellipse cx="110" cy="76" rx="60" ry="18" fill="#f7f1e4" stroke="#b9a584" strokeWidth="2" />
-      <ellipse cx="110" cy="122" rx="60" ry="14" fill="none" stroke="url(#prGold)" strokeWidth="5" />
-      <ellipse cx="110" cy="76" rx="60" ry="18" fill="none" stroke="url(#prGold)" strokeWidth="5" />
-      <g className={playing ? "pr-stick1" : ""}><path d="M40 20L98 70" stroke="#e8c27a" strokeWidth="6" strokeLinecap="round" /><circle cx="40" cy="20" r="6" fill="#fff3bf" /></g>
-      <g className={playing ? "pr-stick2" : ""}><path d="M180 20L122 70" stroke="#e8c27a" strokeWidth="6" strokeLinecap="round" /><circle cx="180" cy="20" r="6" fill="#fff3bf" /></g>
+    <svg
+      viewBox="0 0 240 210"
+      style={{
+        height: "100%",
+        maxHeight: "100%",
+        width: "100%",
+        overflow: "visible",
+      }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="drumBody" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#4c0918" />
+          <stop offset="18%" stopColor="#8c142a" />
+          <stop offset="42%" stopColor="#c12c42" />
+          <stop offset="62%" stopColor="#8b1429" />
+          <stop offset="85%" stopColor="#650c20" />
+          <stop offset="100%" stopColor="#3e0713" />
+        </linearGradient>
+
+        <linearGradient id="drumGold" x1="0" y1="0" x2="0.8" y2="1">
+          <stop offset="0%" stopColor="#fff2bd" />
+          <stop offset="25%" stopColor="#e8c66e" />
+          <stop offset="55%" stopColor="#b98734" />
+          <stop offset="78%" stopColor="#f4d98d" />
+          <stop offset="100%" stopColor="#936020" />
+        </linearGradient>
+
+        <linearGradient id="drumSkin" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fffdf2" />
+          <stop offset="65%" stopColor="#f2e6c9" />
+          <stop offset="100%" stopColor="#d9c59d" />
+        </linearGradient>
+
+        <linearGradient id="drumStick" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#956126" />
+          <stop offset="40%" stopColor="#fff0bc" />
+          <stop offset="70%" stopColor="#d6a751" />
+          <stop offset="100%" stopColor="#8d5a25" />
+        </linearGradient>
+
+        <radialGradient id="drumCenter">
+          <stop offset="0%" stopColor="#fff8df" />
+          <stop offset="100%" stopColor="#e5d1a5" />
+        </radialGradient>
+
+        <filter id="drumShadow" x="-30%" y="-30%" width="160%" height="180%">
+          <feDropShadow
+            dx="0"
+            dy="5"
+            stdDeviation="4"
+            floodColor="#24030a"
+            floodOpacity=".3"
+          />
+        </filter>
+      </defs>
+
+      {/* Ombre au sol */}
+      <ellipse
+        cx="120"
+        cy="190"
+        rx="66"
+        ry="7"
+        fill="#1b050b"
+        opacity=".25"
+      />
+
+      {/* Ondes musicales festives */}
+      {[0, 0.4, 0.8].map((d) => (
+        <circle
+          key={d}
+          className="pr-ring"
+          cx="120"
+          cy="103"
+          r="43"
+          fill="none"
+          stroke="url(#drumGold)"
+          strokeWidth="2.5"
+          opacity=".8"
+          style={{
+            animationDelay: `${d}s`,
+            animationPlayState: playing ? "running" : "paused",
+          }}
+        />
+      ))}
+
+      <g filter="url(#drumShadow)">
+        {/* Pieds du support */}
+        <path
+          d="M79 151 L65 184 M120 153 V186 M161 151 L175 184"
+          stroke="#633716"
+          strokeWidth="7"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M78 153 L66 181 M120 155 V181 M162 153 L174 181"
+          stroke="url(#drumGold)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          fill="none"
+        />
+
+        {/* Traverse du support */}
+        <path
+          d="M72 181 Q120 193 168 181"
+          fill="none"
+          stroke="#8a5a2a"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M77 180 Q120 189 163 180"
+          fill="none"
+          stroke="#e8c66e"
+          strokeWidth="1.5"
+        />
+
+        {/* Corps du tambour */}
+        <path
+          d="M60 78
+             Q120 99 180 78
+             L174 143
+             Q120 166 66 143Z"
+          fill="url(#drumBody)"
+          stroke="#510817"
+          strokeWidth="2"
+        />
+
+        {/* Reflets laqués */}
+        <path
+          d="M72 91 Q78 117 77 142"
+          fill="none"
+          stroke="#f77a79"
+          strokeWidth="4"
+          strokeLinecap="round"
+          opacity=".5"
+        />
+        <path
+          d="M84 96 Q89 121 88 147"
+          fill="none"
+          stroke="#ffb0a0"
+          strokeWidth="1.3"
+          opacity=".6"
+        />
+        <path
+          d="M164 94 Q160 120 160 143"
+          fill="none"
+          stroke="#360610"
+          strokeWidth="5"
+          opacity=".45"
+        />
+
+        {/* Bandes décoratives sur le fût */}
+        <path
+          d="M62 87 Q120 107 178 87"
+          fill="none"
+          stroke="url(#drumGold)"
+          strokeWidth="3"
+        />
+        <path
+          d="M65 137 Q120 158 175 137"
+          fill="none"
+          stroke="url(#drumGold)"
+          strokeWidth="3"
+        />
+
+        <path
+          d="M67 95 Q120 113 173 95"
+          fill="none"
+          stroke="#f7d98b"
+          strokeWidth=".8"
+          opacity=".8"
+        />
+
+        {/* Petits clous dorés */}
+        {Array.from({ length: 9 }, (_, i) => {
+          const x = 72 + i * 12;
+          return (
+            <g key={i}>
+              <circle
+                cx={x}
+                cy={91 + Math.sin((i / 8) * Math.PI) * 8}
+                r="2"
+                fill="#fff0b3"
+                stroke="#986421"
+                strokeWidth=".6"
+              />
+              <circle
+                cx={x}
+                cy={139 + Math.sin((i / 8) * Math.PI) * 7}
+                r="1.8"
+                fill="#ffe8a1"
+                stroke="#986421"
+                strokeWidth=".5"
+              />
+            </g>
+          );
+        })}
+
+        {/* Motif central étoile */}
+        <g transform="translate(120 119)">
+          <path
+            d="M0 -13 L3 -4 L12 -4 L5 2 L8 11 L0 6 L-8 11 L-5 2 L-12 -4 L-3 -4Z"
+            fill="url(#drumGold)"
+            stroke="#ffe9a5"
+            strokeWidth=".8"
+          />
+          <circle r="2" fill="#fff5cf" />
+        </g>
+
+        {/* Petits motifs de flocons */}
+        <g
+          stroke="#f8df9a"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          fill="none"
+          opacity=".9"
+        >
+          <path d="M94 112 V122 M89 117 H99 M90.5 113.5 L97.5 120.5 M97.5 113.5 L90.5 120.5" />
+          <path d="M146 112 V122 M141 117 H151 M142.5 113.5 L149.5 120.5 M149.5 113.5 L142.5 120.5" />
+        </g>
+
+        {/* Cerclage inférieur */}
+        <ellipse
+          cx="120"
+          cy="143"
+          rx="55"
+          ry="15"
+          fill="none"
+          stroke="#57200e"
+          strokeWidth="8"
+        />
+        <ellipse
+          cx="120"
+          cy="143"
+          rx="55"
+          ry="15"
+          fill="none"
+          stroke="url(#drumGold)"
+          strokeWidth="4"
+        />
+        <ellipse
+          cx="120"
+          cy="143"
+          rx="51"
+          ry="12"
+          fill="none"
+          stroke="#fff0b8"
+          strokeWidth=".8"
+          opacity=".8"
+        />
+
+        {/* Peau du tambour */}
+        <ellipse
+          cx="120"
+          cy="78"
+          rx="60"
+          ry="21"
+          fill="#6c3a19"
+          stroke="#6c3a19"
+          strokeWidth="3"
+        />
+        <ellipse
+          cx="120"
+          cy="76"
+          rx="60"
+          ry="21"
+          fill="url(#drumSkin)"
+          stroke="url(#drumGold)"
+          strokeWidth="4"
+        />
+
+        {/* Cercles concentriques sur la peau */}
+        <ellipse
+          cx="120"
+          cy="76"
+          rx="52"
+          ry="15"
+          fill="none"
+          stroke="#c9ad72"
+          strokeWidth="1"
+          strokeDasharray="2 3"
+        />
+        <ellipse
+          cx="120"
+          cy="76"
+          rx="39"
+          ry="10"
+          fill="none"
+          stroke="#c9ad72"
+          strokeWidth=".7"
+          opacity=".7"
+        />
+
+        {/* Rosace centrale */}
+        <g transform="translate(120 76)">
+          <circle r="9" fill="url(#drumCenter)" stroke="#d5b56a" strokeWidth="1" />
+          <path
+            d="M0 -6 L1.8 -1.8 L6 -1.8 L2.6 1 L3.8 5.5 L0 3 L-3.8 5.5 L-2.6 1 L-6 -1.8 L-1.8 -1.8Z"
+            fill="#a51d33"
+          />
+          <circle r="1.5" fill="#fff1bf" />
+        </g>
+
+        {/* Petits rivets du cerclage supérieur */}
+        {Array.from({ length: 13 }, (_, i) => {
+          const angle = (Math.PI * i) / 12;
+          const x = 120 + 54 * Math.cos(angle);
+          const y = 76 + 17 * Math.sin(angle);
+          return (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r="1.5"
+              fill="#fff0b1"
+              stroke="#9c702b"
+              strokeWidth=".5"
+            />
+          );
+        })}
+
+        {/* Baguette gauche animée */}
+        <g
+          className={playing ? "pr-stick1" : ""}
+          style={{ transformBox: "view-box", transformOrigin: "42px 22px" }}
+        >
+          <path
+            d="M39 20 L103 72"
+            stroke="#81501e"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M39 18 L103 70"
+            stroke="url(#drumStick)"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+          <ellipse
+            cx="39"
+            cy="19"
+            rx="5"
+            ry="7"
+            transform="rotate(-50 39 19)"
+            fill="url(#drumGold)"
+            stroke="#a67632"
+            strokeWidth="1"
+          />
+          <path
+            d="M48 29 L91 64"
+            stroke="#fff3ca"
+            strokeWidth="1"
+            strokeLinecap="round"
+            opacity=".8"
+          />
+        </g>
+
+        {/* Baguette droite animée */}
+        <g
+          className={playing ? "pr-stick2" : ""}
+          style={{ transformBox: "view-box", transformOrigin: "198px 22px" }}
+        >
+          <path
+            d="M201 20 L137 72"
+            stroke="#81501e"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M201 18 L137 70"
+            stroke="url(#drumStick)"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+          <ellipse
+            cx="201"
+            cy="19"
+            rx="5"
+            ry="7"
+            transform="rotate(50 201 19)"
+            fill="url(#drumGold)"
+            stroke="#a67632"
+            strokeWidth="1"
+          />
+          <path
+            d="M192 29 L149 64"
+            stroke="#fff3ca"
+            strokeWidth="1"
+            strokeLinecap="round"
+            opacity=".8"
+          />
+        </g>
+      </g>
+
+      {/* Houx décoratif à gauche */}
+      <g transform="translate(48 151) rotate(-25)">
+        <path
+          d="M0 12 Q10 0 22 -5"
+          fill="none"
+          stroke="#b98b43"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M5 7 Q-5 -1 0 -5 Q7 -5 8 3 Q13 -4 18 0 Q18 7 9 8"
+          fill="#245b39"
+          stroke="#174129"
+          strokeWidth=".8"
+        />
+        <circle cx="8" cy="8" r="3" fill="#d62d43" />
+        <circle cx="13" cy="5" r="2.5" fill="#a9152c" />
+        <circle cx="4" cy="3" r="2.5" fill="#ed5960" />
+      </g>
+
+      {/* Houx décoratif à droite */}
+      <g transform="translate(192 151) rotate(25)">
+        <path
+          d="M0 12 Q-10 0 -22 -5"
+          fill="none"
+          stroke="#b98b43"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M-5 7 Q5 -1 0 -5 Q-7 -5 -8 3 Q-13 -4 -18 0 Q-18 7 -9 8"
+          fill="#245b39"
+          stroke="#174129"
+          strokeWidth=".8"
+        />
+        <circle cx="-8" cy="8" r="3" fill="#d62d43" />
+        <circle cx="-13" cy="5" r="2.5" fill="#a9152c" />
+        <circle cx="-4" cy="3" r="2.5" fill="#ed5960" />
+      </g>
+
+      {/* Éclats festifs */}
+      <g fill="url(#drumGold)">
+        <path d="M37 62 L39 68 L45 70 L39 72 L37 78 L35 72 L29 70 L35 68Z" />
+        <path d="M205 59 L207 64 L212 66 L207 68 L205 73 L203 68 L198 66 L203 64Z" />
+        <path d="M61 34 L62.5 38 L66 39.5 L62.5 41 L61 45 L59.5 41 L56 39.5 L59.5 38Z" />
+        <circle cx="183" cy="43" r="2" />
+        <circle cx="32" cy="98" r="1.5" />
+        <circle cx="209" cy="101" r="1.5" />
+      </g>
     </svg>
   );
 }
+
 
 function PhotoFrame({ prize, className = "" }) {
   const lights = Array.from({ length: 16 }, (_, i) => i);
