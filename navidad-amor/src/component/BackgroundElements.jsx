@@ -52,7 +52,7 @@ export default function BackgroundElements() {
             <img
                 src={secondplan}
                 alt=""
-                className="absolute h-[57%] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
+                className="absolute h-[72%] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
             
             <div className="absolute bottom-0 inset-x-0 aspect-[1440/370]">

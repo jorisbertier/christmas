@@ -370,10 +370,77 @@ const CSS = `
 .pr-tie{position:absolute;top:44cqh;z-index:8;width:3cqw;height:11cqh;opacity:0;transition:opacity 1.5s ease 2.2s;pointer-events:none}
 .pr-stage[data-open="true"] .pr-tie{opacity:1}
 
-/* floor */
-.pr-floor{position:absolute;left:0;right:0;bottom:0;height:15cqh;z-index:5;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(60,6,14,.9) 18%,#4e0a14 55%,#2a050b 100%);border-top:2px solid rgba(232,184,74,.55)}
-.pr-floor::before{content:"";position:absolute;left:8cqw;right:8cqw;top:34%;height:30%;background:repeating-linear-gradient(90deg,rgba(255,214,120,.18) 0 2px,transparent 2px 40px)}
+
+/* FLOOR — plancher de Noël élégant */
+/* FLOOR */
+.pr-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+
+  /* Mêmes couleurs qu'avant */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(60, 6, 14, 0.9) 18%,
+    #4e0a14 55%,
+    #2a050b 100%
+  );
+
+  border-top: 2px solid rgba(232, 184, 74, 0.55);
+}
+
+/* Ligne dorée supérieure */
+.pr-floor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 220, 145, 0.9),
+    transparent
+  );
+}
+
+/* Effet de plancher élégant */
+.pr-floor::after {
+  content: "";
+  position: absolute;
+  inset: 12px 5% 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(12.5% - 1px),
+      rgba(232, 184, 74, 0.12) calc(12.5% - 1px),
+      rgba(232, 184, 74, 0.12) 12.5%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 214, 120, 0.06),
+      transparent 70%
+    );
+}
+    .pr-floor-ornaments {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.9;
+  overflow: visible;
+}
 
 /* content */
 .pr-main{position:absolute;left:11cqw;right:11cqw;top:12cqh;bottom:14.5cqh;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2cqh;text-align:center;min-height:0}
@@ -571,8 +638,20 @@ const CSS = `
 @keyframes pr-swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
 .pr-flame{transform-box:fill-box;transform-origin:50% 100%;animation:pr-flame 1.3s ease-in-out infinite alternate}
 @keyframes pr-flame{0%{transform:scale(1,1) rotate(-3deg)}100%{transform:scale(.88,1.12) rotate(3deg)}}
-.pr-spin{transform-box:fill-box;transform-origin:center;animation:pr-spin 9s linear infinite}
-@keyframes pr-spin{to{transform:rotate(360deg)}}
+.pr-spin {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: pr-spin 9s linear infinite;
+}
+
+@keyframes pr-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .pr-shine{animation:pr-shine 3.4s ease-in-out infinite}
 @keyframes pr-shine{0%,100%{filter:brightness(1) drop-shadow(0 0 10px rgba(255,214,120,.5))}50%{filter:brightness(1.25) drop-shadow(0 0 26px rgba(255,230,150,.95))}}
 .pr-flap{transform-box:fill-box;transform-origin:50% 0;transition:transform .9s ease}
@@ -1580,22 +1659,499 @@ function Mistletoe() {
   );
 }
 
+
 function Fir({ x, bottom, h, flip }) {
-  const tiers = [[8, 54, 26], [34, 90, 38], [60, 130, 52], [96, 170, 64]];
+  const uid = `fir-${String(x).replace(".", "_")}-${bottom}`;
+
+  const tiers = [
+    { top: 18, base: 66, width: 22 },
+    { top: 43, base: 98, width: 36 },
+    { top: 72, base: 133, width: 49 },
+    { top: 105, base: 169, width: 62 },
+  ];
+
+  const baubles = [
+    { x: -8, y: 52, r: 4.2, type: "red" },
+    { x: 13, y: 78, r: 4.6, type: "gold" },
+    { x: -22, y: 98, r: 4.7, type: "red" },
+    { x: 23, y: 113, r: 4.2, type: "gold" },
+    { x: -5, y: 125, r: 5.2, type: "red" },
+    { x: 39, y: 139, r: 4.3, type: "gold" },
+    { x: -34, y: 145, r: 4.6, type: "gold" },
+    { x: 8, y: 157, r: 4.5, type: "red" },
+    { x: -15, y: 85, r: 3.2, type: "champagne" },
+    { x: 2, y: 98, r: 3.3, type: "champagne" },
+    { x: -43, y: 126, r: 3.4, type: "red" },
+    { x: 31, y: 91, r: 3.2, type: "gold" },
+  ];
+
+  const lights = [
+    [-4, 38], [9, 57], [-16, 69], [25, 83],
+    [-30, 91], [4, 83], [17, 104], [-12, 112],
+    [36, 122], [-37, 133], [0, 141], [21, 151],
+    [-20, 157], [44, 143], [-4, 171],
+  ];
+
   return (
-    <svg style={{ position: "absolute", left: `${x}cqw`, bottom: `${bottom}cqh`, height: `${h}cqh`, zIndex: 6, overflow: "visible", transform: flip ? "scaleX(-1)" : undefined }} viewBox="-70 0 140 190" aria-hidden="true">
-      <ellipse cx="0" cy="186" rx="64" ry="9" fill="#fff" opacity=".85" />
-      {tiers.reverse().map(([t, b, hw], i) => (
+    <svg
+      style={{
+        position: "absolute",
+        left: `${x}cqw`,
+        bottom: `${bottom}cqh`,
+        height: `${h}cqh`,
+        zIndex: 6,
+        overflow: "visible",
+        transform: flip ? "scaleX(-1)" : undefined,
+      }}
+      viewBox="-75 0 150 195"
+      preserveAspectRatio="xMidYMax meet"
+      aria-hidden="true"
+    >
+      <defs>
+        {/* Aiguilles vert sapin */}
+        <linearGradient id={`${uid}-fir`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#092b1c" />
+          <stop offset="22%" stopColor="#155335" />
+          <stop offset="48%" stopColor="#267044" />
+          <stop offset="72%" stopColor="#10452d" />
+          <stop offset="100%" stopColor="#062619" />
+        </linearGradient>
+
+        <linearGradient id={`${uid}-branch`} x1="0" y1="0" x2="0.2" y2="1">
+          <stop offset="0%" stopColor="#4e9960" />
+          <stop offset="45%" stopColor="#21643c" />
+          <stop offset="100%" stopColor="#0a3522" />
+        </linearGradient>
+
+        <linearGradient id={`${uid}-snow`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="55%" stopColor="#f1f5f2" />
+          <stop offset="100%" stopColor="#c9d9d1" />
+        </linearGradient>
+
+        <radialGradient id={`${uid}-red`} cx="28%" cy="22%" r="78%">
+          <stop offset="0%" stopColor="#ffb0a0" />
+          <stop offset="24%" stopColor="#df3540" />
+          <stop offset="60%" stopColor="#a90820" />
+          <stop offset="100%" stopColor="#530611" />
+        </radialGradient>
+
+        <radialGradient id={`${uid}-gold`} cx="25%" cy="20%" r="80%">
+          <stop offset="0%" stopColor="#fff9d9" />
+          <stop offset="28%" stopColor="#f6dc88" />
+          <stop offset="60%" stopColor="#d29a35" />
+          <stop offset="100%" stopColor="#79501c" />
+        </radialGradient>
+
+        <radialGradient id={`${uid}-champagne`} cx="25%" cy="20%" r="80%">
+          <stop offset="0%" stopColor="#fffde8" />
+          <stop offset="45%" stopColor="#f1dca0" />
+          <stop offset="100%" stopColor="#a77b39" />
+        </radialGradient>
+
+        <linearGradient id={`${uid}-ribbon`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#ffdad0" />
+          <stop offset="45%" stopColor="#c51c31" />
+          <stop offset="100%" stopColor="#740718" />
+        </linearGradient>
+
+        <linearGradient id={`${uid}-wire`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#9d6928" />
+          <stop offset="50%" stopColor="#fff1b4" />
+          <stop offset="100%" stopColor="#b77a29" />
+        </linearGradient>
+
+        <radialGradient id={`${uid}-star`} cx="35%" cy="20%" r="80%">
+          <stop offset="0%" stopColor="#fffde1" />
+          <stop offset="35%" stopColor="#ffe28a" />
+          <stop offset="72%" stopColor="#d49a34" />
+          <stop offset="100%" stopColor="#825018" />
+        </radialGradient>
+
+        <filter id={`${uid}-shadow`} x="-50%" y="-40%" width="200%" height="200%">
+          <feDropShadow
+            dx="0"
+            dy="1.5"
+            stdDeviation="1.5"
+            floodColor="#061a10"
+            floodOpacity=".45"
+          />
+        </filter>
+
+        <filter id={`${uid}-glow`} x="-250%" y="-250%" width="600%" height="600%">
+          <feGaussianBlur stdDeviation="2" />
+        </filter>
+
+        <clipPath id={`${uid}-tree-clip`}>
+          <path d="M0 12 L20 62 L13 60 L36 94 L27 92 L49 128 L39 126 L62 163 Q0 184 -62 163 L-39 126 L-49 128 L-27 92 L-36 94 L-13 60 L-20 62Z" />
+        </clipPath>
+      </defs>
+
+      {/* Ombre douce au pied */}
+      <ellipse
+        cx="0"
+        cy="187"
+        rx="64"
+        ry="7"
+        fill="#071b10"
+        opacity=".32"
+      />
+
+      {/* Tronc */}
+      <path
+        d="M-6 153 L6 153 L8 183 L-8 183Z"
+        fill="#754322"
+      />
+      <path
+        d="M-2 155 L1 155 L2 180 L-2 180Z"
+        fill="#a66a3d"
+        opacity=".65"
+      />
+
+      {/* Branches de fond */}
+      {tiers.slice().reverse().map((tier, i) => (
         <g key={i}>
-          <path d={`M0 ${t} L${hw} ${b} Q${hw / 2} ${b + 12} 0 ${b + 4} Q${-hw / 2} ${b + 12} ${-hw} ${b}Z`} fill="url(#prFir)" />
-          <path d={`M0 ${t} L${hw * 0.8} ${b - 8} Q${hw / 2} ${b + 2} 0 ${b - 6} Q${-hw / 2} ${b + 2} ${-hw * 0.8} ${b - 8}Z`} fill="url(#prSnow)" opacity=".85" />
+          <path
+            d={`M0 ${tier.top}
+              L${tier.width} ${tier.base - 9}
+              Q${tier.width * 0.62} ${tier.base + 4} 0 ${tier.base}
+              Q${-tier.width * 0.62} ${tier.base + 4} ${-tier.width} ${tier.base - 9}
+              Z`}
+            fill={`url(#${uid}-fir)`}
+          />
+
+          {/* Petites pointes d'aiguilles */}
+          {Array.from({ length: 9 }, (_, j) => {
+            const side = j % 2 === 0 ? 1 : -1;
+            const px = side * (tier.width * (0.3 + (j % 4) * 0.16));
+            const py = tier.top + 12 + j * 3.1;
+
+            return (
+              <path
+                key={j}
+                d={`M${px} ${py} l${side * 5} 5 l${-side * 6} -1`}
+                fill="none"
+                stroke="#438354"
+                strokeWidth="1"
+                strokeLinecap="round"
+                opacity=".7"
+              />
+            );
+          })}
         </g>
       ))}
-      {[[-14, 60], [18, 90], [-30, 124], [26, 140], [0, 160], [-8, 104]].map(([lx, ly], i) => <circle key={i} className={`pr-twinkle${(i % 3) + 1}`} cx={lx} cy={ly} r="3.2" fill={["#ffd45a", "#ff6b6b", "#7dd3fc"][i % 3]} style={{ animationDelay: `${i * 0.3}s` }} />)}
-      <path className="pr-spin" d="M0 -4 L4 6 L15 6 L6.5 12 L9.5 22 L0 16 L-9.5 22 L-6.5 12 L-15 6 L-4 6Z" fill="url(#prGold)" transform="translate(0 4)" />
+
+      {/* Branches avant, plus détaillées */}
+      {tiers.map((tier, i) => (
+        <g key={`front-${i}`}>
+          <path
+            d={`M0 ${tier.top}
+              L${tier.width * 0.78} ${tier.base - 12}
+              Q${tier.width * 0.52} ${tier.base + 1} 0 ${tier.base - 2}
+              Q${-tier.width * 0.52} ${tier.base + 1} ${-tier.width * 0.78} ${tier.base - 12}
+              Z`}
+            fill={`url(#${uid}-branch)`}
+          />
+
+          <path
+            d={`M0 ${tier.top + 2}
+              Q${tier.width * 0.24} ${tier.base - 18} ${tier.width * 0.78} ${tier.base - 12}`}
+            fill="none"
+            stroke="#68a96d"
+            strokeWidth="1.3"
+            opacity=".6"
+          />
+
+          <path
+            d={`M0 ${tier.top + 2}
+              Q${-tier.width * 0.24} ${tier.base - 18} ${-tier.width * 0.78} ${tier.base - 12}`}
+            fill="none"
+            stroke="#68a96d"
+            strokeWidth="1.3"
+            opacity=".6"
+          />
+        </g>
+      ))}
+
+      {/* Neige posée sur les étages */}
+      {tiers.map((tier, i) => (
+        <g key={`snow-${i}`}>
+          <path
+            d={`M${-tier.width * 0.78} ${tier.base - 12}
+              Q${-tier.width * 0.4} ${tier.base - 2} 0 ${tier.base - 2}
+              Q${tier.width * 0.4} ${tier.base - 2} ${tier.width * 0.78} ${tier.base - 12}
+              Q${tier.width * 0.47} ${tier.base + 1} 0 ${tier.base + 1}
+              Q${-tier.width * 0.47} ${tier.base + 1} ${-tier.width * 0.78} ${tier.base - 12}Z`}
+            fill={`url(#${uid}-snow)`}
+            opacity=".9"
+          />
+
+          <path
+            d={`M${-tier.width * 0.55} ${tier.base - 8}
+              Q-7 ${tier.base + 1} 0 ${tier.base - 1}
+              Q${tier.width * 0.32} ${tier.base + 1} ${tier.width * 0.55} ${tier.base - 8}`}
+            fill="none"
+            stroke="#fff"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            opacity=".9"
+          />
+        </g>
+      ))}
+
+      {/* Guirlande lumineuse en spirale */}
+      <g clipPath={`url(#${uid}-tree-clip)`}>
+        <path
+          d="M-6 40
+             C28 49 31 58 -21 72
+             C-47 80 -34 91 18 101
+             C51 111 30 122 -21 132
+             C-49 140 -28 151 19 159
+             C34 164 25 171 0 175"
+          fill="none"
+          stroke="#0a2c1a"
+          strokeWidth="4"
+          strokeLinecap="round"
+          opacity=".8"
+        />
+
+        <path
+          d="M-6 40
+             C28 49 31 58 -21 72
+             C-47 80 -34 91 18 101
+             C51 111 30 122 -21 132
+             C-49 140 -28 151 19 159
+             C34 164 25 171 0 175"
+          fill="none"
+          stroke={`url(#${uid}-wire)`}
+          strokeWidth="1.3"
+          strokeLinecap="round"
+        />
+      </g>
+
+      {/* Lumières avec halo */}
+      {lights.map(([lx, ly], i) => {
+        const colors = ["#ffd45a", "#ff6b6b", "#8de0ff", "#fff0b5"];
+        const c = colors[i % colors.length];
+
+        return (
+          <g key={`light-${i}`}>
+            <circle
+              cx={lx}
+              cy={ly}
+              r="5"
+              fill={c}
+              opacity=".22"
+              filter={`url(#${uid}-glow)`}
+            />
+            <circle
+              className={`pr-twinkle${(i % 3) + 1}`}
+              cx={lx}
+              cy={ly}
+              r="2.5"
+              fill={c}
+              stroke="#fff6d1"
+              strokeWidth=".55"
+              style={{ animationDelay: `${i * 0.19}s` }}
+            />
+            <circle
+              cx={lx - 0.6}
+              cy={ly - 0.7}
+              r=".8"
+              fill="#fff"
+              opacity=".9"
+            />
+          </g>
+        );
+      })}
+
+      {/* Boules de Noël brillantes */}
+      {baubles.map((b, i) => {
+        const gradient =
+          b.type === "red"
+            ? `url(#${uid}-red)`
+            : b.type === "champagne"
+              ? `url(#${uid}-champagne)`
+              : `url(#${uid}-gold)`;
+
+        return (
+          <g
+            key={`bauble-${i}`}
+            transform={`translate(${b.x} ${b.y})`}
+            filter={`url(#${uid}-shadow)`}
+          >
+            {/* Petit crochet */}
+            <path
+              d={`M0 ${-b.r - 4} V${-b.r - 1}`}
+              stroke={`url(#${uid}-gold)`}
+              strokeWidth=".9"
+            />
+
+            <rect
+              x="-2"
+              y={-b.r - 2}
+              width="4"
+              height="3"
+              rx=".7"
+              fill={`url(#${uid}-gold)`}
+            />
+
+            <circle
+              r={b.r}
+              fill={gradient}
+              stroke="#f6d98b"
+              strokeWidth=".7"
+            />
+
+            {/* Reflet sur le verre */}
+            <ellipse
+              cx={-b.r * 0.3}
+              cy={-b.r * 0.35}
+              rx={b.r * 0.23}
+              ry={b.r * 0.38}
+              fill="#fff"
+              opacity=".78"
+              transform={`rotate(-25 ${-b.r * 0.3} ${-b.r * 0.35})`}
+            />
+
+            {b.type === "red" && (
+              <>
+                <path
+                  d={`M${-b.r * 0.65} 0 Q0 ${b.r * 0.6} ${b.r * 0.65} 0`}
+                  fill="none"
+                  stroke="#f7d781"
+                  strokeWidth=".8"
+                />
+                <circle
+                  cx={b.r * 0.38}
+                  cy={b.r * 0.38}
+                  r=".7"
+                  fill="#fff0bd"
+                />
+              </>
+            )}
+
+            {b.type === "gold" && (
+              <>
+                <path
+                  d={`M${-b.r * 0.65} ${-b.r * 0.1}
+                     Q0 ${-b.r * 0.8} ${b.r * 0.65} ${-b.r * 0.1}`}
+                  fill="none"
+                  stroke="#fff2b7"
+                  strokeWidth=".7"
+                />
+                <circle
+                  r={b.r * 0.2}
+                  fill="#fff4c9"
+                  opacity=".85"
+                />
+              </>
+            )}
+          </g>
+        );
+      })}
+
+      {/* Petits nœuds rouges */}
+      {[
+        [-28, 109, -15],
+        [30, 128, 18],
+        [-10, 151, -8],
+      ].map(([bx, by, rotation], i) => (
+        <g
+          key={`bow-${i}`}
+          transform={`translate(${bx} ${by}) rotate(${rotation})`}
+          filter={`url(#${uid}-shadow)`}
+        >
+          <path
+            d="M0 0 C-7 -8 -15 -6 -13 0 Q-7 7 0 2Z"
+            fill={`url(#${uid}-ribbon)`}
+            stroke="#f0bd72"
+            strokeWidth=".65"
+          />
+          <path
+            d="M0 0 C7 -8 15 -6 13 0 Q7 7 0 2Z"
+            fill={`url(#${uid}-ribbon)`}
+            stroke="#f0bd72"
+            strokeWidth=".65"
+          />
+          <circle
+            r="2.3"
+            fill={`url(#${uid}-gold)`}
+            stroke="#fff0b5"
+            strokeWidth=".5"
+          />
+          <path
+            d="M-1 2 L-5 10 L0 8 L4 12 L3 3"
+            fill={`url(#${uid}-ribbon)`}
+            stroke="#e8bd75"
+            strokeWidth=".5"
+          />
+        </g>
+      ))}
+
+      {/* Flocons décoratifs */}
+      {[
+        [-24, 79, 3.5],
+        [28, 99, 3],
+        [-39, 117, 2.7],
+        [12, 137, 3.2],
+        [0, 65, 2.5],
+      ].map(([sx, sy, sr], i) => (
+        <g
+          key={`snowflake-${i}`}
+          transform={`translate(${sx} ${sy})`}
+          stroke="#eaf9f1"
+          strokeWidth=".8"
+          strokeLinecap="round"
+          opacity=".9"
+        >
+          {Array.from({ length: 3 }, (_, j) => (
+            <path
+              key={j}
+              d={`M0 ${-sr} V${sr}`}
+              transform={`rotate(${j * 60})`}
+            />
+          ))}
+          <circle r=".8" fill="#fff" stroke="none" />
+        </g>
+      ))}
+
+      {/* Étoile dorée au sommet */}
+      <g className="pr-spin" transform="translate(0 30)" filter={`url(#${uid}-shadow)`}>
+        <path
+          d="M0 -13 L3.8 -4.2 L13 -4 L5.8 2.1 L8.2 11 L0 6.2 L-8.2 11 L-5.8 2.1 L-13 -4 L-3.8 -4.2Z"
+          fill={`url(#${uid}-star)`}
+          stroke="#fff0b5"
+          strokeWidth=".9"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M0 -8 L1.7 -1.8 L7 -2 L2.5 1.5 L4.1 7 L0 3.7 L-4.1 7 L-2.5 1.5 L-7 -2 L-1.7 -1.8Z"
+          fill="#fff4c4"
+          opacity=".65"
+        />
+        <circle r="2" fill="#fff9dc" />
+      </g>
+
+      {/* Neige au pied */}
+      <ellipse
+        cx="0"
+        cy="184"
+        rx="54"
+        ry="5"
+        fill="#fff"
+        opacity=".8"
+      />
+      <path
+        d="M-39 184 Q-20 178 0 184 T39 184"
+        fill="none"
+        stroke="#dbece4"
+        strokeWidth="1.2"
+      />
     </svg>
   );
 }
+
 
 function Gifts({ x, flip }) {
   return (
@@ -1667,6 +2223,103 @@ function Backdrop() {
 }
 
 
+function FloorOrnaments() {
+  return (
+    <svg
+      className="pr-floor-ornaments"
+      viewBox="0 0 1200 150"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="prFloorGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fff3bf" />
+          <stop offset="35%" stopColor="#e8b84a" />
+          <stop offset="65%" stopColor="#9b641f" />
+          <stop offset="100%" stopColor="#f6d77e" />
+        </linearGradient>
+
+        <radialGradient id="prFloorGlow">
+          <stop offset="0%" stopColor="#ffe7a0" stopOpacity=".65" />
+          <stop offset="100%" stopColor="#ffe7a0" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* Lumières diffuses au pied du village */}
+      {[150, 400, 600, 800, 1050].map((x, i) => (
+        <ellipse
+          key={`glow-${i}`}
+          cx={x}
+          cy="30"
+          rx="105"
+          ry="45"
+          fill="url(#prFloorGlow)"
+          opacity={i % 2 === 0 ? ".5" : ".3"}
+        />
+      ))}
+
+      {/* Frise supérieure */}
+      <path
+        d="M0 8 H1200"
+        fill="none"
+        stroke="url(#prFloorGold)"
+        strokeWidth="1.5"
+        opacity=".85"
+      />
+
+      {/* Arabesques dorées */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const x = i * 100 + 50;
+
+        return (
+          <g
+            key={`ornament-${i}`}
+            transform={`translate(${x} 48)`}
+            fill="none"
+            stroke="url(#prFloorGold)"
+            strokeWidth="1.3"
+            opacity=".72"
+          >
+            <path d="M-28 0 Q-17 -16 -7 0 Q0 10 7 0 Q17 -16 28 0" />
+            <path d="M-20 4 Q-12 17 0 8 Q12 17 20 4" />
+            <circle cx="0" cy="0" r="3" fill="url(#prFloorGold)" />
+            <circle cx="-28" cy="0" r="1.5" fill="#ffe9a8" />
+            <circle cx="28" cy="0" r="1.5" fill="#ffe9a8" />
+          </g>
+        );
+      })}
+
+      {/* Étoiles scintillantes */}
+      {Array.from({ length: 23 }, (_, i) => {
+        const x = 22 + i * 51;
+        const y = 83 + (i % 3) * 15;
+        const r = i % 4 === 0 ? 5 : 3;
+
+        return (
+          <g key={`star-${i}`} transform={`translate(${x} ${y})`}>
+            <path
+              d={`M0 ${-r} L${r * 0.25} ${-r * 0.25} L${r} 0 L${r * 0.25} ${r * 0.25} L0 ${r} L${-r * 0.25} ${r * 0.25} L${-r} 0 L${-r * 0.25} ${-r * 0.25}Z`}
+              fill="#ffe6a0"
+              opacity={i % 2 === 0 ? ".8" : ".45"}
+            />
+            <circle r="1.2" fill="#fff8dc" />
+          </g>
+        );
+      })}
+
+      {/* Petit filet inférieur */}
+      <path
+        d="M0 138 Q300 130 600 138 T1200 138"
+        fill="none"
+        stroke="url(#prFloorGold)"
+        strokeWidth="1"
+        opacity=".28"
+      />
+    </svg>
+  );
+}
+
+
 function ImageDecoration({
   src,
   x = 50,
@@ -1711,17 +2364,18 @@ function Decorations() {
   return (
     <>
       <div className="pr-floor" aria-hidden="true" />
+      <FloorOrnaments />
       <Footlights />
       <Fir x={2.4} bottom={13} h={44} />
-      <Fir x={91.2} bottom={13} h={38} flip />
+      {/* <Fir x={91.2} bottom={13} h={38} flip /> */}
 
-      <ImageDecoration
+      {/* <ImageDecoration
         src={houx}
         x={2.4}
         bottom={13}
         width={12}
         className="pr-bonhomme"
-      />
+      /> */}
 
       {/* <Gifts x={5.5} />
       <Gifts x={80.5} flip />
@@ -1749,35 +2403,419 @@ function Decorations() {
 /*  7. TROPHIES, ENVELOPE, DRUM, PHOTO                                 */
 /* ------------------------------------------------------------------ */
 
+
 function Trophy({ kind, className = "" }) {
   return (
-    <svg className={`pr-shine ${className}`} viewBox="0 0 120 150" style={{ height: "100%", maxHeight: "100%", overflow: "visible" }} aria-hidden="true">
-      <ellipse cx="60" cy="144" rx="42" ry="5" fill="#000" opacity=".4" />
-      <rect x="30" y="126" width="60" height="14" rx="3" fill="url(#prGoldV)" /><rect x="22" y="136" width="76" height="8" rx="3" fill="#7a4a12" />
-      {kind === "cup" && (<g>
-        <path d="M38 18H82Q84 70 60 84Q36 70 38 18Z" fill="url(#prGoldV)" stroke="#a8721f" strokeWidth="1.4" />
-        <path d="M38 28Q12 24 18 52Q26 66 44 66M82 28Q108 24 102 52Q94 66 76 66" fill="none" stroke="url(#prGold)" strokeWidth="6" strokeLinecap="round" />
-        <rect x="54" y="84" width="12" height="30" fill="url(#prGoldV)" /><rect x="44" y="112" width="32" height="14" rx="3" fill="url(#prGold)" />
-        <path d="M60 30L64 42L77 42L67 50L71 62L60 55L49 62L53 50L43 42L56 42Z" fill="#fff3bf" opacity=".95" />
-        <path d="M44 24Q46 62 56 74" fill="none" stroke="#fff" strokeOpacity=".5" strokeWidth="4" strokeLinecap="round" />
-      </g>)}
-      {kind === "star" && (<g>
-        <rect x="52" y="96" width="16" height="34" fill="url(#prGoldV)" />
-        <path d="M60 6L72 40L108 42L80 64L90 98L60 78L30 98L40 64L12 42L48 40Z" fill="url(#prGold)" stroke="#a8721f" strokeWidth="1.6" strokeLinejoin="round" />
-        <path d="M60 6L72 40L60 52Z M108 42L80 64L60 52Z M90 98L60 78L60 52Z" fill="#fff" opacity=".28" />
-        <circle cx="60" cy="52" r="9" fill="#d4222f" stroke="#fff3bf" strokeWidth="2" />
-      </g>)}
-      {kind === "heart" && (<g>
-        <rect x="52" y="100" width="16" height="30" fill="url(#prGoldV)" />
-        <path d="M60 94C20 68 14 30 38 22C50 18 58 28 60 34C62 28 70 18 82 22C106 30 100 68 60 94Z" fill="url(#prRed)" stroke="url(#prGold)" strokeWidth="5" strokeLinejoin="round" />
-        <path d="M34 36Q38 28 48 30" fill="none" stroke="#fff" strokeOpacity=".6" strokeWidth="4" strokeLinecap="round" />
-        <path d="M44 6L60 22L76 6L70 26H50Z" fill="url(#prGold)" opacity=".0" />
-        <path d="M46 6Q60 22 74 6L68 24H52Z" fill="#e8b84a" />
-      </g>)}
-      {[[18, 24], [104, 30], [96, 112], [14, 100]].map(([x, y], i) => <path key={i} className={`pr-twinkle${(i % 3) + 1}`} d={`M${x} ${y - 7}L${x + 2} ${y - 2}L${x + 7} ${y}L${x + 2} ${y + 2}L${x} ${y + 7}L${x - 2} ${y + 2}L${x - 7} ${y}L${x - 2} ${y - 2}Z`} fill="#fff3bf" style={{ animationDelay: `${i * 0.5}s` }} />)}
+    <svg
+      className={`pr-shine ${className}`}
+      viewBox="0 0 120 150"
+      style={{
+        height: "100%",
+        maxHeight: "100%",
+        overflow: "visible",
+      }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="trophyGold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#fff8d8" />
+          <stop offset="22%" stopColor="#f8d879" />
+          <stop offset="48%" stopColor="#b77924" />
+          <stop offset="70%" stopColor="#ffe9a0" />
+          <stop offset="100%" stopColor="#8c5017" />
+        </linearGradient>
+
+        <linearGradient id="trophyRed" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#ff7777" />
+          <stop offset="35%" stopColor="#d71935" />
+          <stop offset="75%" stopColor="#8d071e" />
+          <stop offset="100%" stopColor="#f04448" />
+        </linearGradient>
+
+        <linearGradient id="trophyDark" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#8c5a24" />
+          <stop offset="100%" stopColor="#3b1a0c" />
+        </linearGradient>
+
+        <radialGradient id="trophyGem">
+          <stop offset="0%" stopColor="#fff9dc" />
+          <stop offset="45%" stopColor="#f7d16d" />
+          <stop offset="100%" stopColor="#a45b16" />
+        </radialGradient>
+
+        <filter id="trophyShadow" x="-50%" y="-30%" width="200%" height="180%">
+          <feGaussianBlur stdDeviation="3" />
+        </filter>
+      </defs>
+
+      {/* Ombre au sol */}
+      <ellipse
+        cx="60"
+        cy="144"
+        rx="37"
+        ry="4.5"
+        fill="#000"
+        opacity=".35"
+        filter="url(#trophyShadow)"
+      />
+
+      {/* Socle en trois niveaux */}
+      <path
+        d="M36 116 L84 116 L89 128 L31 128 Z"
+        fill="url(#trophyGold)"
+        stroke="#80501c"
+        strokeWidth="1"
+      />
+      <rect
+        x="31"
+        y="128"
+        width="58"
+        height="10"
+        rx="2"
+        fill="url(#trophyDark)"
+        stroke="#e8b84a"
+        strokeWidth="1.2"
+      />
+      <path
+        d="M27 138 Q60 142 93 138 L97 144 Q60 149 23 144 Z"
+        fill="url(#trophyGold)"
+        stroke="#80501c"
+        strokeWidth="1"
+      />
+      <path
+        d="M36 131 H84 M31 141 Q60 146 89 141"
+        stroke="#fff0b6"
+        strokeWidth="1"
+        opacity=".65"
+        fill="none"
+      />
+
+      {/* Trophée : coupe royale */}
+      {kind === "cup" && (
+        <g>
+          {/* Anses */}
+          <path
+            d="M39 28 C15 17 9 35 20 53 C25 61 34 63 43 60"
+            fill="none"
+            stroke="#704013"
+            strokeWidth="9"
+            strokeLinecap="round"
+          />
+          <path
+            d="M39 27 C17 18 13 36 23 51 C27 56 34 58 42 56"
+            fill="none"
+            stroke="url(#trophyGold)"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+          <path
+            d="M81 28 C105 17 111 35 100 53 C95 61 86 63 77 60"
+            fill="none"
+            stroke="#704013"
+            strokeWidth="9"
+            strokeLinecap="round"
+          />
+          <path
+            d="M81 27 C103 18 107 36 97 51 C93 56 86 58 78 56"
+            fill="none"
+            stroke="url(#trophyGold)"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+
+          {/* Corps de la coupe */}
+          <path
+            d="M35 18 Q34 67 60 83 Q86 67 85 18 Z"
+            fill="url(#trophyGold)"
+            stroke="#8d591b"
+            strokeWidth="1.8"
+          />
+          <path
+            d="M41 24 Q43 61 60 72 Q77 61 79 24 Z"
+            fill="url(#trophyDark)"
+            opacity=".28"
+          />
+          <path
+            d="M39 21 Q43 57 56 69"
+            fill="none"
+            stroke="#fff8d9"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity=".8"
+          />
+          <path
+            d="M43 22 Q60 27 77 22"
+            fill="none"
+            stroke="#fff8d9"
+            strokeWidth="2"
+            opacity=".85"
+          />
+
+          {/* Médaillon et couronne */}
+          <circle
+            cx="60"
+            cy="48"
+            r="15"
+            fill="url(#trophyDark)"
+            stroke="#fff0ae"
+            strokeWidth="1.5"
+          />
+          <circle
+            cx="60"
+            cy="48"
+            r="12"
+            fill="url(#trophyGold)"
+            stroke="#8e591a"
+            strokeWidth="1"
+          />
+          <path
+            d="M60 37 L63.5 44 L71 45 L65.5 50 L67 58 L60 54 L53 58 L54.5 50 L49 45 L56.5 44 Z"
+            fill="#fff8db"
+            stroke="#bd832c"
+            strokeWidth=".8"
+          />
+
+          {/* Pied de coupe */}
+          <path
+            d="M53 81 H67 L70 111 H50 Z"
+            fill="url(#trophyGold)"
+            stroke="#8c571c"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M51 89 H69 M51 103 H69"
+            stroke="#fff1b6"
+            strokeWidth="1.5"
+            opacity=".8"
+          />
+          <path
+            d="M44 111 Q60 106 76 111 L81 118 H39 Z"
+            fill="url(#trophyGold)"
+            stroke="#8c571c"
+            strokeWidth="1.2"
+          />
+          <circle cx="60" cy="115" r="3" fill="#fff2bd" />
+        </g>
+      )}
+
+      {/* Trophée : étoile céleste */}
+      {kind === "star" && (
+        <g>
+          {/* Rayons derrière l'étoile */}
+          <g
+            stroke="#f6d77e"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            opacity=".7"
+          >
+            <path d="M60 5 V1 M60 101 V106 M10 51 H5 M110 51 H115" />
+            <path d="M26 17 L22 13 M94 17 L98 13 M25 86 L21 90 M95 86 L99 90" />
+          </g>
+
+          {/* Support */}
+          <path
+            d="M53 86 H67 L71 117 H49 Z"
+            fill="url(#trophyGold)"
+            stroke="#80501c"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M52 96 H68 M51 108 H69"
+            stroke="#fff0b2"
+            strokeWidth="1.5"
+            opacity=".8"
+          />
+
+          {/* Étoile extérieure */}
+          <path
+            d="M60 8
+               L72 35 L101 37
+               L79 57 L86 86
+               L60 70 L34 86
+               L41 57 L19 37
+               L48 35 Z"
+            fill="url(#trophyGold)"
+            stroke="#80501c"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          />
+
+          {/* Facettes */}
+          <path
+            d="M60 8 L60 48 L48 35 Z"
+            fill="#fff7d4"
+            opacity=".8"
+          />
+          <path
+            d="M60 8 L72 35 L60 48 Z"
+            fill="#fff0ae"
+            opacity=".6"
+          />
+          <path
+            d="M101 37 L60 48 L79 57 Z"
+            fill="#8d5019"
+            opacity=".3"
+          />
+          <path
+            d="M86 86 L60 70 L60 48 Z"
+            fill="#fff6ce"
+            opacity=".55"
+          />
+          <path
+            d="M34 86 L60 70 L60 48 Z"
+            fill="#8d5019"
+            opacity=".24"
+          />
+
+          {/* Centre précieux */}
+          <circle
+            cx="60"
+            cy="48"
+            r="13"
+            fill="url(#trophyRed)"
+            stroke="#fff0b1"
+            strokeWidth="2"
+          />
+          <circle
+            cx="60"
+            cy="48"
+            r="8"
+            fill="url(#trophyGem)"
+            stroke="#9d641d"
+            strokeWidth="1"
+          />
+          <path
+            d="M60 42 L62 46 L67 46.5 L63.5 50 L64.5 55 L60 52.5 L55.5 55 L56.5 50 L53 46.5 L58 46 Z"
+            fill="#fffdf0"
+          />
+        </g>
+      )}
+
+      {/* Trophée : cœur d'amour */}
+      {kind === "heart" && (
+        <g>
+          {/* Ruban supérieur */}
+          <path
+            d="M43 24 L35 9 L51 17 L60 7 L69 17 L85 9 L77 24"
+            fill="url(#trophyGold)"
+            stroke="#8b571d"
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M44 17 L51 20 M76 17 L69 20"
+            stroke="#fff6d0"
+            strokeWidth="1.5"
+            opacity=".9"
+          />
+
+          {/* Support */}
+          <path
+            d="M53 91 H67 L70 117 H50 Z"
+            fill="url(#trophyGold)"
+            stroke="#80501c"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M51 101 H69 M51 110 H69"
+            stroke="#fff0b2"
+            strokeWidth="1.5"
+            opacity=".8"
+          />
+
+          {/* Contour doré du cœur */}
+          <path
+            d="M60 96
+               C51 89 19 67 21 43
+               C22 27 34 20 46 24
+               C53 26 58 31 60 37
+               C62 31 67 26 74 24
+               C86 20 98 27 99 43
+               C101 67 69 89 60 96 Z"
+            fill="url(#trophyGold)"
+            stroke="#875019"
+            strokeWidth="1.6"
+          />
+
+          {/* Cœur rouge intérieur */}
+          <path
+            d="M60 87
+               C51 80 27 62 28 44
+               C29 32 37 27 46 30
+               C53 32 58 39 60 43
+               C62 39 67 32 74 30
+               C83 27 91 32 92 44
+               C93 62 69 80 60 87 Z"
+            fill="url(#trophyRed)"
+            stroke="#ffdf87"
+            strokeWidth="1.4"
+          />
+
+          {/* Reflets du cœur */}
+          <path
+            d="M34 42 C35 34 41 32 47 35"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity=".75"
+          />
+          <path
+            d="M36 50 Q40 63 51 70"
+            fill="none"
+            stroke="#ff9c9c"
+            strokeWidth="2"
+            strokeLinecap="round"
+            opacity=".6"
+          />
+
+          {/* Gemme centrale */}
+          <path
+            d="M60 45 L67 52 L60 65 L53 52 Z"
+            fill="url(#trophyGem)"
+            stroke="#fff3bf"
+            strokeWidth="1.2"
+          />
+          <path
+            d="M60 45 L60 65 M53 52 H67"
+            stroke="#fff9df"
+            strokeWidth=".8"
+            opacity=".8"
+          />
+          <circle cx="60" cy="52" r="2" fill="#fffdf0" />
+        </g>
+      )}
+
+      {/* Petites étincelles dorées */}
+      {[
+        [15, 32, 4],
+        [104, 35, 3],
+        [15, 81, 3],
+        [105, 91, 4],
+      ].map(([x, y, r], i) => (
+        <g
+          key={`trophy-sparkle-${kind}-${i}`}
+          className={`pr-twinkle${(i % 3) + 1}`}
+          style={{ animationDelay: `${i * 0.35}s` }}
+        >
+          <path
+            d={`M${x} ${y - r}
+                L${x + r * 0.25} ${y - r * 0.25}
+                L${x + r} ${y}
+                L${x + r * 0.25} ${y + r * 0.25}
+                L${x} ${y + r}
+                L${x - r * 0.25} ${y + r * 0.25}
+                L${x - r} ${y}
+                L${x - r * 0.25} ${y - r * 0.25} Z`}
+            fill="#fff3bf"
+          />
+          <circle cx={x} cy={y} r=".8" fill="#fff" />
+        </g>
+      ))}
     </svg>
   );
 }
+
 
 
 function Envelope({ open, shake }) {
@@ -2604,18 +3642,18 @@ export default function ChristmasAwards() {
   const introLines = TEXTS.intro;
   const phrase = useTyped(prize.phrase, phase === "reveal", 38);
   const finalPhrase = useTyped(TEXTS.finalePhrase, phase === "finale", 42);
-console.log(houx)
+
   return (
     <div className="pr-stage relative h-full min-h-[100svh] w-full max-h-full max-w-full overflow-hidden" data-open={opened} data-drum={phase === "drum"}>
       <style>{CSS}</style>
       <SharedDefs />
       <Backdrop />
       <Decorations />
-      <img src={houx} className="absolute z-10 top-20 left-10 w-96 h-96" alt="" aria-hidden="true" />
 
       {/* curtains */}
       <div className="pr-curtain l" /><div className="pr-curtain r" />
-      <TieBack side="left" /><TieBack side="right" />
+      {/* <TieBack side="left" />
+      <TieBack side="right" /> */}
 
       {/* cover (before the curtain opens) */}
       <div className="pr-cover" aria-hidden={opened}>
@@ -2707,14 +3745,14 @@ console.log(houx)
       {flash > 0 && <div key={flash} className="pr-flash" />}
       <canvas ref={canvasRef} className="pr-layer" style={{ width: "100%", height: "100%", zIndex: 25 }} />
 
-      {opened && (
+      {/* {opened && (
         <>
           <div className="pr-dots" aria-label={TEXTS.award(Math.min(index + 1, PRIZES.length), PRIZES.length)}>
             {PRIZES.map((p, i) => <i key={p.id} className={(phase === "reveal" && i <= index) || (phase === "finale") || i < index ? "on" : ""} />)}
           </div>
           <button className="pr-mini" onClick={toggleMusic} aria-pressed={musicOn}>{musicOn ? "🔊" : "🔇"} {musicOn ? TEXTS.musicOn : TEXTS.musicOff}</button>
         </>
-      )}
+      )} */}
     </div>
   );
 }

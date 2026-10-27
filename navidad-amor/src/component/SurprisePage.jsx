@@ -13,7 +13,8 @@ import ChristmasLoveLetter from "./Day/ChristmasLoveLetter";
 import CinemaIntro from "./Day/CinemaIntro";
 import ChristmasScene from "./Day/ChristmasScene";
 import CoupleQuiz from "./Day/CoupleQuiz";
-import ChristmasAwards from "./Day/ChristmasAwardS";
+import ChristmasAwards from "./Day/ChristmasAwards";
+
 const composants = {
   1: SurpriseModal,
   2: SecretNoel,
@@ -76,16 +77,16 @@ export default function SurprisePage({ jour, onClose }) {
   // Les autres composants dédiés sont affichés en plein écran.
   return (
     <div className="fixed inset-0 z-[200] overflow-y-auto bg-[#071923]">
-<button
-  onClick={() => {
-    window.dispatchEvent(new Event("stop-christmas-choir"));
-    onClose();
-  }}
-  className="fixed right-5 top-5 z-[210] flex h-11 w-11 items-center justify-center rounded-full border border-amber-200/40 bg-slate-900/90 text-2xl text-amber-100 shadow-lg hover:bg-slate-800"
-  aria-label="Retour au village"
->
-  ×
-</button>
+      <button
+        onClick={() => {
+          window.dispatchEvent(new Event("stop-christmas-choir"));
+          onClose();
+        }}
+        className="fixed right-5 top-5 z-[210] flex h-11 w-11 items-center justify-center rounded-full border border-amber-200/40 bg-slate-900/90 text-2xl text-amber-100 shadow-lg hover:bg-slate-800"
+        aria-label="Retour au village"
+      >
+        ×
+      </button>
 
       <Composant />
     </div>

@@ -151,7 +151,7 @@ const cliquerMaison = (id) => {
         </div>
 
         {/* CLUSTER CENTRAL DU VILLAGE */}
-        <div className="relative flex-1 w-full max-w-[1100px] mx-auto min-h-[580px] mt-24 mb-12">
+        <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-24 mb-12">
 
 {maisons.map((m) => {
   const ouvert = joursOuverts[m.id];
