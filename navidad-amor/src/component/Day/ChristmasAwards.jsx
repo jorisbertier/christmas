@@ -615,24 +615,247 @@ function SharedDefs() {
   );
 }
 
+
 function Valance() {
   const n = 10;
   const w = 1200 / n;
+
   let d = "M0 0H1200V62";
-  for (let i = n - 1; i >= 0; i--) d += ` Q${i * w + w / 2} ${62 + 62} ${i * w} 62`;
+  for (let i = n - 1; i >= 0; i--) {
+    d += ` Q${i * w + w / 2} 124 ${i * w} 62`;
+  }
   d += "Z";
+
   const trim = [];
-  for (let i = 0; i < n; i++) trim.push(`M${i * w} 62 Q${i * w + w / 2} 124 ${(i + 1) * w} 62`);
+  for (let i = 0; i < n; i++) {
+    trim.push(
+      `M${i * w} 62 Q${i * w + w / 2} 124 ${(i + 1) * w} 62`
+    );
+  }
+
   return (
-    <svg className="pr-valance block w-full" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-      
-      <rect width="1200" height="14" fill="url(#prGold)" />
-      <path d={d} fill="url(#prRed)" />
-      <path d={d} fill="url(#prFold)" opacity="0" />
-      {Array.from({ length: 24 }, (_, i) => <path key={i} d={`M${i * 50} 14Q${i * 50 + 25} 80 ${i * 50 + 50} 14`} fill="none" stroke="#000" strokeOpacity=".18" strokeWidth="6" />)}
-      <path d={trim.join(" ")} fill="none" stroke="url(#prGold)" strokeWidth="5" />
-      {Array.from({ length: n }, (_, i) => <g key={i}><circle cx={i * w} cy="66" r="7" fill="url(#prGold)" /><path d={`M${i * w} 70V96`} stroke="#d9a336" strokeWidth="2" /><ellipse cx={i * w} cy="104" rx="6" ry="9" fill="url(#prGold)" /></g>)}
-      {Array.from({ length: 80 }, (_, i) => { const x = 8 + i * 15; const y = 62 + 62 * Math.pow(Math.sin((((x % w) / w) * Math.PI)), 1) * 1; return <circle key={i} cx={x} cy={y - 1} r="1.8" fill="#ffe9b0" />; })}
+    <svg
+      className="pr-valance block w-full"
+      viewBox="0 0 1200 160"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        {/* Velours rouge : lumière au centre, ombres sur les plis */}
+        <linearGradient id="prValanceVelvet" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#a80920" />
+          <stop offset="22%" stopColor="#8f0718" />
+          <stop offset="48%" stopColor="#c0182a" />
+          <stop offset="72%" stopColor="#790516" />
+          <stop offset="100%" stopColor="#4b0611" />
+        </linearGradient>
+
+        <linearGradient id="prValanceGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fff1b8" />
+          <stop offset="18%" stopColor="#d6a94d" />
+          <stop offset="35%" stopColor="#fff0a3" />
+          <stop offset="52%" stopColor="#a86e20" />
+          <stop offset="72%" stopColor="#e8c56d" />
+          <stop offset="100%" stopColor="#8a511b" />
+        </linearGradient>
+
+        <linearGradient id="prValanceFold" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#32030b" stopOpacity=".48" />
+          <stop offset="18%" stopColor="#f94b50" stopOpacity=".12" />
+          <stop offset="40%" stopColor="#30020a" stopOpacity=".25" />
+          <stop offset="60%" stopColor="#ff5a5a" stopOpacity=".12" />
+          <stop offset="82%" stopColor="#260109" stopOpacity=".35" />
+          <stop offset="100%" stopColor="#f94b50" stopOpacity=".08" />
+        </linearGradient>
+
+        <linearGradient id="prValanceEdge" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fff0ae" />
+          <stop offset="30%" stopColor="#c18a32" />
+          <stop offset="52%" stopColor="#fff1bd" />
+          <stop offset="75%" stopColor="#9c641f" />
+          <stop offset="100%" stopColor="#f2d27c" />
+        </linearGradient>
+
+        <radialGradient id="prValanceGem">
+          <stop offset="0%" stopColor="#fff6cf" />
+          <stop offset="38%" stopColor="#f1d17a" />
+          <stop offset="75%" stopColor="#b57a28" />
+          <stop offset="100%" stopColor="#704015" />
+        </radialGradient>
+
+        <filter id="prValanceShadow" x="-10%" y="-10%" width="120%" height="130%">
+          <feDropShadow
+            dx="0"
+            dy="3"
+            stdDeviation="3"
+            floodColor="#260109"
+            floodOpacity=".35"
+          />
+        </filter>
+
+        <clipPath id="prValanceClip">
+          <path d={d} />
+        </clipPath>
+      </defs>
+
+      {/* Ombre portée sous la cantonnière */}
+      <path
+        d={d}
+        transform="translate(0 3)"
+        fill="#240109"
+        opacity=".3"
+      />
+
+      {/* Fond velours */}
+      <path d={d} fill="url(#prValanceVelvet)" />
+
+      {/* Plis satinés */}
+      <g clipPath="url(#prValanceClip)">
+        {Array.from({ length: 25 }, (_, i) => {
+          const x = i * 50;
+
+          return (
+            <g key={i}>
+              <path
+                d={`M${x} -5 Q${x + 28} 38 ${x + 50} 100`}
+                fill="none"
+                stroke="#34020b"
+                strokeWidth="13"
+                strokeOpacity=".22"
+              />
+              <path
+                d={`M${x + 7} -5 Q${x + 31} 36 ${x + 50} 96`}
+                fill="none"
+                stroke="#ff7270"
+                strokeWidth="3"
+                strokeOpacity=".13"
+              />
+            </g>
+          );
+        })}
+
+        <path d={d} fill="url(#prValanceFold)" />
+
+        {/* Motif brodé discret sur chaque feston */}
+        {Array.from({ length: n }, (_, i) => {
+          const cx = i * w + w / 2;
+
+          return (
+            <g
+              key={i}
+              transform={`translate(${cx} 76)`}
+              fill="none"
+              stroke="url(#prValanceGold)"
+              strokeWidth="1.4"
+              opacity=".9"
+            >
+              <path d="M0 24 C-3 16 -12 13 -13 6 C-14 0 -6 -3 0 4 C6 -3 14 0 13 6 C12 13 3 16 0 24Z" />
+              <path d="M0 20V7 M-9 9Q-3 10 0 16 M9 9Q3 10 0 16" />
+              <path d="M-13 6Q-20 4 -19 -2 Q-11 -3 -9 3" />
+              <path d="M13 6Q20 4 19 -2 Q11 -3 9 3" />
+              <circle cx="0" cy="4" r="2.2" fill="url(#prValanceGem)" />
+            </g>
+          );
+        })}
+      </g>
+
+      {/* Bande supérieure en or */}
+      <rect
+        width="1200"
+        height="5"
+        fill="url(#prValanceEdge)"
+      />
+      <rect
+        y="5"
+        width="1200"
+        height="8"
+        fill="url(#prValanceGold)"
+      />
+      <path
+        d="M0 13H1200"
+        stroke="#fff0b8"
+        strokeWidth="1"
+        opacity=".75"
+      />
+      <path
+        d="M0 15H1200"
+        stroke="#5c3513"
+        strokeWidth="1.5"
+        opacity=".8"
+      />
+
+      {/* Galon doré qui suit les festons */}
+      <path
+        d={trim.join(" ")}
+        fill="none"
+        stroke="#684015"
+        strokeWidth="7"
+        strokeLinejoin="round"
+        opacity=".7"
+      />
+      <path
+        d={trim.join(" ")}
+        fill="none"
+        stroke="url(#prValanceEdge)"
+        strokeWidth="4.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d={trim.join(" ")}
+        fill="none"
+        stroke="#fff0b5"
+        strokeWidth=".9"
+        strokeLinejoin="round"
+        opacity=".95"
+      />
+
+      {/* Petites perles aux extrémités de chaque feston */}
+      {Array.from({ length: n + 1 }, (_, i) => (
+        <g key={i} transform={`translate(${i * w} 62)`}>
+          <circle
+            r="7"
+            fill="#6f4217"
+            transform="translate(0 1.5)"
+          />
+          <circle
+            r="6"
+            fill="url(#prValanceGem)"
+            stroke="#fff0bd"
+            strokeWidth=".8"
+          />
+          <circle
+            cx="-1.7"
+            cy="-2"
+            r="1.7"
+            fill="#fff9dc"
+          />
+
+          {/* Pampille suspendue */}
+          <path
+            d="M0 6V19"
+            stroke="url(#prValanceGold)"
+            strokeWidth="2"
+          />
+          <path
+            d="M0 17 C-5 19 -5 25 0 27 C5 25 5 19 0 17Z"
+            fill="url(#prValanceGem)"
+            stroke="#a87427"
+            strokeWidth=".7"
+          />
+          <path
+            d="M0 19V24"
+            stroke="#fff1b9"
+            strokeWidth=".8"
+            opacity=".9"
+          />
+          <circle
+            cy="27"
+            r="1.4"
+            fill="#fff0b5"
+          />
+        </g>
+      ))}
+
     </svg>
   );
 }
@@ -659,19 +882,680 @@ function Swag({ top, c1 = "#2b9a63", seed = 1 }) {
   );
 }
 
-function Bauble({ x, drop, color, size = 3.4, delay = 0 }) {
+
+function Bauble({
+  x,
+  drop,
+  color,
+  size = 3.4,
+  delay = 0,
+  variant = 1,
+}) {
+  const designs = {
+    1: {
+      ball: "baubleBurgundy",
+      base: "#761024",
+      accent: "#f5d58a",
+    },
+    2: {
+      ball: "baubleGreen",
+      base: "#174832",
+      accent: "#f5e2a6",
+    },
+    3: {
+      ball: "baubleChampagne",
+      base: "#c79a4d",
+      accent: "#fff1c6",
+    },
+  };
+
+  const design = designs[variant] || designs[1];
+  const uid = `bauble-${variant}-${String(x).replace(".", "_")}-${delay}`;
+
   return (
-    <div className="pr-swing" style={{ position: "absolute", left: `${x}cqw`, top: "7cqh", zIndex: 11, animationDelay: `${delay}s`, color }}>
-      <svg width={`${size}cqw`} viewBox="0 0 40 90" style={{ display: "block", overflow: "visible", height: `${drop}cqh` }} preserveAspectRatio="xMidYMin meet" aria-hidden="true">
-        <path d="M20 0V40" stroke="#e8b84a" strokeWidth="1.4" />
-        <rect x="16" y="36" width="8" height="6" fill="url(#prGold)" />
-        <circle cx="20" cy="62" r="19" fill="url(#prBall)" />
-        <path d="M8 56Q20 66 32 56" fill="none" stroke="#fff" strokeOpacity=".55" strokeWidth="2.4" />
-        <circle cx="20" cy="62" r="19" fill="none" stroke="#fff" strokeOpacity=".2" />
+    <div
+      className="pr-swing"
+      style={{
+        position: "absolute",
+        left: `${x}cqw`,
+        top: "7cqh",
+        zIndex: 11,
+        animationDelay: `${delay}s`,
+        color,
+      }}
+    >
+      <svg
+        width={`${size}cqw`}
+        viewBox="0 0 60 112"
+        style={{
+          display: "block",
+          overflow: "visible",
+          height: `${drop}cqh`,
+        }}
+        preserveAspectRatio="xMidYMin meet"
+        aria-hidden="true"
+      >
+        <defs>
+          {/* Bordeaux nacré */}
+          <radialGradient id={`${uid}-red`} cx="30%" cy="25%" r="78%">
+            <stop offset="0%" stopColor="#f16a70" />
+            <stop offset="24%" stopColor="#b9223a" />
+            <stop offset="58%" stopColor="#861329" />
+            <stop offset="82%" stopColor="#53091b" />
+            <stop offset="100%" stopColor="#300610" />
+          </radialGradient>
+
+          {/* Vert sapin */}
+          <radialGradient id={`${uid}-green`} cx="28%" cy="22%" r="80%">
+            <stop offset="0%" stopColor="#7dbb81" />
+            <stop offset="22%" stopColor="#32794e" />
+            <stop offset="55%" stopColor="#175236" />
+            <stop offset="82%" stopColor="#0c3524" />
+            <stop offset="100%" stopColor="#062317" />
+          </radialGradient>
+
+          {/* Champagne doré */}
+          <radialGradient id={`${uid}-gold`} cx="28%" cy="20%" r="82%">
+            <stop offset="0%" stopColor="#fffbe4" />
+            <stop offset="23%" stopColor="#f8df9a" />
+            <stop offset="52%" stopColor="#d7ad59" />
+            <stop offset="80%" stopColor="#a8752c" />
+            <stop offset="100%" stopColor="#704419" />
+          </radialGradient>
+
+          <linearGradient id={`${uid}-metal`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#8a5b24" />
+            <stop offset="25%" stopColor="#fff0b0" />
+            <stop offset="50%" stopColor="#d3a44e" />
+            <stop offset="75%" stopColor="#fff0b0" />
+            <stop offset="100%" stopColor="#82501d" />
+          </linearGradient>
+
+          <linearGradient id={`${uid}-thread`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#936b32" />
+            <stop offset="50%" stopColor="#fff0bb" />
+            <stop offset="100%" stopColor="#a77b36" />
+          </linearGradient>
+
+          <clipPath id={`${uid}-clip`}>
+            <circle cx="30" cy="77" r="23" />
+          </clipPath>
+
+          <filter id={`${uid}-shadow`} x="-40%" y="-30%" width="180%" height="180%">
+            <feDropShadow
+              dx="1"
+              dy="3"
+              stdDeviation="2"
+              floodColor="#19050b"
+              floodOpacity=".32"
+            />
+          </filter>
+        </defs>
+
+        {/* Fil de suspension */}
+        <path
+          d="M30 0 V49"
+          stroke={`url(#${uid}-thread)`}
+          strokeWidth="1.5"
+        />
+        <path
+          d="M28.8 1 V46"
+          stroke="#fff3ca"
+          strokeWidth=".5"
+          opacity=".8"
+        />
+
+        {/* Petit anneau supérieur */}
+        <path
+          d="M26 49 V45 Q26 42 30 42 Q34 42 34 45 V49"
+          fill="none"
+          stroke={`url(#${uid}-metal)`}
+          strokeWidth="2"
+        />
+
+        {/* Capuchon métallique ciselé */}
+        <path
+          d="M23 48 L37 48 L35 57 L30 60 L25 57Z"
+          fill={`url(#${uid}-metal)`}
+          stroke="#8c6029"
+          strokeWidth=".8"
+        />
+        <path
+          d="M25 50 H35 M26 53 H34 M28 56 H32"
+          fill="none"
+          stroke="#fff2bd"
+          strokeWidth=".8"
+        />
+
+        <g filter={`url(#${uid}-shadow)`}>
+          {/* Corps de la boule */}
+          <circle
+            cx="30"
+            cy="77"
+            r="23"
+            fill={`url(#${uid}-${variant === 1 ? "red" : variant === 2 ? "green" : "gold"})`}
+            stroke={`url(#${uid}-metal)`}
+            strokeWidth="1.8"
+          />
+
+          {/* Liseré intérieur */}
+          <circle
+            cx="30"
+            cy="77"
+            r="20.5"
+            fill="none"
+            stroke={design.accent}
+            strokeWidth=".7"
+            opacity=".85"
+          />
+
+          {/* Reflets nacrés */}
+          <path
+            d="M14 65 Q10 74 15 84"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="3"
+            strokeLinecap="round"
+            opacity=".55"
+          />
+          <ellipse
+            cx="20"
+            cy="59"
+            rx="4"
+            ry="2"
+            fill="#fff"
+            opacity=".75"
+            transform="rotate(-35 20 59)"
+          />
+
+          {/* MODÈLE 1 : arabesques dorées et étoile */}
+          {variant === 1 && (
+            <g clipPath={`url(#${uid}-clip)`}>
+              <path
+                d="M8 76 Q15 63 23 75 T42 75 T53 76"
+                fill="none"
+                stroke="#f8d990"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M8 83 Q15 96 23 83 T42 83 T53 83"
+                fill="none"
+                stroke="#f8d990"
+                strokeWidth="1.2"
+              />
+              <path
+                d="M30 62 L33 71 L42 71 L35 77 L38 86 L30 81 L22 86 L25 77 L18 71 L27 71Z"
+                fill="url(#${uid}-metal)"
+                stroke="#fff0bb"
+                strokeWidth=".7"
+              />
+              <circle cx="30" cy="76" r="2" fill="#fff8dc" />
+              <circle cx="17" cy="91" r="1.2" fill="#ffe8a4" />
+              <circle cx="43" cy="91" r="1.2" fill="#ffe8a4" />
+              <circle cx="16" cy="69" r="1" fill="#ffe8a4" />
+              <circle cx="44" cy="69" r="1" fill="#ffe8a4" />
+            </g>
+          )}
+
+          {/* MODÈLE 2 : flocon hivernal */}
+{variant === 2 && (
+  <g clipPath={`url(#${uid}-clip)`}>
+    {/* Reliefs en spirale du verre */}
+    <g
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path
+        d="M4 58 C15 53 23 60 25 69
+           C28 81 16 85 14 94
+           C12 103 25 107 35 99
+           C45 91 39 81 33 76
+           C27 71 28 62 38 57
+           C47 52 55 59 58 65"
+        stroke="#092d1d"
+        strokeWidth="5"
+        opacity=".8"
+      />
+      <path
+        d="M4 58 C15 53 23 60 25 69
+           C28 81 16 85 14 94
+           C12 103 25 107 35 99
+           C45 91 39 81 33 76
+           C27 71 28 62 38 57
+           C47 52 55 59 58 65"
+        stroke="#39784c"
+        strokeWidth="2.5"
+      />
+
+      <path
+        d="M-3 78 C8 67 17 73 18 82
+           C19 91 29 94 36 86
+           C43 78 39 68 33 63
+           C27 58 34 50 43 52
+           C51 54 56 61 61 73"
+        stroke="#0b3825"
+        strokeWidth="4"
+        opacity=".9"
+      />
+
+      <path
+        d="M-3 78 C8 67 17 73 18 82
+           C19 91 29 94 36 86
+           C43 78 39 68 33 63
+           C27 58 34 50 43 52
+           C51 54 56 61 61 73"
+        stroke="#b68a40"
+        strokeWidth="1.5"
+      />
+    </g>
+
+    {/* Paillettes dorées suivant les courbes */}
+    <g fill="#f7dfa0">
+      {Array.from({ length: 17 }, (_, i) => (
+        <circle
+          key={i}
+          cx={8 + i * 2.7}
+          cy={59 + Math.sin(i * 0.55) * 8}
+          r={i % 3 === 0 ? 1 : 0.65}
+        />
+      ))}
+
+      {Array.from({ length: 15 }, (_, i) => (
+        <circle
+          key={i}
+          cx={5 + i * 3.2}
+          cy={82 + Math.sin(i * 0.48 + 1) * 10}
+          r={i % 4 === 0 ? 1.1 : 0.6}
+        />
+      ))}
+    </g>
+
+    {/* Reflets dorés plus marqués */}
+    <path
+      d="M10 65 Q20 59 22 72"
+      fill="none"
+      stroke="#f5d68a"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+    />
+    <path
+      d="M34 91 Q43 83 37 74"
+      fill="none"
+      stroke="#ffe6a4"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+    />
+
+    {/* Petits éclats de verre */}
+    <path
+      d="M43 88 L44.5 91 L48 92 L44.5 93 L43 96 L41.5 93 L38 92 L41.5 91Z"
+      fill="#fff0bd"
+    />
+    <path
+      d="M18 73 L19 75 L21 76 L19 77 L18 79 L17 77 L15 76 L17 75Z"
+      fill="#fff0bd"
+    />
+  </g>
+)}
+          {/* MODÈLE 3 : perles, guirlande et petits flocons */}
+          {variant === 3 && (
+            <g clipPath={`url(#${uid}-clip)`}>
+              <path
+                d="M6 69 Q30 93 54 69"
+                fill="none"
+                stroke="#fff0c2"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M6 85 Q30 61 54 85"
+                fill="none"
+                stroke="#fff0c2"
+                strokeWidth="1.5"
+              />
+
+              {Array.from({ length: 9 }, (_, i) => {
+                const x = 11 + i * 4.75;
+                const y = 69 + Math.sin((i / 8) * Math.PI) * 10;
+                return (
+                  <circle
+                    key={i}
+                    cx={x}
+                    cy={y}
+                    r="1.25"
+                    fill="#fff9dc"
+                    stroke="#ad7d30"
+                    strokeWidth=".4"
+                  />
+                );
+              })}
+
+              <path
+                d="M30 64 L32 70 L38 70 L33 74 L35 80 L30 76 L25 80 L27 74 L22 70 L28 70Z"
+                fill="#fff3c5"
+                stroke="#ae7d31"
+                strokeWidth=".6"
+              />
+              <path
+                d="M16 85 L17.5 88 L21 89 L17.5 90 L16 93 L14.5 90 L11 89 L14.5 88Z"
+                fill="#fff5d4"
+              />
+              <path
+                d="M44 85 L45.5 88 L49 89 L45.5 90 L44 93 L42.5 90 L39 89 L42.5 88Z"
+                fill="#fff5d4"
+              />
+            </g>
+          )}
+
+          {/* Petit reflet inférieur */}
+          <path
+            d="M22 96 Q30 101 38 96"
+            fill="none"
+            stroke="#fff4d3"
+            strokeWidth="1"
+            opacity=".65"
+          />
+        </g>
       </svg>
     </div>
   );
 }
+
+function Bauble2({
+  x,
+  drop,
+  color,
+  size = 3.4,
+  delay = 0,
+}) {
+  const uid = `bauble2-${String(x).replace(".", "_")}-${delay}`;
+
+  return (
+    <div
+      className="pr-swing"
+      style={{
+        position: "absolute",
+        left: `${x}cqw`,
+        top: "7cqh",
+        zIndex: 11,
+        animationDelay: `${delay}s`,
+        color,
+      }}
+    >
+      <svg
+        width={`${size}cqw`}
+        viewBox="0 0 60 112"
+        style={{
+          display: "block",
+          overflow: "visible",
+          height: `${drop}cqh`,
+        }}
+        preserveAspectRatio="xMidYMin meet"
+        aria-hidden="true"
+      >
+        <defs>
+          {/* Verre rouge brillant */}
+          <radialGradient id={`${uid}-red`} cx="27%" cy="19%" r="83%">
+            <stop offset="0%" stopColor="#ffb2a0" />
+            <stop offset="13%" stopColor="#e84a42" />
+            <stop offset="38%" stopColor="#bd171d" />
+            <stop offset="68%" stopColor="#8d0713" />
+            <stop offset="88%" stopColor="#65040e" />
+            <stop offset="100%" stopColor="#35030a" />
+          </radialGradient>
+
+          {/* Or métallisé */}
+          <linearGradient id={`${uid}-gold`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#fff6c9" />
+            <stop offset="18%" stopColor="#e8c66f" />
+            <stop offset="38%" stopColor="#9e6721" />
+            <stop offset="55%" stopColor="#fff0a5" />
+            <stop offset="76%" stopColor="#c18a35" />
+            <stop offset="100%" stopColor="#704113" />
+          </linearGradient>
+
+          {/* Reflet du verre */}
+          <linearGradient id={`${uid}-gloss`} x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="25%" stopColor="#fff" stopOpacity=".72" />
+            <stop offset="52%" stopColor="#fff" stopOpacity=".12" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+          </linearGradient>
+
+          <radialGradient id={`${uid}-shine`}>
+            <stop offset="0%" stopColor="#fff" stopOpacity=".85" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+          </radialGradient>
+
+          <clipPath id={`${uid}-clip`}>
+            <circle cx="30" cy="77" r="23" />
+          </clipPath>
+
+          <filter
+            id={`${uid}-shadow`}
+            x="-40%"
+            y="-30%"
+            width="180%"
+            height="180%"
+          >
+            <feDropShadow
+              dx="1"
+              dy="3"
+              stdDeviation="2"
+              floodColor="#24030a"
+              floodOpacity=".45"
+            />
+          </filter>
+        </defs>
+
+        {/* Tige : même principe que sur les autres boules */}
+        <path
+          d="M30 0 V40"
+          stroke="#e8b84a"
+          strokeWidth="1.4"
+        />
+
+        {/* Boucle d'accrochage */}
+        <path
+          d="M26 44 V42 Q26 39 30 39 Q34 39 34 42 V44"
+          fill="none"
+          stroke="#e8b84a"
+          strokeWidth="1.6"
+        />
+
+        {/* Coiffe métallique dorée */}
+        <path
+          d="M24 44 H36 L35 53 L30 57 L25 53Z"
+          fill={`url(#${uid}-gold)`}
+          stroke="#81501a"
+          strokeWidth=".8"
+        />
+        <path
+          d="M25.5 46 H34.5 M26 49 H34 M28 52 H32"
+          fill="none"
+          stroke="#fff2b6"
+          strokeWidth=".8"
+        />
+
+        <g filter={`url(#${uid}-shadow)`}>
+          {/* Sphère rouge */}
+          <circle
+            cx="30"
+            cy="77"
+            r="23"
+            fill={`url(#${uid}-red)`}
+            stroke={`url(#${uid}-gold)`}
+            strokeWidth="1.5"
+          />
+
+          <g clipPath={`url(#${uid}-clip)`}>
+            {/* Motifs dorés verticaux */}
+            <path
+              d="M10 52 Q18 63 15 77 Q12 91 22 101"
+              fill="none"
+              stroke={`url(#${uid}-gold)`}
+              strokeWidth="3"
+            />
+            <path
+              d="M10 52 Q18 63 15 77 Q12 91 22 101"
+              fill="none"
+              stroke="#fff0a6"
+              strokeWidth=".65"
+              opacity=".9"
+            />
+
+            <path
+              d="M27 52 Q36 63 31 77 Q27 91 36 102"
+              fill="none"
+              stroke={`url(#${uid}-gold)`}
+              strokeWidth="3.5"
+            />
+            <path
+              d="M27 52 Q36 63 31 77 Q27 91 36 102"
+              fill="none"
+              stroke="#fff3bb"
+              strokeWidth=".7"
+            />
+
+            <path
+              d="M43 54 Q36 65 43 76 Q49 87 42 99"
+              fill="none"
+              stroke={`url(#${uid}-gold)`}
+              strokeWidth="2.6"
+            />
+
+            {/* Guirlandes dorées */}
+            <path
+              d="M4 68 Q13 60 21 67 T39 67 T57 67"
+              fill="none"
+              stroke={`url(#${uid}-gold)`}
+              strokeWidth="1.2"
+            />
+            <path
+              d="M3 86 Q12 78 21 85 T39 85 T57 85"
+              fill="none"
+              stroke={`url(#${uid}-gold)`}
+              strokeWidth="1.2"
+            />
+
+            {/* Feuilles dorées */}
+            <g fill={`url(#${uid}-gold)`} stroke="#a46c24" strokeWidth=".35">
+              <path d="M12 66 Q5 59 7 55 Q15 57 12 66Z" />
+              <path d="M14 68 Q20 59 23 62 Q22 69 14 68Z" />
+
+              <path d="M35 67 Q29 59 32 56 Q39 61 35 67Z" />
+              <path d="M36 69 Q43 62 46 65 Q43 72 36 69Z" />
+
+              <path d="M18 88 Q11 81 14 77 Q21 81 18 88Z" />
+              <path d="M19 89 Q26 81 29 85 Q26 91 19 89Z" />
+
+              <path d="M39 91 Q33 84 36 80 Q43 84 39 91Z" />
+              <path d="M40 92 Q47 84 50 88 Q47 94 40 92Z" />
+            </g>
+
+            {/* Rosettes décoratives */}
+            {[
+              [22, 76],
+              [43, 77],
+              [29, 94],
+            ].map(([cx, cy], i) => (
+              <g key={i} transform={`translate(${cx} ${cy})`}>
+                <circle
+                  r="4.1"
+                  fill={`url(#${uid}-gold)`}
+                  stroke="#8c571d"
+                  strokeWidth=".6"
+                />
+
+                {Array.from({ length: 8 }, (_, j) => (
+                  <ellipse
+                    key={j}
+                    cx="0"
+                    cy="-2.3"
+                    rx=".85"
+                    ry="1.8"
+                    fill="#fff0b1"
+                    transform={`rotate(${j * 45})`}
+                  />
+                ))}
+
+                <circle r="1.3" fill="#fff7d4" />
+              </g>
+            ))}
+
+            {/* Petits points scintillants */}
+            {Array.from({ length: 27 }, (_, i) => {
+              const px = 7 + ((i * 13) % 47);
+              const py = 56 + ((i * 17) % 43);
+
+              return (
+                <circle
+                  key={i}
+                  cx={px}
+                  cy={py}
+                  r={i % 4 === 0 ? 1 : 0.5}
+                  fill={i % 3 === 0 ? "#fff5c7" : "#d9a447"}
+                  opacity={i % 2 === 0 ? ".95" : ".65"}
+                />
+              );
+            })}
+
+            {/* Reflets sur la surface */}
+            <ellipse
+              cx="18"
+              cy="75"
+              rx="4"
+              ry="17"
+              transform="rotate(17 18 75)"
+              fill={`url(#${uid}-gloss)`}
+            />
+
+            <ellipse
+              cx="20"
+              cy="62"
+              rx="6"
+              ry="9"
+              transform="rotate(-25 20 62)"
+              fill={`url(#${uid}-shine)`}
+            />
+
+            <path
+              d="M13 66 Q10 73 14 79"
+              fill="none"
+              stroke="#fff"
+              strokeWidth="1.4"
+              strokeLinecap="round"
+              opacity=".8"
+            />
+          </g>
+
+          {/* Finition du contour */}
+          <circle
+            cx="30"
+            cy="77"
+            r="22.3"
+            fill="none"
+            stroke="#fff0b5"
+            strokeWidth=".55"
+            opacity=".65"
+          />
+
+          <circle cx="17" cy="59" r="1.3" fill="#fff" opacity=".9" />
+          <circle cx="20" cy="56" r=".65" fill="#fff" opacity=".8" />
+
+          <path
+            d="M19 96 Q30 104 41 96"
+            fill="none"
+            stroke={`url(#${uid}-gold)`}
+            strokeWidth="1.3"
+            opacity=".9"
+          />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 
 function HangingStar({ x, len, delay = 0 }) {
   return (
@@ -848,14 +1732,14 @@ function Decorations() {
       <Valance />
       {/* <Swag top={7.5} seed={4} />
       <Swag top={11} c1="#4cc07a" seed={9} /> */}
-      <Bauble x={9} drop={13} color="#c8202e" size={3.6} />
-      <Bauble x={17} drop={9} color="#e8b84a" size={3} delay={-1.2} />
+      <Bauble2 x={9} drop={13} color="#c8202e" size={3.6} />
+      <Bauble x={17} drop={9} variant={2} color="#e8b84a" size={3} delay={-1.2} />
       <HangingStar x={26} len={15} delay={-2} />
-      <Bauble x={35} drop={10} color="#1f7a4d" size={3.2} delay={-0.6} />
-      <Bauble x={64} drop={10} color="#2a6fd1" size={3.2} delay={-2.4} />
+      <Bauble x={35} drop={10} variant={3} color="#1f7a4d" size={3.2} delay={-0.6} />
+      <Bauble2 x={64} drop={10} variant={3} size={3.2} delay={-2.4} />
       <HangingStar x={72} len={13} delay={-0.8} />
-      <Bauble x={80} drop={9} color="#e8b84a" size={3} delay={-3} />
-      <Bauble x={88} drop={13} color="#c8202e" size={3.6} delay={-1.6} />
+      <Bauble x={80} drop={9} variant={2} color="#e8b84a" size={3} delay={-3} />
+      <Bauble x={88} drop={13} variant={1} color="#c8202e" size={3.6} delay={-1.6} />
       {/* <Mistletoe /> */}
     </>
   );
