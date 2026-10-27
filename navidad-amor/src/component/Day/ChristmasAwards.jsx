@@ -670,6 +670,145 @@ const CSS = `
   pointer-events: none;
   z-index: 2;
 }
+
+
+.pr-footlight {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 var(--light-size);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pr-footlight-float var(--light-duration) ease-in-out infinite;
+  animation-delay: var(--light-delay);
+}
+
+.pr-footlight-halo {
+  position: absolute;
+  width: 240%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--light-outer) 0%,
+    transparent 70%
+  );
+  filter: blur(3px);
+  animation: pr-footlight-glow var(--light-duration) ease-in-out infinite;
+  animation-delay: var(--light-delay);
+}
+
+.pr-footlight-beam {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  width: 210%;
+  height: 210%;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+  background: linear-gradient(
+    to top,
+    var(--light-outer),
+    rgba(255, 220, 140, 0.13) 45%,
+    transparent 100%
+  );
+  clip-path: polygon(38% 100%, 62% 100%, 100% 0, 0 0);
+  filter: blur(5px);
+  opacity: 0.65;
+  z-index: -1;
+}
+
+.pr-footlight-base {
+  position: absolute;
+  bottom: 9%;
+  width: 125%;
+  height: 22%;
+  border-radius: 50% 50% 30% 30%;
+  background: linear-gradient(
+    180deg,
+    #6e4927,
+    #30243a 55%,
+    #171b31
+  );
+  border: 1px solid rgba(255, 219, 140, 0.65);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.pr-footlight-bulb {
+  position: relative;
+  width: 76%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 25%,
+    #ffffff 0%,
+    var(--light-core) 20%,
+    var(--light-glow) 48%,
+    #d67b28 78%,
+    #70401f 100%
+  );
+  border: 1px solid rgba(255, 245, 205, 0.95);
+  box-shadow:
+    0 0 4px 1px var(--light-core),
+    0 0 10px 3px var(--light-glow),
+    0 0 22px 6px var(--light-outer),
+    inset -2px -3px 5px rgba(100, 45, 10, 0.3);
+  animation: pr-footlight-glow var(--light-duration) ease-in-out infinite;
+  animation-delay: var(--light-delay);
+}
+
+.pr-footlight-core {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 28%;
+  height: 19%;
+  border-radius: 50%;
+  background: #ffffff;
+  filter: blur(1px);
+  box-shadow: 0 0 5px #ffffff;
+}
+
+.pr-footlight-reflection {
+  position: absolute;
+  bottom: -9%;
+  width: 180%;
+  height: 10%;
+  border-radius: 50%;
+  background: var(--light-glow);
+  filter: blur(5px);
+  opacity: 0.65;
+}
+
+@keyframes pr-footlight-glow {
+  0%, 100% {
+    opacity: 0.75;
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.25);
+  }
+}
+
+@keyframes pr-footlight-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-footlight,
+  .pr-footlight-halo,
+  .pr-footlight-bulb {
+    animation: none;
+  }
+}
+
 `;
 
 /* ------------------------------------------------------------------ */
@@ -2189,10 +2328,70 @@ function Poinsettia({ x, size = 9 }) {
   );
 }
 
+
 function Footlights() {
+  const lights = Array.from({ length: 22 }, (_, i) => {
+    const colors = [
+      { core: "#fffce6", glow: "#ffd45a", outer: "rgba(255, 174, 48, 0.5)" },
+      { core: "#ffffff", glow: "#fff0a8", outer: "rgba(255, 232, 150, 0.55)" },
+      { core: "#fff4df", glow: "#ff9a4a", outer: "rgba(255, 130, 50, 0.45)" },
+    ];
+
+    return {
+      id: i,
+      ...colors[i % colors.length],
+      delay: `${i * 0.17}s`,
+      duration: `${2 + (i % 4) * 0.45}s`,
+      size: `${0.75 + (i % 3) * 0.12}cqw`,
+    };
+  });
+
   return (
-    <div className="pr-layer" style={{ top: "auto", height: "4cqh", bottom: "10.8cqh", zIndex: 8, display: "flex", justifyContent: "space-between", padding: "0 11cqw" }} aria-hidden="true">
-      {Array.from({ length: 22 }, (_, i) => <span key={i} className={`pr-twinkle${(i % 3) + 1}`} style={{ width: "1cqw", height: "1.4cqh", borderRadius: "50% 50% 40% 40%", background: ["#ffd45a", "#fff0a8", "#ff9a4a"][i % 3], boxShadow: "0 0 10px 2px rgba(255,200,90,.8)", animationDelay: `${i * 0.12}s` }} />)}
+    <div
+      className="pr-layer pointer-events-none"
+      style={{
+        top: "auto",
+        height: "5cqh",
+        bottom: "10.8cqh",
+        zIndex: 5,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "0 11cqw",
+      }}
+      aria-hidden="true"
+    >
+      {lights.map((light) => (
+        <span
+          key={light.id}
+          className="pr-footlight"
+          style={{
+            "--light-core": light.core,
+            "--light-glow": light.glow,
+            "--light-outer": light.outer,
+            "--light-delay": light.delay,
+            "--light-duration": light.duration,
+            "--light-size": light.size,
+          }}
+        >
+          {/* Halo lumineux extérieur */}
+          <span className="pr-footlight-halo" />
+
+          {/* Faisceau diffus */}
+          <span className="pr-footlight-beam" />
+
+          {/* Support de la lumière */}
+          <span className="pr-footlight-base" />
+
+          {/* Ampoule */}
+          <span className="pr-footlight-bulb">
+            <span className="pr-footlight-core" />
+          </span>
+
+          {/* Reflet au sol */}
+          <span className="pr-footlight-reflection" />
+        </span>
+      ))}
     </div>
   );
 }
@@ -2366,6 +2565,7 @@ function Decorations() {
       <div className="pr-floor" aria-hidden="true" />
       <FloorOrnaments />
       <Footlights />
+      {/* <Footlights /> */}
       <Fir x={2.4} bottom={13} h={44} />
       {/* <Fir x={91.2} bottom={13} h={38} flip /> */}
 
@@ -3648,7 +3848,7 @@ export default function ChristmasAwards() {
       <style>{CSS}</style>
       <SharedDefs />
       <Backdrop />
-      <Decorations />
+      <Decorations opened={opened} />
 
       {/* curtains */}
       <div className="pr-curtain l" /><div className="pr-curtain r" />

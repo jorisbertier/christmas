@@ -14,6 +14,7 @@ import CinemaIntro from "./Day/CinemaIntro";
 import ChristmasScene from "./Day/ChristmasScene";
 import CoupleQuiz from "./Day/CoupleQuiz";
 import ChristmasAwards from "./Day/ChristmasAwards";
+import ChristmasWheel from "./Day/ChristmasWheel";
 
 const composants = {
   1: SurpriseModal,
@@ -31,7 +32,8 @@ const composants = {
   13: CinemaIntro,
   14: ChristmasScene,
   15: CoupleQuiz,
-  16: ChristmasAwards
+  16: ChristmasAwards,
+  17: ChristmasWheel
 };
 
 // piano
