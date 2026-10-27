@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import houx from '../../assets/Ceremony/houx.png';
+import letter from '../../assets/Ceremony/letter.jpg';
 
 /* ------------------------------------------------------------------ */
 /*  1. YOUR CONFIGURATION                                              */
@@ -581,6 +583,14 @@ const CSS = `
   .pr-beam,.pr-swing,.pr-flame,.pr-spin,.pr-shine,.pr-shake,.pr-stick1,.pr-stick2,.pr-ring,.pr-twinkle1,.pr-twinkle2,.pr-twinkle3,.pr-btn.pulse{animation:none !important}
   .pr-curtain{transition-duration:.4s}
 }
+
+.pr-image-decoration {
+  position: absolute;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
 `;
 
 /* ------------------------------------------------------------------ */
@@ -615,6 +625,7 @@ function Valance() {
   for (let i = 0; i < n; i++) trim.push(`M${i * w} 62 Q${i * w + w / 2} 124 ${(i + 1) * w} 62`);
   return (
     <svg className="pr-valance block w-full" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+      
       <rect width="1200" height="14" fill="url(#prGold)" />
       <path d={d} fill="url(#prRed)" />
       <path d={d} fill="url(#prFold)" opacity="0" />
@@ -771,6 +782,47 @@ function Backdrop() {
   );
 }
 
+
+function ImageDecoration({
+  src,
+  x = 50,
+  bottom = 0,
+  width = 10,
+  className = "",
+  flip = false,
+}) {
+  function ImageDecoration({
+  src,
+  x = 50,
+  bottom = 0,
+  width = 10,
+  className = "",
+  flip = false,
+}) {
+  return (
+    <img
+      src={src}
+      alt=""
+      aria-hidden="true"
+      className={`pr-image-decoration ${className}`}
+      style={{
+        position: "absolute",
+        left: `${x}cqw`,
+        bottom: `${bottom}cqh`,
+        width: `${width}cqw`,
+        height: "auto",
+        zIndex: 15,
+        objectFit: "contain",
+        transform: flip
+          ? "translateX(-50%) scaleX(-1)"
+          : "translateX(-50%)",
+      }}
+    />
+  );
+}
+}
+
+
 function Decorations() {
   return (
     <>
@@ -778,15 +830,24 @@ function Decorations() {
       <Footlights />
       <Fir x={2.4} bottom={13} h={44} />
       <Fir x={91.2} bottom={13} h={38} flip />
-      <Gifts x={5.5} />
+
+      <ImageDecoration
+        src={houx}
+        x={2.4}
+        bottom={13}
+        width={12}
+        className="pr-bonhomme"
+      />
+
+      {/* <Gifts x={5.5} />
       <Gifts x={80.5} flip />
       <Candle x={3} />
-      <Candle x={93.4} />
-      <Poinsettia x={1.5} size={7.4} />
-      <Poinsettia x={88.4} size={8} />
+      <Candle x={93.4} /> */}
+      {/* <Poinsettia x={1.5} size={7.4} />
+      <Poinsettia x={88.4} size={8} /> */}
       <Valance />
-      <Swag top={7.5} seed={4} />
-      <Swag top={11} c1="#4cc07a" seed={9} />
+      {/* <Swag top={7.5} seed={4} />
+      <Swag top={11} c1="#4cc07a" seed={9} /> */}
       <Bauble x={9} drop={13} color="#c8202e" size={3.6} />
       <Bauble x={17} drop={9} color="#e8b84a" size={3} delay={-1.2} />
       <HangingStar x={26} len={15} delay={-2} />
@@ -795,7 +856,7 @@ function Decorations() {
       <HangingStar x={72} len={13} delay={-0.8} />
       <Bauble x={80} drop={9} color="#e8b84a" size={3} delay={-3} />
       <Bauble x={88} drop={13} color="#c8202e" size={3.6} delay={-1.6} />
-      <Mistletoe />
+      {/* <Mistletoe /> */}
     </>
   );
 }
@@ -834,19 +895,282 @@ function Trophy({ kind, className = "" }) {
   );
 }
 
+
 function Envelope({ open, shake }) {
   return (
-    <svg viewBox="0 0 220 150" className={`${open ? "pr-open" : ""} ${shake ? "pr-shake" : ""}`} style={{ height: "100%", maxHeight: "100%", overflow: "visible" }} aria-hidden="true">
-      <ellipse cx="110" cy="142" rx="86" ry="6" fill="#000" opacity=".35" />
-      <rect x="10" y="30" width="200" height="110" rx="6" fill="#f3e6c8" stroke="#b9a584" />
-      <rect className="pr-cardrise" x="26" y="42" width="168" height="86" rx="3" fill="#fffaf0" stroke="#e8b84a" strokeWidth="2" />
-      <text x="110" y="92" textAnchor="middle" fontSize="15" fontStyle="italic" fill="#8a1424" fontFamily="'Cormorant Garamond',Georgia,serif">{WINNER}</text>
-      <path d="M10 140L110 78L210 140Z" fill="#e6d4a8" /><path d="M10 34L110 100L210 34Z" fill="none" stroke="#c9b58a" />
-      <path className="pr-flap" d="M10 30L110 104L210 30Z" fill="#efe0b6" stroke="#b9a584" />
-      <g transform="translate(110 100)"><circle r="17" fill="url(#prRed)" stroke="#6e0c16" strokeWidth="2" /><path d="M0 -10L3 -3L10 -3L4.5 2L6.5 9L0 5L-6.5 9L-4.5 2L-10 -3L-3 -3Z" fill="#fff3bf" /></g>
+    <svg
+      viewBox="0 0 260 190"
+      className={`${open ? "pr-open" : ""} ${shake ? "pr-shake" : ""}`}
+      style={{
+        height: "100%",
+        maxHeight: "100%",
+        width: "100%",
+        overflow: "visible",
+      }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="envRed" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#a91f35" />
+          <stop offset="55%" stopColor="#7c1025" />
+          <stop offset="100%" stopColor="#4b0918" />
+        </linearGradient>
+
+        <linearGradient id="envFlap" x1="0" y1="0" x2="0.9" y2="1">
+          <stop offset="0%" stopColor="#c83b4d" />
+          <stop offset="100%" stopColor="#761023" />
+        </linearGradient>
+
+        <linearGradient id="envGold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#fff0b0" />
+          <stop offset="45%" stopColor="#d9ad51" />
+          <stop offset="100%" stopColor="#a87527" />
+        </linearGradient>
+
+        <linearGradient id="envPaper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fffdf5" />
+          <stop offset="100%" stopColor="#f1dfb9" />
+        </linearGradient>
+
+        <linearGradient id="envWax" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f3c7a0" />
+          <stop offset="35%" stopColor="#b82a40" />
+          <stop offset="100%" stopColor="#650c20" />
+        </linearGradient>
+
+        <filter id="envShadow" x="-30%" y="-30%" width="160%" height="180%">
+          <feDropShadow
+            dx="0"
+            dy="5"
+            stdDeviation="5"
+            floodColor="#23030b"
+            floodOpacity=".32"
+          />
+        </filter>
+      </defs>
+
+      {/* Ombre portée */}
+      <ellipse
+        cx="130"
+        cy="174"
+        rx="88"
+        ry="7"
+        fill="#17050a"
+        opacity=".28"
+      />
+
+      <g filter="url(#envShadow)">
+        {/* Lettre à l'intérieur */}
+        <rect
+          className="pr-cardrise"
+          x="43"
+          y="25"
+          width="174"
+          height="126"
+          rx="5"
+          fill="url(#envPaper)"
+          stroke="#d5b46c"
+          strokeWidth="1.5"
+        />
+
+        {/* Bordure décorative de la lettre */}
+        <rect
+          className="pr-cardrise"
+          x="50"
+          y="32"
+          width="160"
+          height="112"
+          rx="3"
+          fill="none"
+          stroke="#d9bd80"
+          strokeWidth=".8"
+          strokeDasharray="2 3"
+        />
+
+        <g className="pr-cardrise">
+          <text
+            x="130"
+            y="65"
+            textAnchor="middle"
+            fontSize="9"
+            letterSpacing="2.5"
+            fill="#a27b37"
+            fontFamily="Georgia, serif"
+          >
+            JOYEUX NOËL
+          </text>
+
+          <path
+            d="M91 74 Q130 68 169 74"
+            fill="none"
+            stroke="#d4ae62"
+            strokeWidth=".8"
+          />
+
+          <text
+            x="130"
+            y="100"
+            textAnchor="middle"
+            fontSize="15"
+            fontStyle="italic"
+            fill="#85182c"
+            fontFamily="'Cormorant Garamond', Georgia, serif"
+          >
+            {WINNER}
+          </text>
+
+          <path
+            d="M122 113 Q130 106 138 113 Q130 121 122 113Z"
+            fill="#a52339"
+          />
+          <path
+            d="M130 121 V125"
+            stroke="#c6a052"
+            strokeWidth="1"
+          />
+        </g>
+
+        {/* Corps principal de l'enveloppe */}
+        <rect
+          x="18"
+          y="65"
+          width="224"
+          height="102"
+          rx="5"
+          fill="url(#envRed)"
+          stroke="#d8b15e"
+          strokeWidth="2"
+        />
+
+        {/* Liseré intérieur doré */}
+        <rect
+          x="24"
+          y="71"
+          width="212"
+          height="90"
+          rx="3"
+          fill="none"
+          stroke="#e5c77e"
+          strokeWidth=".7"
+          opacity=".8"
+        />
+
+        {/* Coins de l'enveloppe */}
+        <path
+          d="M27 78 V75 Q27 74 30 74 H36
+             M224 74 H230 Q233 74 233 77 V83
+             M27 150 V155 Q27 158 31 158 H37
+             M223 158 H230 Q233 158 233 154 V149"
+          fill="none"
+          stroke="url(#envGold)"
+          strokeWidth="1.3"
+        />
+
+        {/* Pans de l'enveloppe */}
+        <path
+          d="M19 72 L130 139 L241 72"
+          fill="none"
+          stroke="#d45b65"
+          strokeWidth="1.2"
+          opacity=".85"
+        />
+
+        <path
+          d="M19 165 L93 112 L130 139 L167 112 L241 165"
+          fill="#92182e"
+          stroke="#d4a74e"
+          strokeWidth="1.1"
+        />
+
+        {/* Rabat supérieur animé */}
+        <path
+          className="pr-flap"
+          d="M18 66 L130 139 L242 66 Q130 48 18 66Z"
+          fill="url(#envFlap)"
+          stroke="#d8b15e"
+          strokeWidth="1.6"
+        />
+
+        <path
+          className="pr-flap"
+          d="M27 70 L130 132 L233 70"
+          fill="none"
+          stroke="#edc87a"
+          strokeWidth=".8"
+          opacity=".65"
+        />
+
+        {/* Petit sceau de cire */}
+        <g transform="translate(130 125)">
+          <circle r="20" fill="#4d0918" opacity=".4" cy="2" />
+
+          <circle
+            r="17"
+            fill="url(#envGold)"
+            stroke="#f7e1a0"
+            strokeWidth="1"
+          />
+
+          <circle
+            r="13.5"
+            fill="url(#envWax)"
+            stroke="#6d1021"
+            strokeWidth="1"
+          />
+
+          <path
+            d="M0 8
+               C-3 5 -10 0 -8 -5
+               C-6 -10 -1 -8 0 -4
+               C3 -9 8 -9 9 -4
+               C10 1 4 5 0 8Z"
+            fill="#ffe7bd"
+            stroke="#fff0d4"
+            strokeWidth=".6"
+          />
+
+          <path
+            d="M-5 -13 Q0 -16 5 -13"
+            fill="none"
+            stroke="#fff0c8"
+            strokeWidth="1"
+            opacity=".8"
+          />
+        </g>
+      </g>
+
+      {/* Petits éclats dorés */}
+      <g fill="url(#envGold)">
+        <path d="M31 45 L33 51 L39 53 L33 55 L31 61 L29 55 L23 53 L29 51Z" />
+        <path d="M222 39 L223.5 43 L228 44.5 L223.5 46 L222 50 L220.5 46 L216 44.5 L220.5 43Z" />
+        <circle cx="46" cy="32" r="1.5" />
+        <circle cx="211" cy="57" r="1.7" />
+        <circle cx="51" cy="166" r="1.3" />
+        <circle cx="211" cy="168" r="1.3" />
+      </g>
+
+      {/* Petites branches de houx */}
+      <g transform="translate(37 139) rotate(-28)">
+        <ellipse cx="-5" cy="0" rx="8" ry="3.5" fill="#285b3c" transform="rotate(-30 -5 0)" />
+        <ellipse cx="4" cy="-4" rx="8" ry="3.5" fill="#39784b" transform="rotate(30 4 -4)" />
+        <ellipse cx="5" cy="5" rx="7" ry="3" fill="#214a32" transform="rotate(-15 5 5)" />
+        <circle cx="0" cy="0" r="3" fill="#d63a48" />
+        <circle cx="5" cy="2" r="2.5" fill="#a91c30" />
+        <circle cx="-3" cy="5" r="2.5" fill="#e54b54" />
+      </g>
+
+      <g transform="translate(222 142) rotate(25)">
+        <ellipse cx="-5" cy="0" rx="8" ry="3.5" fill="#285b3c" transform="rotate(-30 -5 0)" />
+        <ellipse cx="4" cy="-4" rx="8" ry="3.5" fill="#39784b" transform="rotate(30 4 -4)" />
+        <ellipse cx="5" cy="5" rx="7" ry="3" fill="#214a32" transform="rotate(-15 5 5)" />
+        <circle cx="0" cy="0" r="3" fill="#d63a48" />
+        <circle cx="5" cy="2" r="2.5" fill="#a91c30" />
+        <circle cx="-3" cy="5" r="2.5" fill="#e54b54" />
+      </g>
     </svg>
   );
 }
+
 
 function Drum({ playing }) {
   return (
@@ -961,13 +1285,14 @@ export default function ChristmasAwards() {
   const introLines = TEXTS.intro;
   const phrase = useTyped(prize.phrase, phase === "reveal", 38);
   const finalPhrase = useTyped(TEXTS.finalePhrase, phase === "finale", 42);
-
+console.log(houx)
   return (
     <div className="pr-stage relative h-full min-h-[100svh] w-full max-h-full max-w-full overflow-hidden" data-open={opened} data-drum={phase === "drum"}>
       <style>{CSS}</style>
       <SharedDefs />
       <Backdrop />
       <Decorations />
+      <img src={houx} className="absolute z-10 top-20 left-10 w-96 h-96" alt="" aria-hidden="true" />
 
       {/* curtains */}
       <div className="pr-curtain l" /><div className="pr-curtain r" />
@@ -1003,6 +1328,8 @@ export default function ChristmasAwards() {
               <div style={{ display: "flex", gap: "5cqw", alignItems: "center", height: "100%", maxHeight: "100%" }}>
                 <div style={{ height: "100%", maxHeight: "100%" }}><Trophy kind={prize.trophy} /></div>
                 <div style={{ height: "62%" }}><Envelope /></div>
+                
+              {/* <div style={{ height: "62%", width: "100px" }}><img src={letter} className="w-full h-full" alt="Letter" /></div> */}
               </div>
             </div>
             <button className="pr-btn pulse pr-in" style={{ animationDelay: "1.4s" }} onClick={startDrum}>🥁 {TEXTS.envelope}</button>
