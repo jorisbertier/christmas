@@ -15,6 +15,7 @@ import ChristmasScene from "./Day/ChristmasScene";
 import CoupleQuiz from "./Day/CoupleQuiz";
 import ChristmasAwards from "./Day/ChristmasAwards";
 import ChristmasWheel from "./Day/ChristmasWheel";
+import ChristmasVillageDecisions from "./Day/ChristmasVillageDecisions";
 
 const composants = {
   1: SurpriseModal,
@@ -33,11 +34,14 @@ const composants = {
   14: ChristmasScene,
   15: CoupleQuiz,
   16: ChristmasAwards,
-  17: ChristmasWheel
+  17: ChristmasWheel,
+  18: ChristmasVillageDecisions
 };
 
 // piano
 // judbox
+// cadeau infini
+// le combat de pierre feuille appier cisceaux contre le pere noel
 // village de noel entier (patinage , spain, maison etc) à chaque clique 
 // spectacle de danse style moulin rouge ambiance de noel
 // chorale qui chantent ( ce soir les habitants de ton village se sont réunis pour chanter des chants de Noël. Tu peux les écouter et même chanter avec eux !)

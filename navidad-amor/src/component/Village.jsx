@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 // import { surprises } from "../data/surprises";
 import SurprisePage from "./SurprisePage";
 
@@ -28,6 +28,7 @@ import maison22 from '../assets/house/Maison 22.png';
 import maison23 from '../assets/house/Maison 23.png';
 import maison24 from '../assets/house/Maison 24.png';
 import SecretNoel from './Day/SecretNoel';
+import aurora from '../assets/choice/11.png';
 
 // Associe les jours à leurs composants.
 // const composants = {
@@ -35,266 +36,125 @@ import SecretNoel from './Day/SecretNoel';
 // //   5: LettreAmour,
 // //   8: QuizAmour,
 // };
+// function GreenAurora({
+//   className = "",
+//   style = {},
+//   width = "100%",
+//   height = "500px",
+// }) {
+//   const uid = useId().replace(/:/g, "");
+//   const id = (name) => `${uid}-${name}`;
 
+//   return (
+//     <svg
+//       xmlns="http://w3.org"
+//       className={className}
+//       viewBox="0 0 1600 1000"
+//       preserveAspectRatio="none"
+//       aria-hidden="true"
+//       style={{
+//         display: "block",
+//         width,
+//         height,
+//         overflow: "visible",
+//         pointerEvents: "none",
+//         ...style,
+//       }}
+//     >
+//       <defs>
+//         {/* Masque global pour adoucir le bas et le haut */}
+//         <linearGradient id={id("fadeY")} x1="0" y1="0" x2="0" y2="1">
+//           <stop offset="0%" stopColor="white" stopOpacity="0.2" />
+//           <stop offset="20%" stopColor="white" stopOpacity="1" />
+//           <stop offset="80%" stopColor="white" stopOpacity="1" />
+//           <stop offset="100%" stopColor="white" stopOpacity="0" />
+//         </linearGradient>
 
-function GreenAurora({ className = "", style = {} }) {
-  return (
-    <svg
-      viewBox="0 0 800 420"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-      style={{
-        display: "block",
-        width: "300px",
-        height: "100%",
-        overflow: "visible",
-        pointerEvents: "none",
-        ...style,
-      }}
-    >
-      <defs>
-        {/* Disparition progressive sur tous les côtés */}
-        <radialGradient id="auroraFade" cx="50%" cy="43%" r="55%">
-          <stop offset="0%" stopColor="white" stopOpacity="1" />
-          <stop offset="55%" stopColor="white" stopOpacity=".95" />
-          <stop offset="78%" stopColor="white" stopOpacity=".55" />
-          <stop offset="100%" stopColor="white" stopOpacity="0" />
-        </radialGradient>
+//         <mask id={id("mainMask")}>
+//           <rect width="1600" height="1000" fill={`url(#${id("fadeY")})`} />
+//         </mask>
 
-        <mask id="auroraMask">
-          <rect width="800" height="420" fill="url(#auroraFade)" />
-        </mask>
+//         {/* Dégradé vert principal des rideaux de l'aurore */}
+//         <linearGradient id={id("auroraGreen")} x1="0" y1="0" x2="0" y2="1">
+//           <stop offset="0%" stopColor="#55ffdf" stopOpacity="0.9" />
+//           <stop offset="30%" stopColor="#3affb2" stopOpacity="0.85" />
+//           <stop offset="70%" stopColor="#19d291" stopOpacity="0.4" />
+//           <stop offset="100%" stopColor="#0b474b" stopOpacity="0" />
+//         </linearGradient>
 
-        {/* Lumière verte principale */}
-        <linearGradient id="auroraEmerald" x1="0" y1="0" x2="0.9" y2="1">
-          <stop offset="0%" stopColor="#a5ff8f" stopOpacity="0" />
-          <stop offset="18%" stopColor="#55ff85" stopOpacity=".55" />
-          <stop offset="42%" stopColor="#00f58b" stopOpacity=".95" />
-          <stop offset="65%" stopColor="#31ffb4" stopOpacity=".75" />
-          <stop offset="100%" stopColor="#80ffe0" stopOpacity="0" />
-        </linearGradient>
+//         {/* Flous directionnels pour l'effet de rideau lumineux étiré verticalement */}
+//         <filter id={id("glowBlur")} x="-20%" y="-20%" width="140%" height="140%">
+//           <feGaussianBlur stdDeviation="15" />
+//         </filter>
 
-        {/* Voile turquoise */}
-        <linearGradient id="auroraMint" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#72ffba" stopOpacity="0" />
-          <stop offset="35%" stopColor="#69ffe1" stopOpacity=".75" />
-          <stop offset="60%" stopColor="#29eeb0" stopOpacity=".5" />
-          <stop offset="100%" stopColor="#8bffe6" stopOpacity="0" />
-        </linearGradient>
+//         <filter id={id("heavyBlur")} x="-20%" y="-20%" width="140%" height="140%">
+//           <feGaussianBlur stdDeviation="45" />
+//         </filter>
+//       </defs>
 
-        {/* Liseré lumineux */}
-        <linearGradient id="auroraEdge" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#d1ffae" stopOpacity="0" />
-          <stop offset="25%" stopColor="#d5ffb0" stopOpacity=".8" />
-          <stop offset="50%" stopColor="#a2ffd8" stopOpacity="1" />
-          <stop offset="75%" stopColor="#8dffb7" stopOpacity=".8" />
-          <stop offset="100%" stopColor="#d1ffae" stopOpacity="0" />
-        </linearGradient>
+//       {/* Groupe principal des aurores avec masque de fondu */}
+//       <g mask={`url(#${id("mainMask")})`}>
+        
+//         {/* 1. Lueur de fond diffuse (Ambiance verte) */}
+//         <g filter={`url(#${id("heavyBlur")})`} opacity="0.4">
+//           <path
+//             d="M -100 300 Q 300 100 800 400 T 1700 200 L 1700 800 L -100 800 Z"
+//             fill="#1beaa2"
+//           />
+//         </g>
 
-        {/* Reflets violets comme dans l'image de référence */}
-        <linearGradient id="auroraViolet" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#a477ff" stopOpacity="0" />
-          <stop offset="45%" stopColor="#9270ff" stopOpacity=".35" />
-          <stop offset="75%" stopColor="#6ce8d9" stopOpacity=".2" />
-          <stop offset="100%" stopColor="#a477ff" stopOpacity="0" />
-        </linearGradient>
+//         {/* 2. Grand rideau principal à droite */}
+//         <g filter={`url(#${id("glowBlur")})`}>
+//           <path
+//             d="M 900 150 
+//                C 1200 130, 1400 200, 1650 180 
+//                L 1650 750 
+//                C 1350 780, 1150 720, 900 800 Z"
+//             fill={`url(#${id("auroraGreen")})`}
+//           />
+//           {/* Lignes de structure verticales internes à droite */}
+//           <g fill="none" stroke={`url(#${id("auroraGreen")})`} strokeWidth="40" opacity="0.5">
+//             <path d="M 1100 160 C 1150 350, 1050 550, 1120 760" />
+//             <path d="M 1280 170 C 1320 380, 1260 580, 1310 750" />
+//             <path d="M 1450 180 C 1480 360, 1460 560, 1490 770" />
+//           </g>
+//         </g>
 
-        <filter id="auroraBlur">
-          <feGaussianBlur stdDeviation="17" />
-        </filter>
+//         {/* 3. Rideau ondulé du milieu et de gauche */}
+//         <g filter={`url(#${id("glowBlur")})`}>
+//           <path
+//             d="M -50 100 
+//                C 200 80, 450 250, 520 540
+//                C 560 700, 680 820, 950 830
+//                L 950 930
+//                C 600 920, 420 750, 360 550
+//                C 280 300, 100 250, -50 260 Z"
+//             fill={`url(#${id("auroraGreen")})`}
+//           />
+          
+//           {/* Stries verticales caractéristiques du rideau de gauche */}
+//           <g fill="none" stroke={`url(#${id("auroraGreen")})`} strokeWidth="35" opacity="0.6">
+//             <path d="M 50 110 C 120 250, 140 380, 100 560" />
+//             <path d="M 160 100 C 230 260, 240 400, 190 600" />
+//             <path d="M 280 120 C 340 280, 310 440, 260 650" />
+//             <path d="M 400 200 C 450 350, 410 520, 420 740" />
+//           </g>
+//         </g>
 
-        <filter id="auroraSoftGlow">
-          <feGaussianBlur stdDeviation="6" />
-        </filter>
-      </defs>
-
-      <g mask="url(#auroraMask)">
-        {/* Halo doux derrière les voiles */}
-        <g filter="url(#auroraBlur)">
-          <path
-            d="
-              M 80 90
-              C 155 5, 205 15, 260 100
-              S 355 205, 415 105
-              S 520 10, 570 95
-              S 650 185, 735 65
-              L 735 205
-              C 655 285, 595 190, 555 155
-              S 470 210, 420 230
-              S 320 180, 260 155
-              S 165 160, 80 200 Z
-            "
-            fill="#00ff82"
-            opacity=".65"
-          />
-        </g>
-
-        {/* Voile violet diffus sous les lumières */}
-        <path
-          d="
-            M 55 95
-            C 150 30, 215 70, 260 135
-            S 355 230, 425 135
-            S 520 55, 575 115
-            S 675 180, 750 90
-            L 750 230
-            C 655 280, 590 220, 540 200
-            S 455 270, 390 255
-            S 290 190, 235 190
-            S 135 225, 55 230 Z
-          "
-          fill="url(#auroraViolet)"
-          opacity=".85"
-        />
-
-        {/* Grand rideau vert ondulé */}
-        <path
-          d="
-            M 40 45
-            C 105 20, 145 35, 185 95
-            C 220 150, 250 180, 300 150
-            C 355 118, 335 48, 385 35
-            C 435 22, 450 100, 485 135
-            C 530 180, 565 170, 595 120
-            C 635 55, 670 30, 725 55
-            L 755 105
-            C 690 90, 655 115, 620 175
-            C 580 245, 520 230, 475 190
-            C 430 150, 415 95, 390 100
-            C 360 105, 375 175, 330 205
-            C 275 245, 215 210, 175 160
-            C 130 105, 100 90, 40 120 Z
-          "
-          fill="url(#auroraEmerald)"
-        />
-
-        {/* Deuxième voile, plus léger */}
-        <path
-          d="
-            M 105 30
-            C 165 55, 170 125, 220 165
-            C 270 205, 320 190, 345 140
-            C 375 80, 380 40, 415 50
-            C 450 60, 460 135, 510 175
-            C 560 215, 605 195, 645 125
-            C 675 75, 705 65, 740 85
-            C 690 150, 670 225, 610 245
-            C 555 265, 510 225, 470 190
-            C 425 150, 410 115, 390 145
-            C 360 195, 330 245, 275 245
-            C 210 245, 165 185, 135 130 Z
-          "
-          fill="url(#auroraMint)"
-          opacity=".75"
-        />
-
-        {/* Fines colonnes de lumière */}
-        <g
-          fill="none"
-          strokeLinecap="round"
-          filter="url(#auroraSoftGlow)"
-          opacity=".65"
-        >
-          <path
-            d="M 180 55 C 205 105, 170 145, 205 205"
-            stroke="#9dff9b"
-            strokeWidth="18"
-          />
-          <path
-            d="M 300 125 C 330 165, 290 205, 320 245"
-            stroke="#3dffad"
-            strokeWidth="20"
-          />
-          <path
-            d="M 415 45 C 440 95, 405 150, 445 210"
-            stroke="#b0ffd0"
-            strokeWidth="20"
-          />
-          <path
-            d="M 555 125 C 585 165, 545 205, 575 240"
-            stroke="#7bffc1"
-            strokeWidth="18"
-          />
-          <path
-            d="M 665 70 C 685 110, 655 155, 680 190"
-            stroke="#4dff91"
-            strokeWidth="16"
-          />
-        </g>
-
-        {/* Lignes lumineuses délicates */}
-        <g
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path
-            d="
-              M 55 75
-              C 130 35, 165 75, 205 130
-              S 285 195, 330 150
-              S 370 55, 405 65
-              S 465 145, 510 165
-              S 585 155, 625 100
-              S 695 60, 745 85
-            "
-            stroke="url(#auroraEdge)"
-            strokeWidth="3"
-            opacity=".9"
-          />
-
-          <path
-            d="
-              M 100 105
-              C 165 75, 190 135, 235 175
-              S 315 205, 345 165
-              S 390 100, 415 115
-              S 470 190, 515 205
-              S 595 175, 625 135
-            "
-            stroke="#baffc9"
-            strokeWidth="2"
-            opacity=".6"
-          />
-
-          <path
-            d="
-              M 135 45
-              C 180 90, 180 145, 225 175
-              S 290 205, 320 185
-            "
-            stroke="#c7ffd2"
-            strokeWidth="2"
-            opacity=".55"
-          />
-        </g>
-
-        {/* Petits éclats lumineux */}
-        {[
-          [150, 83, 2],
-          [240, 128, 1.5],
-          [310, 166, 2],
-          [395, 70, 1.8],
-          [460, 137, 2],
-          [525, 172, 1.5],
-          [600, 123, 2],
-          [665, 91, 1.5],
-        ].map(([x, y, r], i) => (
-          <circle
-            key={i}
-            cx={x}
-            cy={y}
-            r={r}
-            fill="#edffe6"
-            opacity=".8"
-          />
-        ))}
-      </g>
-    </svg>
-  );
-}
-
+//         {/* 4. Deuxième lame lumineuse en bas à gauche */}
+//         <g filter={`url(#${id("glowBlur")})`} opacity="0.8">
+//           <path
+//             d="M 90 650 
+//                C 200 640, 300 580, 420 520 
+//                L 420 720 
+//                C 300 780, 180 840, 90 850 Z"
+//             fill={`url(#${id("auroraGreen")})`}
+//           />
+//         </g>
+//       </g>
+//     </svg>
+//   );
+// }
 
 export default function Village() {
     const [joursOuverts, setJoursOuverts] = useState({});
@@ -409,18 +269,17 @@ const cliquerMaison = (id) => {
         <div className="absolute top-16 left-32 w-20 h-20 bg-amber-100 rounded-full blur-[1px] opacity-90 shadow-[0_0_40px_#fef08a]">
             <div className="absolute top-0 right-5 w-16 h-16 bg-[#1b1947] rounded-full"></div>
         </div>
-<div
-  className="absolute pointer-events-none"
-  style={{
-    width: "72%",
-    height: "42%",
-    left: "14%",
-    top: "0%",
-    opacity: 0.85,
-  }}
->
-  <GreenAurora />
-</div>
+        <img src={aurora} alt="" className="absolute top-0 left-[200px] w-100 h-100" />
+        {/* <GreenAurora
+          width="100vw"
+          height="320px"
+          style={{
+            position: "absolute",
+            top: "-10%",
+            left: "-20vw",
+          }}
+        /> */}
+
         {/* CLUSTER CENTRAL DU VILLAGE */}
         <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-24 mb-12">
 

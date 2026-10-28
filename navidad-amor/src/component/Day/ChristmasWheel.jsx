@@ -16,222 +16,213 @@ const GIFTS = [
   { name: "El regalo sorpresa", emoji: "🎀" },
 ];
 
-function ChristmasWheelDisc({ rotation }) {
-  const count = GIFTS.length;
-  const step = 360 / count;
-  const cx = 200;
-  const cy = 200;
-  const radius = 174;
 
-  const polar = (r, angle) => {
-    const a = (angle * Math.PI) / 180;
-    return {
-      x: cx + r * Math.cos(a),
-      y: cy + r * Math.sin(a),
-    };
+const COLORS = [
+  "#a7192d", "#67bca9", "#a7192d", "#67bca9",
+  "#a7192d", "#67bca9", "#a7192d", "#67bca9",
+  "#a7192d", "#67bca9", "#a7192d", "#67bca9",
+];
+
+
+function pointOnCircle(cx, cy, r, angle) {
+  const rad = (angle * Math.PI) / 180;
+
+  return {
+    x: cx + r * Math.cos(rad),
+    y: cy + r * Math.sin(rad),
   };
+}
 
-  const segmentPath = (start, end) => {
-    const p1 = polar(radius, start);
-    const p2 = polar(radius, end);
+function WheelSegment({ index, total, label }) {
+  const step = 360 / total;
+  const start = -90 + index * step;
+  const end = start + step;
 
-    return [
-      `M ${cx} ${cy}`,
-      `L ${p1.x} ${p1.y}`,
-      `A ${radius} ${radius} 0 ${end - start > 180 ? 1 : 0} 1 ${p2.x} ${p2.y}`,
-      "Z",
-    ].join(" ");
-  };
+  const p1 = pointOnCircle(200, 200, 176, start);
+  const p2 = pointOnCircle(200, 200, 176, end);
+  const mid = start + step / 2;
+  const textPoint = pointOnCircle(200, 200, 119, mid);
+  const snowPoint = pointOnCircle(200, 200, 153, mid);
+
+  const shortLabel =
+    label.length > 17 ? `${label.slice(0, 15)}…` : label;
 
   return (
-    <svg
-      viewBox="0 0 400 400"
-      className="cw-disc"
-      style={{ transform: `rotate(${rotation}deg)` }}
-      role="img"
-      aria-label="Roue de la fortune de Noël"
-    >
-      <defs>
-        <linearGradient id="cw-gold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#fff5bf" />
-          <stop offset="35%" stopColor="#f2ce71" />
-          <stop offset="65%" stopColor="#bd812b" />
-          <stop offset="100%" stopColor="#ffe9a0" />
-        </linearGradient>
+    <g>
+      <path
+        d={`M 200 200 L ${p1.x} ${p1.y} A 176 176 0 0 1 ${p2.x} ${p2.y} Z`}
+        fill={COLORS[index % COLORS.length]}
+        stroke="#fff8df"
+        strokeWidth="2.5"
+      />
 
-        <linearGradient id="cw-red" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#e34a4a" />
-          <stop offset="48%" stopColor="#b51f30" />
-          <stop offset="100%" stopColor="#751020" />
-        </linearGradient>
-
-        <linearGradient id="cw-green" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#43a86a" />
-          <stop offset="48%" stopColor="#167044" />
-          <stop offset="100%" stopColor="#073c29" />
-        </linearGradient>
-
-        <radialGradient id="cw-center">
-          <stop offset="0%" stopColor="#d83d3d" />
-          <stop offset="100%" stopColor="#791323" />
-        </radialGradient>
-
-        <filter id="cw-text-shadow" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow
-            dx="0"
-            dy="1.5"
-            stdDeviation="1.4"
-            floodColor="#250b0b"
-            floodOpacity=".8"
-          />
-        </filter>
-      </defs>
-
-      {/* Base en bois et bordure dorée */}
-      <circle cx={cx} cy={cy} r="194" fill="#6f3518" />
-      <circle cx={cx} cy={cy} r="190" fill="url(#cw-gold)" />
-      <circle cx={cx} cy={cy} r="184" fill="#6e281c" />
-      <circle cx={cx} cy={cy} r="179" fill="url(#cw-gold)" />
-
-      {/* Parts de la roue : rouge et vert alternés */}
-      {GIFTS.map((gift, i) => {
-        const start = -90 + i * step;
-        const end = start + step;
-        const middle = start + step / 2;
-        const labelPoint = polar(118, middle);
-        const emojiPoint = polar(151, middle);
-        const isRed = i % 2 === 0;
-
-        const label = gift.name.length > 19
-          ? `${gift.name.slice(0, 17)}…`
-          : gift.name;
-
-        return (
-          <g key={`${gift.name}-${i}`}>
-            <path
-              d={segmentPath(start, end)}
-              fill={isRed ? "url(#cw-red)" : "url(#cw-green)"}
-              stroke="#f9dfa0"
-              strokeWidth="2.2"
-            />
-
-            {/* Reflet subtil sur chaque segment */}
-            <path
-              d={segmentPath(start + 1, end - 1)}
-              fill="none"
-              stroke="#fff4d2"
-              strokeOpacity=".2"
-              strokeWidth="1"
-            />
-
-            {/* Petit décor étoilé */}
-            <text
-              x={emojiPoint.x}
-              y={emojiPoint.y}
-              textAnchor="middle"
-              dominantBaseline="central"
-              fontSize="16"
-              filter="url(#cw-text-shadow)"
-            >
-              {gift.emoji}
-            </text>
-
-            {/* Nom du cadeau */}
-            <text
-              x={labelPoint.x}
-              y={labelPoint.y}
-              transform={`rotate(${middle + 90}, ${labelPoint.x}, ${labelPoint.y})`}
-              textAnchor="middle"
-              dominantBaseline="central"
-              fill="#fff8df"
-              fontSize="9.5"
-              fontWeight="900"
-              letterSpacing=".1"
-              stroke="#4c1420"
-              strokeWidth=".6"
-              paintOrder="stroke"
-              filter="url(#cw-text-shadow)"
-            >
-              {label}
-            </text>
-          </g>
-        );
-      })}
-
-      {/* Cercles de finition */}
-      <circle
-        cx={cx}
-        cy={cy}
-        r="176"
+      {/* Légère brillance des parts */}
+      <path
+        d={`M 200 200 L ${p1.x} ${p1.y} A 176 176 0 0 1 ${p2.x} ${p2.y} Z`}
         fill="none"
-        stroke="#fff0b8"
-        strokeWidth="3"
-      />
-      <circle
-        cx={cx}
-        cy={cy}
-        r="169"
-        fill="none"
-        stroke="#f4cf70"
-        strokeWidth="1.5"
+        stroke="#fff8df"
+        strokeOpacity=".18"
+        strokeWidth="1"
       />
 
-      {/* Rivets dorés tout autour */}
-      {Array.from({ length: 24 }, (_, i) => {
-        const p = polar(182, i * 15);
-
-        return (
-          <g key={i}>
-            <circle cx={p.x} cy={p.y} r="4.4" fill="#754016" />
-            <circle cx={p.x - 0.7} cy={p.y - 0.8} r="3.1" fill="#f4ce70" />
-            <circle cx={p.x - 1.2} cy={p.y - 1.4} r="1.1" fill="#fff9df" />
-          </g>
-        );
-      })}
-
-      {/* Médaillon central */}
-      <circle cx={cx} cy={cy} r="51" fill="#54231b" />
-      <circle
-        cx={cx}
-        cy={cy}
-        r="47"
-        fill="url(#cw-gold)"
-        stroke="#fff4c9"
-        strokeWidth="2"
-      />
-      <circle
-        cx={cx}
-        cy={cy}
-        r="41"
-        fill="url(#cw-center)"
-        stroke="#7e1b25"
-        strokeWidth="2"
-      />
-      <circle
-        cx={cx}
-        cy={cy}
-        r="35"
-        fill="none"
-        stroke="#f8dda0"
-        strokeWidth="1.3"
-        strokeDasharray="3 4"
-      />
-
-      <text x={cx} y="190" textAnchor="middle" fontSize="24">
-        🎄
-      </text>
+      {/* Nom du cadeau */}
       <text
-        x={cx}
-        y="211"
+        x={textPoint.x}
+        y={textPoint.y}
+        transform={`rotate(${mid + 90}, ${textPoint.x}, ${textPoint.y})`}
         textAnchor="middle"
-        fill="#fff1c3"
-        fontSize="10"
+        dominantBaseline="middle"
+        fill="#fff8df"
+        fontSize="11"
         fontWeight="900"
-        letterSpacing="1.1"
+        stroke="#6d1520"
+        strokeWidth=".35"
+        paintOrder="stroke"
       >
-        NAVIDAD
+        {shortLabel}
       </text>
-    </svg>
+
+      {/* Flocon décoratif */}
+      <text
+        x={snowPoint.x}
+        y={snowPoint.y}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontSize="12"
+        fill="#fff8df"
+        opacity=".9"
+      >
+        ❄
+      </text>
+    </g>
+  );
+}
+
+function ChristmasWheel({ rotation }) {
+  return (
+    <div className="relative aspect-square w-full max-w-full">
+      {/* Bordure rayée façon sucre d'orge */}
+      <div
+        className="absolute inset-0 rounded-full"
+        style={{
+          background:
+            "repeating-conic-gradient(#fff8e7 0deg 8deg, #bd2032 8deg 16deg)",
+          boxShadow:
+            "0 0 0 4px #f9e7b2, 0 8px 0 #751521, 0 14px 25px #0008",
+        }}
+      />
+
+      {/* Anneau intérieur crème */}
+      <div className="absolute inset-[3.5%] rounded-full bg-[#fff6df] shadow-inner" />
+
+      {/* Disque tournant */}
+      <svg
+        viewBox="0 0 400 400"
+        className="absolute inset-[5%] h-[90%] w-[90%]"
+        style={{
+          transform: `rotate(${rotation}deg)`,
+          transition: "transform 5.2s cubic-bezier(.12,.72,.08,1)",
+          transformOrigin: "center",
+          overflow: "visible",
+        }}
+        role="img"
+        aria-label="Ruleta de Navidad"
+      >
+        <defs>
+          <radialGradient id="wheel-face">
+            <stop offset="0%" stopColor="#fff8df" />
+            <stop offset="100%" stopColor="#e9cc8e" />
+          </radialGradient>
+        </defs>
+
+        <circle cx="200" cy="200" r="180" fill="url(#wheel-face)" />
+
+        {GIFTS.map((gift, i) => (
+          <WheelSegment
+            key={gift.name}
+            index={i}
+            total={GIFTS.length}
+            label={`${gift.name} ${gift.emoji}`}
+          />
+        ))}
+
+        {/* Bordure dorée */}
+        <circle
+          cx="200"
+          cy="200"
+          r="179"
+          fill="none"
+          stroke="#fff8df"
+          strokeWidth="5"
+        />
+
+        <circle
+          cx="200"
+          cy="200"
+          r="174"
+          fill="none"
+          stroke="#e4bd70"
+          strokeWidth="1.5"
+        />
+
+        {/* Rivets autour de la roue */}
+        {Array.from({ length: 24 }, (_, i) => {
+          const p = pointOnCircle(200, 200, 181, i * 15 - 90);
+
+          return (
+            <g key={i}>
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r="3.2"
+                fill={i % 2 ? "#b51f30" : "#fff9e8"}
+                stroke="#e6bd70"
+                strokeWidth="1"
+              />
+            </g>
+          );
+        })}
+      </svg>
+
+      {/* Centre décoratif fixe */}
+      <div
+        className="absolute left-1/2 top-1/2 flex aspect-square w-[23%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-[4px] border-[#f4d99b] text-center"
+        style={{
+          background:
+            "radial-gradient(circle at 35% 25%, #fff5d8, #e8c782 70%, #ad742f)",
+          boxShadow: "0 0 0 4px #a7192d, 0 3px 9px #0006",
+        }}
+      >
+        <span className="text-[clamp(8px,2vw,14px)]">🎄</span>
+
+        <span className="font-serif text-[clamp(7px,1.6vw,12px)] font-black leading-tight text-[#a7192d]">
+          MERRY
+          <br />
+          CHRISTMAS
+        </span>
+
+        <span className="text-[clamp(8px,2vw,13px)]">🎁</span>
+      </div>
+
+      {/* Flèche fixe en haut */}
+      <div
+        className="absolute left-1/2 top-[-2%] z-20 -translate-x-1/2"
+        style={{ filter: "drop-shadow(0 3px 2px #541019)" }}
+      >
+        <svg viewBox="0 0 48 60" className="h-auto w-[clamp(25px,8%,42px)]">
+          <path
+            d="M24 58 L3 14 Q0 5 10 5 H38 Q48 5 45 14 Z"
+            fill="#b51f30"
+            stroke="#ffe6a3"
+            strokeWidth="3"
+          />
+
+          <path d="M24 48 L12 16 H36 Z" fill="#f7d58c" />
+
+          <circle cx="24" cy="13" r="5" fill="#fff6df" />
+        </svg>
+      </div>
+    </div>
   );
 }
 
@@ -746,7 +737,7 @@ export default function ChristmasFortuneWheel() {
           <div className="cw-wheel-frame max-w-full">
             <div className="cw-pointer" aria-hidden="true" />
             <div className="cw-wheel-inner">
-              <ChristmasWheelDisc rotation={rotation} />
+              <ChristmasWheel rotation={rotation} />
             </div>
           </div>
 
@@ -836,3 +827,4 @@ export default function ChristmasFortuneWheel() {
     </section>
   );
 }
+
