@@ -11,11 +11,12 @@ import Christmaschoir from "./Day/Christmaschoir";
 import ClockMystery from "./Day/Game/ClockMystery";
 import ChristmasLoveLetter from "./Day/ChristmasLoveLetter";
 import CinemaIntro from "./Day/CinemaIntro";
-import ChristmasScene from "./Day/ChristmasScene";
+// import ChristmasScene from "./Day/ChristmasScene";
 import CoupleQuiz from "./Day/CoupleQuiz";
 import ChristmasAwards from "./Day/ChristmasAwards";
 import ChristmasWheel from "./Day/ChristmasWheel";
 import ChristmasVillageDecisions from "./Day/ChristmasVillageDecisions";
+import ChristmasScene from "./Day/Gift/ChristmasScene";
 
 const composants = {
   1: SurpriseModal,
@@ -28,14 +29,15 @@ const composants = {
   8: PhotoGallery,
   9: ChristmasVillage,
   10: Christmaschoir,
-  11 : ClockMystery,
+  11: ClockMystery,
   12: ChristmasLoveLetter,
   13: CinemaIntro,
-  14: ChristmasScene,
+  // 14: ChristmasScene,
   15: CoupleQuiz,
   16: ChristmasAwards,
   17: ChristmasWheel,
-  18: ChristmasVillageDecisions
+  18: ChristmasVillageDecisions,
+  19: ChristmasScene
 };
 
 // piano

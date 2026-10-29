@@ -1,9 +1,14 @@
 
 import React, { useEffect, useState } from "react";
-import aurora from "../../assets/choice/11.png";
+import card1 from "../../assets/choice/card1.png";
+import card5 from "../../assets/choice/card5.png";
 import star from "../../assets/choice/12.png";
 import background from "../../assets/BG/bgChristmasDecisions.jpg";
 import ball from "../../assets/ball.png";
+import snowflake from "../../assets/choice/snowflake.png";
+import giftboxes from "../../assets/choice/gift-boxes.png";
+import christmasday from "../../assets/choice/christmas-day.png";
+
 
 const KEY = "navidad_pueblo_decision_";
 
@@ -17,7 +22,9 @@ const decisions = [
         {
             id: "11",
             icon: "🏠",
-            // image : aurora,
+            image : card1,
+            widthimage: "w-full",
+            heightimage: "h-full",
             title: "Una aurora boreal",
             text: "Invitar a todos a contemplar un río de luces verdes - azules que cubrirá el cielo del pueblo.",
             result: "El pueblo se llena de colores mágicos. Las luces de la aurora despiertan un sentimiento de paz y unión entre los habitantes.",
@@ -26,7 +33,9 @@ const decisions = [
         {
             id: "12",
             icon: "🎄",
-            // image: star,
+            image: card5,
+            widthimage: "w-full",
+            heightimage: "h-[83%]",
             title: "Una lluvia de estrellas",
             text: "Organizar una noche bajo miles de estrellas fugaces. Cada habitante podrá pedir un deseo para la Navidad.",
             result: "El cielo se llena de estrellas brillantes. Los habitantes comparten sus deseos y nace una nueva tradición navideña llena de esperanza.",
@@ -87,56 +96,61 @@ const decisions = [
         ],
     },
     {
-        title: "Los dulces secretos de Navidad",
-        subtitle: "Un aroma delicioso invade el pueblo",
+        title: "La calle de los dulces",
+        subtitle: "Un rincón de ensueño lleno de golosinas",
         story:
-            "En el corazón del pueblo, los duendes de Papá Noel preparan una sorpresa para la Navidad. Han recibido ingredientes mágicos capaces de llenar las calles de aromas irresistibles. Pero solo tienen tiempo para abrir uno de sus talleres especiales: un taller de galletas navideñas donde todos podrán decorar sus propias creaciones, o una fábrica de chocolate donde fuentes de chocolate caliente y dulces mágicos cobrarán vida. ¿Qué delicia elegirá el pueblo?",
+            "En una pequeña calle del pueblo, ha aparecido un espacio mágico que podría convertirse en la atracción más dulce de la Navidad. Los duendes quieren construir algo extraordinario para sorprender a todos los habitantes. Puedes elegir una encantadora casa de jengibre, con paredes de galleta y un techo cubierto de dulces, o una colorida tienda de caramelos repleta de golosinas mágicas. ¡El pueblo espera tu elección!",
         options: [
             {
                 id: "41",
                 icon: "🍪",
-                title: "El taller de galletas",
-                text: "Abrir un acogedor taller donde los duendes preparan galletas con forma de estrellas, renos y corazones, decoradas con glaseado de colores.",
+                title: "La casa de jengibre",
+                text: "Construir una adorable casita hecha de galletas, con un techo de chocolate, ventanas de caramelo y decoraciones de glaseado blanco.",
                 result:
-                    "El taller se llena de risas y aromas a canela y vainilla. Grandes y pequeños decoran sus propias galletas navideñas, y las ventanas se iluminan con pequeñas estrellas de azúcar. ¡El pueblo descubre una nueva tradición deliciosa!",
+                    "¡La casita parece sacada de un cuento! Su techo de galleta está cubierto de nieve blanca de azúcar, las ventanas brillan con tonos dorados y un delicioso aroma a canela llena la calle. Los habitantes se detienen maravillados ante esta pequeña obra maestra navideña.",
                 color: "gold",
             },
             {
-                id: "32",
-                icon: "🍫",
-                title: "La fábrica de chocolate",
-                text: "Construir una fantástica chocolatería con fuentes de chocolate caliente, montañas de bombones y caramelos que parecen no acabarse nunca.",
+                id: "42",
+                icon: "🍬",
+                title: "La tienda de caramelos",
+                text: "Abrir una encantadora confitería con bastones de caramelo, piruletas gigantes, frascos de golosinas de colores y una fachada llena de luces.",
                 result:
-                    "¡La magia del chocolate se apodera del pueblo! Los duendes trabajan entre fuentes de chocolate brillante y montañas de bombones. Un dulce aroma recorre las calles y todos se reúnen para disfrutar de una Navidad irresistible.",
+                    "¡La calle se convierte en un paraíso de dulces! Las vitrinas se llenan de caramelos de todos los colores, los bastones de azúcar decoran la entrada y las luces iluminan cada rincón. Los niños miran fascinados esta tienda que parece esconder dulces mágicos en cada estante.",
                 color: "red",
             },
         ],
     },
 
     {
-        title: "La noche de Navidad",
-        subtitle: "Tu última gran decisión",
+        title: "El último hechizo de Papá Noel",
+        subtitle: "Solo queda magia para un último deseo",
         story:
-        "Llega Nochebuena. Solo queda presupuesto para una última iniciativa que marcará el futuro de la comunidad.",
+            "Los duendes han descubierto que Papá Noel puede utilizar una última magia antes de Navidad. Pero solo queda energía para un hechizo. Una magia puede iluminar el cielo y guiar su trineo entre las estrellas. La otra puede envolverlo en un sueño mágico para que entregue los regalos sin despertar a nadie. ¿Qué magia debería elegir?",
         options: [
-        {
-            id: "51",
-            icon: "✨",
-            title: "Una fiesta inolvidable",
-            text: "Regalar al pueblo una noche de música, luces y alegría.",
-            result: "Todos vivirán una celebración extraordinaria que recordarán durante años.",
-            color: "red",
-        },
-        {
-            id: "52",
-            icon: "🎁",
-            title: "Un regalo para el futuro",
-            text: "Crear una reserva para ayudar al pueblo durante el próximo invierno.",
-            result: "La fiesta será sencilla, pero el futuro de la comunidad será más seguro.",
-            color: "gold",
-        },
+            {
+                id: "51",
+                icon: "⭐",
+                title: "La magia de las estrellas",
+                text:
+                    "Invocar el poder de las estrellas para iluminar el camino de Papá Noel y llenar la noche de destellos mágicos.",
+                result:
+                    "¡El cielo se llena de luz! Papá Noel sube a su trineo y los renos emprenden el vuelo. Una hermosa estela dorada atraviesa el cielo estrellado mientras el trineo sobrevuela el pueblo, llevando la magia de la Navidad a cada hogar.",
+                color: "gold",
+            },
+            {
+                id: "52",
+                icon: "🌙",
+                title: "La magia de los sueños",
+                text:
+                    "Utilizar un hechizo silencioso que permita a Papá Noel visitar cada hogar sin despertar a sus habitantes.",
+                result:
+                    "¡La magia de los sueños envuelve a Papá Noel! Con pasos silenciosos y una sonrisa, recorre las calles nevadas y entra cuidadosamente en cada hogar para dejar los regalos bajo el árbol sin despertar a nadie. Solo quedan pequeñas chispas mágicas brillando a su paso.",
+                color: "red",
+            },
         ],
     },
+
 ];
 
 const ornamentPositions = [
@@ -214,8 +228,8 @@ function Decorations() {
 
         <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
 
-        <PineBranch className="absolute -left-7 -top-3 w-36 -rotate-12 opacity-90 sm:w-48" />
-        <PineBranch className="absolute -right-7 -top-3 w-36 -scale-x-100 rotate-[-12deg] opacity-90 sm:w-48" />
+        {/* <PineBranch className="absolute -left-7 -top-3 w-36 -rotate-12 opacity-90 sm:w-48" />
+        <PineBranch className="absolute -right-7 -top-3 w-36 -scale-x-100 rotate-[-12deg] opacity-90 sm:w-48" /> */}
 
         {ornamentPositions.map(([left, top, rotation], i) => (
             <div
@@ -223,7 +237,7 @@ function Decorations() {
             className={`absolute ${i > 1 ? "hidden sm:block" : ""} w-50`}
             style={{ left, top }}
             >
-            <Bauble className="w-8 opacity-75 sm:w-11" />
+            {/* <Bauble className="w-8 opacity-75 sm:w-11" /> */}
             </div>
         ))}
 
@@ -268,192 +282,234 @@ function Snow() {
 function Frame({ children }) {
     return (
             <main
-            className="christmas-screen relative isolate flex h-[100dvh] max-h-[100dvh] w-full flex-col overflow-hidden bg-[#081711] bg-cover bg-center bg-no-repeat text-white"
-            style={{
-                backgroundImage: `url("${background}")`,
+                className="christmas-screen relative isolate flex h-[100dvh] max-h-[100dvh] w-full flex-col overflow-hidden bg-[#081711] bg-cover bg-center bg-no-repeat text-white"
+                style={{
+                    backgroundImage: `url("${background}")`,
             }}
             >
-        <Decorations />
-        <Snow />
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-3 py-2 sm:px-6 sm:py-3">
-            <header className="mx-auto flex w-full max-w-5xl shrink-0 items-center justify-center gap-2 pb-2 pt-1 sm:gap-3 sm:pb-3">
-            <span className="text-base text-amber-300 sm:text-xl">✦</span>
-            <div className="text-center">
-                <p className="text-[9px] uppercase tracking-[.3em] text-amber-200/80 sm:text-[11px]">
-                Un cuento de invierno
-                </p>
-                <h1 className="font-serif text-xl font-bold tracking-wide text-amber-100 sm:text-3xl">
-                El destino del pueblo
-                </h1>
+            <Decorations />
+            <Snow />
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col px-3 py-2 sm:px-6 sm:py-3">
+                <header className="mx-auto flex w-full max-w-5xl shrink-0 items-center justify-center gap-2 pb-2 pt-1 sm:gap-3 sm:pb-3">
+                <span className="text-base text-amber-300 sm:text-xl">✦</span>
+                <div className="text-center">
+                    <p style={{ fontFamily: "'Mountains of Christmas', cursive", fontSize: "42px", fontWeight: "bold" }} className="text-[9px] uppercase tracking-[.3em] text-amber-200/80 sm:text-[11px]">
+                    Un cuento de invierno
+                    </p>
+                    <h1 style={{ fontFamily: "'Mountains of Christmas', cursive", fontSize: "36px", fontWeight: "300" }} className="font-serif text-xl font-bold tracking-wide text-amber-100 sm:text-3xl">
+                    El destino del pueblo
+                    </h1>
+                </div>
+                <span className="text-base text-amber-300 sm:text-xl">✦</span>
+                </header>
+
+                <div className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col">
+                {children}
+                </div>
+
+                <footer className="shrink-0 pt-1 text-center text-[8px] tracking-[.22em] text-amber-100/45 sm:pt-2 sm:text-[10px]">
+                ❄ FELIZ NAVIDAD · QUE LA MAGIA TE ACOMPAÑE ❄
+                </footer>
             </div>
-            <span className="text-base text-amber-300 sm:text-xl">✦</span>
-            </header>
 
-            <div className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col">
-            {children}
-            </div>
-
-            <footer className="shrink-0 pt-1 text-center text-[8px] tracking-[.22em] text-amber-100/45 sm:pt-2 sm:text-[10px]">
-            ❄ FELIZ NAVIDAD · QUE LA MAGIA TE ACOMPAÑE ❄
-            </footer>
-        </div>
-
-        <style>{`
-            @keyframes snowfall {
-            from { transform: translateY(-5vh) translateX(0); opacity: 0; }
-            10% { opacity: .8; }
-            90% { opacity: .6; }
-            to { transform: translateY(110vh) translateX(22px); opacity: 0; }
-            }
-            .snow {
-            animation: snowfall linear infinite;
-            }
-            @keyframes appear {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-            }
-            .christmas-appear {
-            animation: appear .35s ease-out both;
-            }
-            .luxury-button {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(115deg,#9c1429 0%,#df3444 25%,#b5152c 52%,#710d21 100%);
-            box-shadow: inset 0 1px 0 #ffc5a0aa, inset 0 -2px 0 #4b0715aa, 0 5px 15px #0005;
-            }
-            .luxury-button::before {
-            content: "";
-            position: absolute;
-            inset: 1px;
-            border: 1px solid #ffdca755;
-            border-radius: inherit;
-            pointer-events: none;
-            }
-            .gold-button {
-            background: linear-gradient(115deg,#9a6823,#f7df9a 35%,#d8a94c 68%,#8e5b1d);
-            box-shadow: inset 0 1px 0 #fff6d9, inset 0 -2px 0 #93601d, 0 5px 16px #0004;
-            }
-            @media (prefers-reduced-motion: reduce) {
-            .snow, .christmas-appear { animation: none; }
-            }
-        `}</style>
-        </main>
-    );
+            <style>{`
+                @keyframes snowfall {
+                from { transform: translateY(-5vh) translateX(0); opacity: 0; }
+                10% { opacity: .8; }
+                90% { opacity: .6; }
+                to { transform: translateY(110vh) translateX(22px); opacity: 0; }
+                }
+                .snow {
+                animation: snowfall linear infinite;
+                }
+                @keyframes appear {
+                from { opacity: 0; transform: translateY(8px); }
+                to { opacity: 1; transform: translateY(0); }
+                }
+                .christmas-appear {
+                animation: appear .35s ease-out both;
+                }
+                .luxury-button {
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(115deg,#9c1429 0%,#df3444 25%,#b5152c 52%,#710d21 100%);
+                box-shadow: inset 0 1px 0 #ffc5a0aa, inset 0 -2px 0 #4b0715aa, 0 5px 15px #0005;
+                }
+                .luxury-button::before {
+                content: "";
+                position: absolute;
+                inset: 1px;
+                border: 1px solid #ffdca755;
+                border-radius: inherit;
+                pointer-events: none;
+                }
+                .gold-button {
+                background: linear-gradient(115deg,#9a6823,#f7df9a 35%,#d8a94c 68%,#8e5b1d);
+                box-shadow: inset 0 1px 0 #fff6d9, inset 0 -2px 0 #93601d, 0 5px 16px #0004;
+                }
+                @media (prefers-reduced-motion: reduce) {
+                .snow, .christmas-appear { animation: none; }
+                }
+            `}</style>
+            </main>
+        );
     }
 
     function Intro({ onStart }) {
     return (
-        <section className="christmas-appear relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl border border-amber-200/25 bg-[#0d241b]/95 px-4 py-3 text-center shadow-2xl shadow-black/40 sm:rounded-3xl sm:px-10 sm:py-5">
-        <div className="absolute left-2 top-1 text-amber-300/70 sm:left-5 sm:top-3">✧</div>
-        <div className="absolute right-2 top-1 text-amber-300/70 sm:right-5 sm:top-3">✧</div>
+        <section className="christmas-appear relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl border border-amber-200/25 bg-[#F9EFE7]/95 px-4 py-3 text-center shadow-2xl shadow-black/40 sm:rounded-3xl sm:px-10 sm:py-5">
+        {/* <div className="absolute left-2 top-1 text-black sm:left-5 sm:top-3">✧</div>
+        <div className="absolute right-2 top-1 text-black sm:right-5 sm:top-3">✧</div> */}
 
-        <div className="relative mb-2 flex h-12 w-12 items-center justify-center rounded-full border border-amber-200/40 bg-gradient-to-br from-amber-200/20 to-transparent text-3xl shadow-[0_0_25px_#e9bb4930] sm:mb-3 sm:h-16 sm:w-16 sm:text-4xl">
-            🏰
-        </div>
-
-        <p className="text-[9px] uppercase tracking-[.3em] text-amber-300 sm:text-[11px]">
-            Una misión extraordinaria
-        </p>
-
-        <h2 className="mt-1 max-w-xl font-serif text-2xl font-bold leading-tight text-amber-100 sm:mt-2 sm:text-4xl">
+        <h2 style={{ fontFamily: "'Mountains of Christmas', cursive", fontSize: "46px", fontWeight: "bold" }} className="font-christmas mt-1 max-w-xl font-serif text-2xl font-bold leading-tight text-black sm:mt-2 sm:text-4xl" >
             El pueblo necesita tu sabiduría
         </h2>
 
-        <div className="my-2 flex items-center gap-2 text-amber-300 sm:my-4">
-            <span className="h-px w-8 bg-amber-300/40 sm:w-12" />
+        <div className="my-2 flex items-center gap-2 text-black sm:my-4">
+            <span className="h-px w-8 bg-black sm:w-12" />
             <span>❄</span>
-            <span className="h-px w-8 bg-amber-300/40 sm:w-12" />
+            <span className="h-px w-8 bg-black sm:w-12" />
         </div>
 
-        <div className="max-w-2xl space-y-2 text-xs leading-[1.6] text-emerald-50/85 sm:space-y-3 sm:text-base sm:leading-7">
+        <div className="max-w-4xl space-y-2 text-xs leading-[1.6] text-black sm:space-y-3 sm:text-base sm:leading-6">
             <p>
             Querida guardiana de la Navidad, el destino de este pequeño pueblo
             está ahora en tus manos.
             </p>
             <p>
-            Tendrás que tomar <strong className="text-amber-200">cinco decisiones importantes</strong>.
+            Tendrás que tomar <strong className="text-black">cinco decisiones importantes</strong>.
             Cada una tendrá consecuencias para sus habitantes, sus hogares y su futuro.
             </p>
             <p>
             No existe una respuesta perfecta: cada camino tiene sus ventajas y
             sus sacrificios. Elige según lo que consideres más justo.
             </p>
-            <p className="font-semibold text-red-200">
+            <p className="font-semibold text-red-500">
             Atención: cada decisión confirmada será definitiva. No podrás cambiarla.
             </p>
         </div>
 
-        <div className="my-3 grid w-full max-w-lg grid-cols-3 gap-2 sm:my-5 sm:gap-4">
+        <div className="my-3 w-full max-w-lg grid-cols-3 gap-2 sm:my-5 sm:gap-3 flex items-center justify-around">
             {[
-            ["❄️", "5 decisiones"],
-            ["🎁", "2 opciones"],
-            ["🔒", "Sin retorno"],
+            [snowflake, "5 decisiones"],
+            [giftboxes, "2 opciones"],
+            [christmasday, "Sin retorno"],
             ].map(([icon, label]) => (
             <div
                 key={label}
                 className="rounded-xl border border-amber-100/10 bg-white/[.035] px-1 py-2 sm:py-3"
             >
-                <div className="text-lg sm:text-2xl">{icon}</div>
-                <p className="mt-1 text-[9px] text-amber-100/75 sm:text-xs">{label}</p>
+                <div className="text-lg sm:text-2xl">
+                    <img src={icon} className="w-16 h-16" />
+                </div>
+                <p className="mt-1 text-[9px] text-black sm:text-xs">{label}</p>
             </div>
             ))}
         </div>
 
         <button
             onClick={onStart}
-            className="gold-button group w-full max-w-md rounded-xl px-4 py-3 text-xs font-black uppercase tracking-[.12em] text-[#35220b] transition hover:brightness-110 active:scale-[.99] sm:py-4 sm:text-sm"
+            className="group cursor-pointer relative bg-red-400 w-full max-w-md overflow-hidden rounded-4xl py-3.5 text-center shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.98]"
+        // style={{
+        //     // backgroundColor: "#A14040",
+        //     backgroundImage: `repeating-linear-gradient(
+        //     135deg,
+        //     transparent 0px,
+        //     transparent 7px,
+        //     rgba(0,0,0,0.15) 7px,
+        //     rgba(0,0,0,0.15) 14px
+        //     )`,
+        // }}
         >
-            <span className="mr-2">✦</span>
+        {/* Reflet */}
+        <div className="absolute inset-x-0 top-0 h-2.5 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+
+        {/* Petites boules décoratives (comme sur la case 23) */}
+        {/* <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1 opacity-90">
+            <span className="text-base">🔴</span>
+            <span className="text-base">⚪</span>
+        </div> */}
+
+        <div className="font-festive relative flex items-center justify-center gap-2.5 pr-10">
+            <span className="text-base">✦</span>
+            <span className="text-sm font-bold uppercase tracking-[0.1em] text-white">
             Comenzar mi misión
-            <span className="ml-2 transition-transform group-hover:translate-x-1">➜</span>
+            </span>
+        </div>
         </button>
         </section>
     );
     }
 
+    const backgroundStyles = {
+        red: {
+        backgroundColor: "#8C2222", // Rouge foncé de base
+        backgroundImage: `repeating-linear-gradient(
+            135deg,
+            #8C2222,
+            #8C2222 14px,
+            #A63232 14px,
+            #A63232 28px
+        )`, // Crée des bandes alternées nettes et lumineuses comme sur l'image
+        border: "1px solid rgba(255, 255, 255, 0.15)",
+        boxShadow: "0 4px 14px rgba(0, 0, 0, 0.15)",
+        },
+        gold: {
+            background: "linear-gradient(145deg, #806024, #d6b66a 48%, #71501b)",
+            border: "1px solid rgba(255, 231, 170, 0.75)",
+            boxShadow: "inset 0 1px 0 rgba(255, 248, 220, 0.5), 0 5px 14px rgba(0, 0, 0, 0.25)",
+        },
+        green: {
+            background: "linear-gradient(145deg, #18563b, #0d3024 75%, #071d16)",
+            border: "1px solid rgba(170, 220, 170, 0.4)",
+        },
+        blue: {
+            background: "linear-gradient(145deg, #244f78, #163451 75%, #0b1b2b)",
+            border: "1px solid rgba(160, 210, 255, 0.5)",
+        },
+    };
+
+
     function ChoiceCard({ option, onSelect, disabled }) {
         const isGold = option.color === "gold";
+        const styleClass = {
+            red: "choice-red",
+            gold: "choice-gold",
+            green: "choice-green",
+            blue: "choice-blue",
+            }[option.color] || "choice-red";
 
         return (
+            <div>
+
+            
             <button
-            onClick={onSelect}
-            disabled={disabled}
-            className={`group relative flex min-h-0 min-w-0 flex-col overflow-hidden rounded-xl border p-3 text-left transition duration-200 hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-amber-300 sm:rounded-2xl sm:p-5 ${
-                isGold
-                ? "border-amber-300/35 bg-gradient-to-br from-[#45341b] via-[#251f16] to-[#111d16]"
-                : "border-red-300/30 bg-gradient-to-br from-[#581c28] via-[#30151c] to-[#151817]"
-            }`}
+                onClick={onSelect}
+                disabled={disabled}
+                // style={backgroundStyles[option.color] || backgroundStyles.red}
+                className={`group cursor-pointer -top-10 relative w-full flex min-h-0 min-w-0 flex-col overflow-hidden h-[55%] max-h-[55%] rounded-xl p-3 text-left transition duration-200 hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-amber-300 sm:rounded-2xl sm:p-5`}
             >
-            <div
-                className={`absolute inset-x-0 top-0 h-[3px] ${
-                isGold
-                    ? "bg-gradient-to-r from-transparent via-amber-200 to-transparent"
-                    : "bg-gradient-to-r from-transparent via-red-300 to-transparent"
-                }`}
-            />
 
-
-            {option.image && <div className="bg-blue-950 flex justify-center items-center rounded-2xl">
-                <img src={option.image} className="w-40 h-40" />
+            {/* Contenu */}
+            {option.image && (
+            <div className="flex justify-center items-center">
+                <img src={option.image} className={`${option.widthimage} ${option.heightimage}`} />
             </div>
-            }
-            <h3 className="font-serif text-base font-bold leading-tight text-amber-100 sm:text-xl">
-                {option.title}
-            </h3>
+            )}
 
-            <p className="mt-1.5 flex-1 text-[11px] leading-[1.5] text-white/75 sm:mt-2 sm:text-sm sm:leading-6">
-                {option.text}
-            </p>
 
-            <div
-                className={`luxury-button mt-3 flex items-center justify-center gap-1.5 rounded-lg px-2 py-2 text-[9px] font-extrabold uppercase tracking-[.08em] text-white sm:mt-4 sm:py-3 sm:text-xs ${
-                isGold ? "gold-button !text-[#35220b]" : ""
-                }`}
-            >
-                Elegir este camino
-                <span>➜</span>
-            </div>
             </button>
+            <div className="w-full">
+                                <h3 className="font-serif mx-auto text-base font-bold leading-tight text-black sm:text-xl">
+                {option.title}
+                </h3>
+
+                <p className="mt-1.5 flex-1 text-[11px] leading-[1.5] text-black sm:mt-2 sm:text-sm sm:leading-6">
+                {option.text}
+                </p>
+
+            </div>
+            </div>
         );
     }
 
@@ -468,7 +524,7 @@ function Frame({ children }) {
         >
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
             <div className="absolute right-2 top-2 opacity-60">
-            <Bauble className="w-9" />
+            {/* <Bauble className="w-9" /> */}
             </div>
 
             <div className="mb-2 text-center text-4xl sm:text-5xl">🔐</div>
@@ -623,7 +679,7 @@ function Frame({ children }) {
         {!started && completed === 0 ? (
             <Intro onStart={() => setStarted(true)} />
         ) : current ? (
-            <section className="christmas-appear flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-amber-200/25 bg-[#0b2018]/95 shadow-2xl sm:rounded-3xl">
+            <section className="christmas-appear flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-amber-200/25 bg-[#F9EFE7] shadow-2xl sm:rounded-3xl">
             <div className="shrink-0 border-b border-amber-200/15 px-3 pb-2 pt-3 text-center sm:px-6 sm:pb-3 sm:pt-4">
                 <div className="flex items-center justify-center gap-1.5">
                 {decisions.map((_, i) => (
@@ -638,24 +694,24 @@ function Frame({ children }) {
                     }`}
                     />
                 ))}
-                <span className="ml-2 text-[9px] uppercase tracking-wider text-amber-200/75 sm:text-[10px]">
+                <span className="ml-2 text-[9px] uppercase tracking-wider text-black sm:text-[10px]">
                     {completed + 1}/5
                 </span>
                 </div>
 
-                <p className="mt-2 text-[9px] uppercase tracking-[.22em] text-amber-300 sm:text-[10px]">
+                <p className="mt-2 text-[9px] uppercase tracking-[.22em] text-black sm:text-[10px]">
                 {current.subtitle}
                 </p>
 
-                <h2 className="mt-1 font-serif text-xl font-bold leading-tight text-amber-100 sm:text-3xl">
+                <h2 className="mt-1 font-serif text-xl font-bold leading-tight text-black sm:text-3xl">
                 {current.title}
                 </h2>
 
-                <p className="mx-auto mt-1.5 max-w-2xl text-[11px] leading-[1.5] text-emerald-50/75 sm:mt-2 sm:text-sm sm:leading-6">
+                <p className="mx-auto mt-1.5 max-w-2xl text-[11px] leading-[1.5] text-black sm:mt-2 sm:text-sm sm:leading-6">
                 {current.story}
                 </p>
 
-                <p className="mt-2 font-serif text-sm font-bold text-amber-200 sm:mt-3 sm:text-lg">
+                <p className="mt-2 font-serif text-sm font-bold text-black sm:mt-3 sm:text-lg">
                 ¿Qué camino elegirás?
                 </p>
             </div>
