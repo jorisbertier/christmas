@@ -1,7 +1,15 @@
 
 import React, { useEffect, useState } from "react";
 import card1 from "../../assets/choice/card1.png";
+import card2 from "../../assets/choice/card2.png";
+import card3 from "../../assets/choice/card3.png";
+import card4 from "../../assets/choice/card4.png";
 import card5 from "../../assets/choice/card5.png";
+import card6 from "../../assets/choice/card10.png";
+import card7 from "../../assets/choice/card7.png";
+import card8 from "../../assets/choice/card8.png";
+import card9 from "../../assets/choice/card9.png";
+import card10 from "../../assets/choice/card6.png";
 import star from "../../assets/choice/12.png";
 import background from "../../assets/BG/bgChristmasDecisions.jpg";
 import ball from "../../assets/ball.png";
@@ -23,8 +31,8 @@ const decisions = [
             id: "11",
             icon: "🏠",
             image : card1,
-            widthimage: "w-full",
-            heightimage: "h-full",
+            widthimage: "450px",
+            heightimage: "200px",
             title: "Una aurora boreal",
             text: "Invitar a todos a contemplar un río de luces verdes - azules que cubrirá el cielo del pueblo.",
             result: "El pueblo se llena de colores mágicos. Las luces de la aurora despiertan un sentimiento de paz y unión entre los habitantes.",
@@ -33,9 +41,9 @@ const decisions = [
         {
             id: "12",
             icon: "🎄",
-            image: card5,
-            widthimage: "w-full",
-            heightimage: "h-[83%]",
+            image: card6,
+            widthimage: "450px",
+            heightimage: "160px",
             title: "Una lluvia de estrellas",
             text: "Organizar una noche bajo miles de estrellas fugaces. Cada habitante podrá pedir un deseo para la Navidad.",
             result: "El cielo se llena de estrellas brillantes. Los habitantes comparten sus deseos y nace una nueva tradición navideña llena de esperanza.",
@@ -52,6 +60,9 @@ const decisions = [
             {
                 id: "21",
                 icon: "❄️",
+                image : card2,
+                widthimage: "450px",
+                heightimage: "162px",
                 title: "El árbol nevado",
                 text: "Elegir un majestuoso abeto cubierto de nieve, decorado con luces cálidas, bolas brillantes y adornos navideños.",
                 result:
@@ -61,6 +72,9 @@ const decisions = [
             {
                 id: "22",
                 icon: "🎄",
+                image : card7,
+                widthimage: "650px",
+                heightimage: "220px",
                 title: "El árbol tradicional",
                 text: "Elegir un frondoso abeto verde, adornado con guirnaldas luminosas, bolas rojas y doradas y preciosos ornamentos.",
                 result:
@@ -78,6 +92,9 @@ const decisions = [
             {
                 id: "31",
                 icon: "⛸️",
+                image : card3,
+                widthimage: "450px",
+                heightimage: "160px",
                 title: "La pista de hielo",
                 text: "Construir una hermosa pista de hielo en la plaza, decorada con guirnaldas luminosas donde pequeños y mayores podrán patinar juntos.",
                 result:
@@ -87,6 +104,9 @@ const decisions = [
             {
                 id: "32",
                 icon: "🎠",
+                image : card9   ,
+                widthimage: "450px",
+                heightimage: "170px",
                 title: "El carrusel mágico",
                 text: "Instalar un elegante carrusel navideño con caballos decorados en rojo y dorado, luces brillantes y una dulce melodía festiva.",
                 result:
@@ -104,6 +124,9 @@ const decisions = [
             {
                 id: "41",
                 icon: "🍪",
+                image : card4,
+                widthimage: "450px",
+                heightimage: "170px",
                 title: "La casa de jengibre",
                 text: "Construir una adorable casita hecha de galletas, con un techo de chocolate, ventanas de caramelo y decoraciones de glaseado blanco.",
                 result:
@@ -113,6 +136,9 @@ const decisions = [
             {
                 id: "42",
                 icon: "🍬",
+                image : card8,
+                widthimage: "450px",
+                heightimage: "170px",
                 title: "La tienda de caramelos",
                 text: "Abrir una encantadora confitería con bastones de caramelo, piruletas gigantes, frascos de golosinas de colores y una fachada llena de luces.",
                 result:
@@ -131,6 +157,9 @@ const decisions = [
             {
                 id: "51",
                 icon: "⭐",
+                image : card5   ,
+                widthimage: "450px",
+                heightimage: "170px",
                 title: "La magia de las estrellas",
                 text:
                     "Invocar el poder de las estrellas para iluminar el camino de Papá Noel y llenar la noche de destellos mágicos.",
@@ -141,6 +170,9 @@ const decisions = [
             {
                 id: "52",
                 icon: "🌙",
+                image : card10,
+                widthimage: "450px",
+                heightimage: "310px",
                 title: "La magia de los sueños",
                 text:
                     "Utilizar un hechizo silencioso que permita a Papá Noel visitar cada hogar sin despertar a sus habitantes.",
@@ -355,91 +387,165 @@ function Frame({ children }) {
         );
     }
 
-    function Intro({ onStart }) {
+
+function Intro({ onStart }) {
     return (
-        <section className="christmas-appear relative flex min-h-0 flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl border border-amber-200/25 bg-[#F9EFE7]/95 px-4 py-3 text-center shadow-2xl shadow-black/40 sm:rounded-3xl sm:px-10 sm:py-5">
-        {/* <div className="absolute left-2 top-1 text-black sm:left-5 sm:top-3">✧</div>
-        <div className="absolute right-2 top-1 text-black sm:right-5 sm:top-3">✧</div> */}
+        <section className="
+            christmas-appear relative isolate flex min-h-0 flex-1
+            flex-col items-center justify-center overflow-hidden
+            rounded-2xl sm:rounded-3xl
+            border border-[#d6bd91]
+            bg-[#f5ead8]
+            px-5 py-5 sm:px-12 sm:py-8
+            text-center
+            shadow-[0_20px_60px_rgba(0,0,0,0.35)]
+        ">
 
-        <h2 style={{ fontFamily: "'Mountains of Christmas', cursive", fontSize: "46px", fontWeight: "bold" }} className="font-christmas mt-1 max-w-xl font-serif text-2xl font-bold leading-tight text-black sm:mt-2 sm:text-4xl" >
-            El pueblo necesita tu sabiduría
-        </h2>
+            {/* Fond décoratif */}
+            <div className="pointer-events-none absolute inset-2 rounded-xl border border-[#c6a878]/40 sm:inset-3 sm:rounded-2xl" />
 
-        <div className="my-2 flex items-center gap-2 text-black sm:my-4">
-            <span className="h-px w-8 bg-black sm:w-12" />
-            <span>❄</span>
-            <span className="h-px w-8 bg-black sm:w-12" />
-        </div>
+            <div className="pointer-events-none absolute -top-20 -left-20 h-56 w-56 rounded-full bg-[#d5b77d]/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[#8b3030]/10 blur-3xl" />
 
-        <div className="max-w-4xl space-y-2 text-xs leading-[1.6] text-black sm:space-y-3 sm:text-base sm:leading-6">
-            <p>
-            Querida guardiana de la Navidad, el destino de este pequeño pueblo
-            está ahora en tus manos.
-            </p>
-            <p>
-            Tendrás que tomar <strong className="text-black">cinco decisiones importantes</strong>.
-            Cada una tendrá consecuencias para sus habitantes, sus hogares y su futuro.
-            </p>
-            <p>
-            No existe una respuesta perfecta: cada camino tiene sus ventajas y
-            sus sacrificios. Elige según lo que consideres más justo.
-            </p>
-            <p className="font-semibold text-red-500">
-            Atención: cada decisión confirmada será definitiva. No podrás cambiarla.
-            </p>
-        </div>
+            {/* Petites décorations */}
+            <span className="absolute left-6 top-6 font-serif text-2xl text-[#b28b4c]/60 sm:left-10 sm:top-8">✧</span>
+            <span className="absolute right-6 top-6 font-serif text-2xl text-[#b28b4c]/60 sm:right-10 sm:top-8">✧</span>
+            <span className="absolute bottom-6 left-6 text-xl text-[#b28b4c]/50 sm:bottom-10 sm:left-10">❄</span>
+            <span className="absolute bottom-6 right-6 text-xl text-[#b28b4c]/50 sm:bottom-10 sm:right-10">❄</span>
 
-        <div className="my-3 w-full max-w-lg grid-cols-3 gap-2 sm:my-5 sm:gap-3 flex items-center justify-around">
-            {[
-            [snowflake, "5 decisiones"],
-            [giftboxes, "2 opciones"],
-            [christmasday, "Sin retorno"],
-            ].map(([icon, label]) => (
-            <div
-                key={label}
-                className="rounded-xl border border-amber-100/10 bg-white/[.035] px-1 py-2 sm:py-3"
-            >
-                <div className="text-lg sm:text-2xl">
-                    <img src={icon} className="w-16 h-16" />
-                </div>
-                <p className="mt-1 text-[9px] text-black sm:text-xs">{label}</p>
+            {/* En-tête */}
+            <div className="relative z-10 flex items-center gap-3">
+                <span className="h-px w-8 bg-[#b18a50] sm:w-14" />
+                <p className="text-[9px] font-bold uppercase tracking-[0.35em] text-[#997440] sm:text-[11px]">
+                    Un cuento de Navidad
+                </p>
+                <span className="h-px w-8 bg-[#b18a50] sm:w-14" />
             </div>
-            ))}
-        </div>
 
-        <button
-            onClick={onStart}
-            className="group cursor-pointer relative bg-red-400 w-full max-w-md overflow-hidden rounded-4xl py-3.5 text-center shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.98]"
-        // style={{
-        //     // backgroundColor: "#A14040",
-        //     backgroundImage: `repeating-linear-gradient(
-        //     135deg,
-        //     transparent 0px,
-        //     transparent 7px,
-        //     rgba(0,0,0,0.15) 7px,
-        //     rgba(0,0,0,0.15) 14px
-        //     )`,
-        // }}
-        >
-        {/* Reflet */}
-        <div className="absolute inset-x-0 top-0 h-2.5 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+            {/* Titre */}
+            <h2
+                style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+                className="
+                    relative z-10 mt-3 max-w-4xl
+                    text-4xl font-bold leading-[1.05]
+                    text-[#762b2b]
+                    sm:mt-4 sm:text-6xl
+                "
+            >
+                El pueblo necesita{" "}
+                <span className="text-[#24543b]">
+                    tu sabiduría
+                </span>
+            </h2>
+            {/* Texte d'introduction */}
+            <div className="
+                relative z-10 max-w-2xl
+                space-y-2 sm:space-y-3
+                font-serif text-xs
+                text-[#514337]
+                sm:text-base sm:leading-4
+            ">
+                <p className="text-sm font-semibold text-[#31533e] sm:text-lg">
+                    Querida guardiana de la Navidad...
+                </p>
 
-        {/* Petites boules décoratives (comme sur la case 23) */}
-        {/* <div className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-1 opacity-90">
-            <span className="text-base">🔴</span>
-            <span className="text-base">⚪</span>
-        </div> */}
+                <p>
+                    El destino de este pequeño pueblo está ahora en tus manos.
+                </p>
 
-        <div className="font-festive relative flex items-center justify-center gap-2.5 pr-10">
-            <span className="text-base">✦</span>
-            <span className="text-sm font-bold uppercase tracking-[0.1em] text-white">
-            Comenzar mi misión
-            </span>
-        </div>
-        </button>
+                <p>
+                    Tendrás que tomar
+                    <strong className="text-[#852e31]"> cinco decisiones importantes</strong>.
+                    Cada una tendrá consecuencias para sus habitantes,
+                    sus hogares y su futuro.
+                </p>
+
+                <p>
+                    No existe una respuesta perfecta: cada camino tiene sus
+                    ventajas y sus sacrificios. Elige según lo que consideres más justo.
+                </p>
+            </div>
+
+            {/* Les trois caractéristiques */}
+            <div className="
+                relative z-10 mt-4 grid w-full max-w-xl
+                grid-cols-3 gap-2 sm:mt-6 sm:gap-5
+            ">
+                {[
+                    [snowflake, "5 decisiones"],
+                    [giftboxes, "2 opciones"],
+                    [christmasday, "Sin retorno"],
+                ].map(([icon, label]) => (
+                    <div
+                        key={label}
+                        className="
+                            flex flex-col items-center justify-center
+                            rounded-xl sm:rounded-2xl
+                            px-1 py-1 sm:py-1
+                        "
+                    >
+                        <img
+                            src={icon}
+                            alt=""
+                            className="h-9 w-9 object-contain sm:h-14 sm:w-14"
+                        />
+                        <p className="
+                            mt-1 font-serif text-[9px]
+                            font-bold text-[#66503a]
+                            sm:mt-2 sm:text-xs
+                        ">
+                            {label}
+                        </p>
+                    </div>
+                ))}
+            </div>
+
+            {/* Avertissement */}
+            <p className="
+                relative z-10 mt-3 max-w-lg
+                text-[9px] font-semibold
+                text-[#a13b36]
+                sm:mt-4 sm:text-xs
+            ">
+                ✦ Atención: cada decisión confirmada será definitiva. No podrás cambiarla. ✦
+            </p>
+
+            {/* Bouton */}
+            <button
+                onClick={onStart}
+                className="
+                    group relative z-10 mt-4 w-full max-w-sm
+                    overflow-hidden rounded-full cursor-pointer
+                    border border-[#e8c98d]
+                    bg-gradient-to-b from-[#a83b3e] via-[#8c252e] to-[#681923]
+                    px-5 py-3.5
+                    shadow-[0_6px_0_#4e1520,0_10px_20px_rgba(70,20,20,0.2)]
+                    transition duration-300
+                    hover:-translate-y-1
+                    hover:brightness-110
+                    hover:shadow-[0_8px_0_#4e1520,0_14px_24px_rgba(70,20,20,0.25)]
+                    active:translate-y-1 active:shadow-none
+                    sm:mt-5 sm:py-4
+                "
+            >
+                <span className="absolute inset-x-5 top-0 h-px bg-white/40" />
+
+                <span className="
+                    relative flex items-center justify-center gap-3
+                    font-serif text-sm font-bold
+                    uppercase tracking-[0.12em] text-[#fff5dc]
+                    sm:text-base
+                ">
+                    <span className="text-amber-200">✧</span>
+                    Comenzar mi misión
+                    <span className="text-amber-200">✧</span>
+                </span>
+            </button>
+
         </section>
     );
-    }
+}
+
 
     const backgroundStyles = {
         red: {
@@ -470,112 +576,169 @@ function Frame({ children }) {
     };
 
 
-    function ChoiceCard({ option, onSelect, disabled }) {
-        const isGold = option.color === "gold";
-        const styleClass = {
-            red: "choice-red",
-            gold: "choice-gold",
-            green: "choice-green",
-            blue: "choice-blue",
-            }[option.color] || "choice-red";
+function ChoiceCard({ option, onSelect, disabled }) {
+    return (
+        <div className="min-w-0 min-h-0 flex flex-col items-center">
 
-        return (
-            <div>
-
-            
+            {/* Image */}
             <button
                 onClick={onSelect}
                 disabled={disabled}
-                // style={backgroundStyles[option.color] || backgroundStyles.red}
-                className={`group cursor-pointer -top-10 relative w-full flex min-h-0 min-w-0 flex-col overflow-hidden h-[55%] max-h-[55%] rounded-xl p-3 text-left transition duration-200 hover:-translate-y-0.5 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-amber-300 sm:rounded-2xl sm:p-5`}
+                className="
+                    group relative w-full
+                    flex flex-1 min-h-0
+                    items-center justify-center
+                    rounded-xl p-3
+                    transition duration-300
+                    hover:scale-[1.02]
+                    active:scale-[0.98]
+                    overflow-visible
+                    disabled:cursor-not-allowed
+                "
             >
-
-            {/* Contenu */}
-            {option.image && (
-            <div className="flex justify-center items-center">
-                <img src={option.image} className={`${option.widthimage} ${option.heightimage}`} />
-            </div>
-            )}
-
-
+                {option.image && (
+                    <div className="w-full min-h-0 flex items-center justify-center overflow-visible mb-4 cursor-pointer">
+                        <img
+                            src={option.image}
+                            alt={option.title}
+                            style={{
+                                width: option.widthimage || "100%",
+                                height: option.heightimage || "auto",
+                                maxWidth: "none",
+                                maxHeight: "none",
+                            }}
+                            className="block shrink-0 drop-shadow-[0_8px_12px_rgba(0,0,0,0.25)]"
+                        />
+                    </div>
+                )}
             </button>
-            <div className="w-full">
-                                <h3 className="font-serif mx-auto text-base font-bold leading-tight text-black sm:text-xl">
-                {option.title}
+
+            {/* Texte */}
+            <div className="
+                relative w-full shrink-0
+                mt-2 sm:mt-3
+                rounded-xl sm:rounded-2xl
+                border border-[#d6b66a]/60
+                bg-gradient-to-b from-[#fffaf0] to-[#f3e5d0]
+                px-3 py-3 sm:px-5 sm:py-4
+                text-center
+                shadow-[0_4px_12px_rgba(0,0,0,0.18)]
+            ">
+                {/* Petit ornement supérieur */}
+                <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2
+                    rounded-full border border-[#d6b66a]
+                    bg-[#fff8e9] px-2 py-0.5
+                    text-[10px] text-[#a77b32]">
+                    ✦ ❄ ✦
+                </div>
+
+                <h3 className="
+                    mt-1
+                    font-serif font-bold
+                    text-base sm:text-xl
+                    leading-tight
+                    text-[#79252b]
+                    drop-shadow-[0_1px_0_rgba(255,255,255,0.8)]
+                ">
+                    {option.title}
                 </h3>
 
-                <p className="mt-1.5 flex-1 text-[11px] leading-[1.5] text-black sm:mt-2 sm:text-sm sm:leading-6">
-                {option.text}
+                <div className="mx-auto my-2 flex items-center justify-center gap-2">
+                    <span className="h-px w-8 bg-[#c9a45c]/70" />
+                    <span className="text-[10px] text-[#b18a43]">✧</span>
+                    <span className="h-px w-8 bg-[#c9a45c]/70" />
+                </div>
+
+                <p className="
+                    font-serif
+                    text-[11px] sm:text-sm
+                    leading-relaxed
+                    text-[#49372d]
+                ">
+                    {option.text}
                 </p>
-
             </div>
-            </div>
-        );
-    }
-
-    function Confirm({ option, onCancel, onConfirm, busy }) {
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-3 backdrop-blur-md sm:p-5">
-        <section
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="confirm-title"
-            className="christmas-appear relative my-auto w-full max-w-md overflow-hidden rounded-2xl border border-amber-200/40 bg-gradient-to-b from-[#193a2b] to-[#091a13] p-5 shadow-2xl sm:rounded-3xl sm:p-7"
-        >
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-            <div className="absolute right-2 top-2 opacity-60">
-            {/* <Bauble className="w-9" /> */}
-            </div>
-
-            <div className="mb-2 text-center text-4xl sm:text-5xl">🔐</div>
-
-            <p className="text-center text-[9px] uppercase tracking-[.25em] text-amber-300 sm:text-[11px]">
-            Confirmación definitiva
-            </p>
-
-            <h2
-            id="confirm-title"
-            className="mt-2 text-center font-serif text-2xl font-bold leading-tight text-amber-100 sm:text-3xl"
-            >
-            ¿Estás segura de esta decisión?
-            </h2>
-
-            <div className="my-4 rounded-xl border border-amber-200/25 bg-black/20 p-4 text-center sm:my-5 sm:p-5">
-            <div className="text-4xl">{option.icon}</div>
-            <h3 className="mt-2 font-serif text-xl font-bold text-amber-200">
-                {option.title}
-            </h3>
-            <p className="mt-2 text-xs leading-5 text-emerald-50/75 sm:text-sm sm:leading-6">
-                {option.text}
-            </p>
-            </div>
-
-            <p className="text-center text-xs leading-5 text-red-200 sm:text-sm sm:leading-6">
-            Esta elección cambiará el destino del pueblo. Una vez confirmada,
-            no podrás modificarla ni volver atrás.
-            </p>
-
-            <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3">
-            <button
-                onClick={onCancel}
-                disabled={busy}
-                className="rounded-xl border border-white/20 bg-white/[.04] px-2 py-3 text-[10px] font-bold text-white/85 transition hover:bg-white/10 sm:text-xs"
-            >
-                ← Elegir otra
-            </button>
-
-            <button
-                onClick={onConfirm}
-                disabled={busy}
-                className="gold-button rounded-xl px-2 py-3 text-[10px] font-black text-[#35220b] transition hover:brightness-110 disabled:opacity-60 sm:text-xs"
-            >
-                Sí, confirmar ✓
-            </button>
-            </div>
-        </section>
         </div>
     );
-    }
+}
+
+
+function Confirm({ option, onCancel, onConfirm, busy }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#07130e]/75 p-4 backdrop-blur-sm">
+      <section
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirm-title"
+        className="christmas-appear relative my-auto w-full max-w-md overflow-hidden rounded-[24px] border border-[#d8c49c] bg-[#f7efdf] px-6 py-7 shadow-[0_25px_80px_rgba(0,0,0,0.4)] sm:px-8 sm:py-9"
+      >
+        {/* Décoration */}
+        <div className="pointer-events-none absolute inset-[7px] rounded-[18px] border border-[#d8c49c]/60" />
+
+        <div className="relative z-10">
+          {/* Icône */}
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#c6a66e] bg-[#efe2c8] text-3xl shadow-inner">
+            🎄
+          </div>
+          <h2
+            id="confirm-title"
+            style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+            className="mt-3 text-center text-3xl font-bold leading-tight text-[#762b2b] sm:text-4xl"
+          >
+            ¿Estás segura de esta decisión?
+          </h2>
+
+          <p className="mx-auto mt-3 max-w-xs text-center font-serif text-sm leading-6 text-[#776b58]">
+            El destino del pueblo está en tus manos...
+          </p>
+
+          {/* Choix */}
+          <div className="mt-6 rounded-2xl border border-[#ddcba9] bg-[#fffaf0] p-5 text-center shadow-sm">
+            <div className="text-4xl">{option.icon}</div>
+
+            <h3
+              style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+              className="mt-2 text-2xl font-bold text-[#24543b]"
+            >
+              {option.title}
+            </h3>
+
+            <div className="mx-auto my-3 h-px w-12 bg-[#c6a66e]" />
+
+            <p className="text-sm leading-6 text-[#756b5b]">
+              {option.text}
+            </p>
+          </div>
+
+          {/* Avertissement */}
+          <p className="mt-5 text-center text-xs leading-5 text-[#8b4941]">
+            Una vez confirmada, esta elección será definitiva.
+            No podrás modificarla ni volver atrás.
+          </p>
+
+          {/* Boutons */}
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <button
+              onClick={onCancel}
+              disabled={busy}
+              className="rounded-xl border border-[#cbb995] bg-transparent px-3 py-3 text-xs font-bold text-[#655b4b] transition hover:bg-[#eee3d0] disabled:opacity-50"
+            >
+              ← Elegir otra
+            </button>
+
+            <button
+              onClick={onConfirm}
+              disabled={busy}
+              className="rounded-xl bg-[#762b2b] px-3 py-3 text-xs font-bold text-[#fff6e8] shadow-md transition hover:bg-[#5e2020] disabled:opacity-50"
+            >
+              {busy ? "Confirmando..." : "Confirmar ✓"}
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
 
     export default function ChristmasVillageDecisions() {
     const [saved, setSaved] = useState({});
@@ -675,82 +838,171 @@ function Frame({ children }) {
     }
 
     return (
-        <Frame>
+    <Frame>
         {!started && completed === 0 ? (
             <Intro onStart={() => setStarted(true)} />
         ) : current ? (
-            <section className="christmas-appear flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-amber-200/25 bg-[#F9EFE7] shadow-2xl sm:rounded-3xl">
-            <div className="shrink-0 border-b border-amber-200/15 px-3 pb-2 pt-3 text-center sm:px-6 sm:pb-3 sm:pt-4">
-                <div className="flex items-center justify-center gap-1.5">
-                {decisions.map((_, i) => (
-                    <div
-                    key={i}
-                    className={`h-1 w-5 rounded-full transition-all sm:h-1.5 sm:w-9 ${
-                        i < completed
-                        ? "bg-amber-300"
-                        : i === nextIndex
-                        ? "bg-red-400"
-                        : "bg-white/15"
-                    }`}
-                    />
-                ))}
-                <span className="ml-2 text-[9px] uppercase tracking-wider text-black sm:text-[10px]">
-                    {completed + 1}/5
-                </span>
+            <section className="
+                christmas-appear relative flex min-h-0 flex-1 flex-col
+                overflow-hidden rounded-2xl sm:rounded-3xl
+                border border-[#d9bd83]
+                bg-gradient-to-br from-[#fffaf1] via-[#f9efe3] to-[#eee0cd]
+                shadow-[0_15px_45px_rgba(0,0,0,0.35)]
+            ">
+
+                {/* Décoration supérieure */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[#c49a4c] to-transparent" />
+                <div className="pointer-events-none absolute -left-16 -top-16 h-40 w-40 rounded-full bg-amber-200/20 blur-3xl" />
+                <div className="pointer-events-none absolute -right-16 top-20 h-40 w-40 rounded-full bg-red-200/20 blur-3xl" />
+
+                {/* En-tête */}
+                <div className="
+                    relative shrink-0
+                    
+                    px-3 pb-3 pt-3
+                    text-center sm:px-8 sm:pb-5 sm:pt-5
+                ">
+
+                    {/* Progression */}
+                    <div className="mx-auto flex max-w-md items-center justify-center gap-2">
+                        <span className="text-[#b18a43]">✦</span>
+
+                        {decisions.map((_, i) => (
+                            <div
+                                key={i}
+                                className={`
+                                    h-1.5 flex-1 rounded-full transition-all duration-500
+                                    ${i < completed
+                                        ? "bg-gradient-to-r from-[#b68a3c] to-[#e5c77e]"
+                                        : i === nextIndex
+                                            ? "bg-[#a52a35] shadow-[0_0_8px_rgba(165,42,53,0.35)]"
+                                            : "bg-[#d9cbb6]"
+                                    }
+                                `}
+                            />
+                        ))}
+
+                        <span className="text-[#b18a43]">✦</span>
+                    </div>
+
+                    <p className="mt-2 text-[9px] font-bold uppercase tracking-[.25em] text-[#a17a3d] sm:mt-3 sm:text-[10px]">
+                        Capítulo {completed + 1} · Cinco decisiones mágicas
+                    </p>
+
+                    {/* Titre */}
+                    <h2 className="
+                        mt-1 font-serif font-bold
+                        text-xl leading-tight sm:text-3xl
+                        text-[#76232b]
+                    ">
+                        {current.title}
+                    </h2>
+
+                    {/* Histoire */}
+                    <p className="
+                        mx-auto mt-2 max-w-3xl
+                        text-[11px] leading-[1.6] sm:mt-3
+                        sm:text-sm sm:leading-6
+                        text-[#514237]
+                    ">
+                        {current.story}
+                    </p>
+
+                    {/* Question */}
+                    {/* <div className="
+                        mx-auto mt-3 inline-flex items-center gap-2
+                        rounded-full border border-[#d7b96f]/60
+                        bg-white/60 px-4 py-1.5
+                        shadow-sm sm:mt-4 sm:px-5 sm:py-2
+                    ">
+                        <span className="text-[#b68a3c]">✧</span>
+                        <p className="font-serif text-xs font-bold text-[#842b32] sm:text-base">
+                            ¿Qué camino elegirás?
+                        </p>
+                        <span className="text-[#b68a3c]">✧</span>
+                    </div> */}
                 </div>
 
-                <p className="mt-2 text-[9px] uppercase tracking-[.22em] text-black sm:text-[10px]">
-                {current.subtitle}
-                </p>
+                {/* Cartes de choix */}
+                <div className="
+                    relative grid min-h-0 flex-1
+                    grid-cols-2 items-stretch
+                    gap-2 p-2 sm:gap-5 sm:p-5
+                ">
+                    {current.options.map((option, index) => (
+                        <ChoiceCard
+                            key={option.id}
+                            option={option}
+                            disabled={confirming}
+                            onSelect={() => choose(option.id)}
+                        />
+                    ))}
+                </div>
 
-                <h2 className="mt-1 font-serif text-xl font-bold leading-tight text-black sm:text-3xl">
-                {current.title}
-                </h2>
+                {/* Erreur */}
+                {error && (
+                    <p
+                        role="alert"
+                        className="shrink-0 px-3 pb-2 text-center text-xs font-medium text-red-700"
+                    >
+                        {error}
+                    </p>
+                )}
 
-                <p className="mx-auto mt-1.5 max-w-2xl text-[11px] leading-[1.5] text-black sm:mt-2 sm:text-sm sm:leading-6">
-                {current.story}
-                </p>
-
-                <p className="mt-2 font-serif text-sm font-bold text-black sm:mt-3 sm:text-lg">
-                ¿Qué camino elegirás?
-                </p>
-            </div>
-
-            <div className="grid min-h-0 flex-1 grid-cols-2 gap-2 p-2 sm:gap-4 sm:p-4">
-                {current.options.map((option) => (
-                <ChoiceCard
-                    key={option.id}
-                    option={option}
-                    disabled={confirming}
-                    onSelect={() => choose(option.id)}
-                />
-                ))}
-            </div>
-
-            {error && (
-                <p role="alert" className="shrink-0 px-3 pb-2 text-center text-xs text-red-200">
-                {error}
-                </p>
-            )}
-
-            <div className="shrink-0 border-t border-amber-200/10 px-2 py-1.5 text-center text-[9px] text-amber-100/45 sm:py-2 sm:text-[10px]">
-                ✦ Una vez confirmada, tu elección será definitiva ✦
-            </div>
+                {/* Pied de page */}
+                {/* <div className="
+                    relative shrink-0
+                    border-t border-[#c9aa70]/40
+                    bg-[#eadbc6]/50
+                    px-2 py-2 text-center
+                ">
+                    <p className="text-[9px] font-medium tracking-[.12em] text-[#927347] sm:text-[10px]">
+                        ✦ CADA ELECCIÓN ESCRIBE UNA NUEVA PÁGINA DE ESTA HISTORIA ✦
+                    </p>
+                </div> */}
             </section>
         ) : (
-            <section className="christmas-appear flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-amber-200/25 bg-[#0b2018]/95 p-3 sm:rounded-3xl sm:p-5">
-            <div className="shrink-0 text-center">
-                <span className="text-3xl sm:text-4xl">🎄</span>
-                <h2 className="mt-1 font-serif text-xl font-bold text-amber-100 sm:text-3xl">
-                El camino que has elegido
-                </h2>
-                <p className="mt-1 text-[10px] text-emerald-100/60 sm:text-xs">
-                Tus decisiones definitivas para el pueblo
-                </p>
-            </div>
+           
+<section className="
+    christmas-appear relative flex min-h-0 flex-1 flex-col
+    overflow-hidden rounded-[24px]
+    border border-[#d9c49b]
+    bg-[#f5ead6]
+    p-4 shadow-[0_20px_60px_rgba(0,0,0,0.3)]
+    sm:rounded-[30px] sm:p-7
+">
+    {/* Cadre intérieur */}
+    <div className="pointer-events-none absolute inset-[8px] rounded-[18px] border border-[#d8c49b]/70 sm:inset-[12px] sm:rounded-[22px]" />
 
-            <div className="mt-3 grid min-h-0 flex-1 grid-cols-1 gap-1.5 sm:mt-4 sm:grid-cols-2 sm:gap-2">
-                {decisions.map((decision, index) => {
+    <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+
+        {/* En-tête */}
+        <header className="shrink-0 text-center">
+            <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.35em] text-[#9b7544] sm:text-[11px]">
+                El final de nuestro cuento
+            </p>
+
+            <h2
+                style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+                className="mt-1 text-3xl font-bold leading-tight text-[#762b2b] sm:text-5xl"
+            >
+                El destino del pueblo
+            </h2>
+
+            <p className="mx-auto mt-2 max-w-md font-serif text-xs leading-5 text-[#766a57] sm:text-sm">
+                Cinco decisiones, cinco momentos especiales y una historia que solo tú podías escribir.
+            </p>
+
+            <div className="mx-auto flex items-center justify-center gap-3">
+                <span className="h-px w-12 bg-[#c6a66e]" />
+                <span className="text-lg text-[#b38b4f]">✧</span>
+                <span className="h-px w-12 bg-[#c6a66e]" />
+            </div>
+        </header>
+
+        {/* Les décisions */}
+        <div className="mx-auto mt-4 grid min-h-0 w-full max-w-2xl flex-1 grid-cols-1 content-center gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-3">
+            {decisions.map((decision, index) => {
                 const option = decision.options.find(
                     (item) => item.id === saved[index + 1]
                 );
@@ -759,42 +1011,66 @@ function Frame({ children }) {
 
                 return (
                     <div
-                    key={option.id}
-                    className="flex min-h-0 items-center gap-2 overflow-hidden rounded-xl border border-amber-200/15 bg-white/[.035] px-3 py-2 sm:px-4"
+                        key={option.id}
+                        className="
+                            relative flex min-w-0 items-center gap-3
+                            border-b border-[#d8c49b]
+                            px-2 py-2.5
+                            sm:py-3
+                        "
                     >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-amber-300/35 text-[10px] text-amber-200">
-                        {index + 1}
-                    </span>
-                    <span className="text-xl sm:text-2xl">{option.icon}</span>
-                    <div className="min-w-0 flex-1">
-                        <p className="truncate text-[9px] text-amber-200/60 sm:text-[10px]">
-                        {decision.title}
-                        </p>
-                        <p className="truncate text-xs font-bold text-amber-100 sm:text-sm">
-                        {option.title}
-                        </p>
-                    </div>
-                    <span className="shrink-0 text-xs text-emerald-300">✓</span>
+                        <span
+                            className="
+                                flex h-8 w-8 shrink-0 items-center justify-center
+                                rounded-full bg-[#24543b]
+                                font-serif text-sm font-bold text-[#f8edda]
+                            "
+                        >
+                            {index + 1}
+                        </span>
+
+                        <span className="shrink-0 text-2xl sm:text-3xl">
+                            {option.icon}
+                        </span>
+
+                        <div className="min-w-0 flex-1">
+                            <p className="truncate text-[9px] font-bold uppercase tracking-[0.12em] text-[#9b7544] sm:text-[10px]">
+                                {decision.title}
+                            </p>
+                            <p className="truncate font-serif text-sm font-bold text-[#24543b] sm:text-base">
+                                {option.title}
+                            </p>
+                        </div>
+
+                        <span className="shrink-0 text-[#b38b4f]">✦</span>
                     </div>
                 );
-                })}
-            </div>
+            })}
+        </div>
 
-            <div className="mt-3 shrink-0 rounded-xl border border-amber-200/20 bg-amber-200/[.04] px-3 py-2 text-center sm:mt-4 sm:py-3">
-                <p className="font-serif text-sm text-amber-100 sm:text-lg">
-                ✨ La historia del pueblo está escrita ✨
+        {/* Conclusion */}
+        <footer className="mt-4 shrink-0 text-center sm:mt-5">
+            <div className="mx-auto max-w-xl rounded-2xl bg-[#24543b] px-4 py-4 shadow-lg sm:px-6 sm:py-5">
+                <p
+                    style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+                    className="text-xl font-bold text-[#f7e9cc] sm:text-3xl"
+                >
+                    La historia del pueblo está escrita
                 </p>
             </div>
-            </section>
+        </footer>
+    </div>
+</section>
+
         )}
 
         {confirming && current && selectedOption && (
             <Confirm
-            option={selectedOption}
-            onCancel={cancel}
-            onConfirm={confirm}
+                option={selectedOption}
+                onCancel={cancel}
+                onConfirm={confirm}
             />
         )}
-        </Frame>
+    </Frame>
     );
 }
