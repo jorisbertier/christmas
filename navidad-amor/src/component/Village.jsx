@@ -46,6 +46,24 @@ export default function Village() {
         setJoursOuverts(prev => ({ ...prev, [id]: !prev[id] }));
     };
 
+    const [villageDecisions, setVillageDecisions] = useState({});
+
+    useEffect(() => {
+        const result = {};
+
+        for (let i = 1; i <= 5; i++) {
+            result[i] = localStorage.getItem(`navidad_pueblo_decision_${i}`);
+        }
+
+        setVillageDecisions(result);
+    }, []);
+    
+    const choixCiel = villageDecisions[1];
+    const choixArbre = villageDecisions[2];
+    const choixPlace = villageDecisions[3];
+    const choixDouceurs = villageDecisions[4];
+    const choixPereNoel = villageDecisions[5];
+
   // Tableau associant les composants importés aux positions Figma d'origine
     const maisons = [
         { id: 20, src: maison20, taille: 'w-[150px] h-[150px]', position: 'top-[10px] right-[560px] z-0' },
@@ -169,7 +187,7 @@ export default function Village() {
         <img src={choice41} alt=""   className="absolute bottom-[29%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0 hidden"/>
         <img src={choice42} alt=""   className="absolute bottom-[30%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0 hidden"/>
 
-        <div className="relative ">
+        <div className="relative z-0 hidden">
           <SantaCrossing
             delay={0}
             duration={15000}
@@ -177,7 +195,7 @@ export default function Village() {
             bottom={100}
           />
         </div>
-        <div className="absolute top-10 left-[60%] z-0">
+        <div className="absolute top-10 left-[60%] z-0 hidden">
           <SantaLottie width={180} />
         </div>
 

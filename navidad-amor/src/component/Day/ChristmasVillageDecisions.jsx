@@ -1027,11 +1027,6 @@ function Confirm({ option, onCancel, onConfirm, busy }) {
                                 >
                                     {index + 1}
                                 </span>
-
-                                <span className="shrink-0 text-2xl sm:text-3xl">
-                                    {option.icon}
-                                </span>
-
                                 <div className="min-w-0 flex-1">
                                     <p className="truncate text-[9px] font-bold uppercase tracking-[0.12em] text-[#9b7544] sm:text-[10px]">
                                         {decision.title}
