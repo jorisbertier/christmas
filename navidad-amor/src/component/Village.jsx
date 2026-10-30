@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useId } from 'react';
 // import { surprises } from "../data/surprises";
 import SurprisePage from "./SurprisePage";
-import IceSkating from "./Choice/IceSkating";
-import santaAnimation from "../assets/lottie/no_zoom_sleigh.json";
-import SantaCrossing from "../component/Choice/SantaCrossing";
 
 // IMPORTATION EXPLICITE DE TOUTES LES MAISONS
 import maison1 from '../assets/house/Maison 1.png';
@@ -38,6 +35,9 @@ import choice21 from '../assets/choice/21.png';
 import choice22 from '../assets/choice/22.png';
 import choice41 from '../assets/choice/41.png';
 import choice42 from '../assets/choice/42.png';
+import IceSkating from "./Choice/IceSkating";
+import SantaCrossing from "../component/Choice/SantaCrossing";
+import SantaLottie from './Choice/SantaLottie';
 
 export default function Village() {
     const [joursOuverts, setJoursOuverts] = useState({});
@@ -159,16 +159,7 @@ export default function Village() {
             <IceSkating x={400} y={553} />
           </svg>
         </div>
-<div className="relative ">
-  <SantaCrossing
-    delay={0}
-    duration={15000}
-    width={180}
-    bottom={100}
-  />
 
-  {/* Le reste de ton village */}
-</div>
         <img src={choice11} alt=""   className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-72 hidden"/>
         <img src={choice12} alt=""   className="absolute -top-0 left-1/2 -translate-x-1/2 w-[100px] h-20 hidden"/>
 
@@ -177,6 +168,18 @@ export default function Village() {
 
         <img src={choice41} alt=""   className="absolute bottom-[29%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0 hidden"/>
         <img src={choice42} alt=""   className="absolute bottom-[30%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0 hidden"/>
+
+        <div className="relative ">
+          <SantaCrossing
+            delay={0}
+            duration={15000}
+            width={180}
+            bottom={100}
+          />
+        </div>
+        <div className="absolute top-10 left-[60%] z-0">
+          <SantaLottie width={180} />
+        </div>
 
         {/* CLUSTER CENTRAL DU VILLAGE */}
         <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-24 mb-12">
