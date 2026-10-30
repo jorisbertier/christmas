@@ -3,7 +3,7 @@ import React, { useState, useEffect, useId } from 'react';
 import SurprisePage from "./SurprisePage";
 import IceSkating from "./Choice/IceSkating";
 import santaAnimation from "../assets/lottie/no_zoom_sleigh.json";
-import SantaCrossing from "../component/Choice/SantaCrossing"
+import SantaCrossing from "../component/Choice/SantaCrossing";
 
 // IMPORTATION EXPLICITE DE TOUTES LES MAISONS
 import maison1 from '../assets/house/Maison 1.png';
@@ -159,6 +159,16 @@ export default function Village() {
             <IceSkating x={400} y={553} />
           </svg>
         </div>
+<div className="relative ">
+  <SantaCrossing
+    delay={0}
+    duration={15000}
+    width={180}
+    bottom={100}
+  />
+
+  {/* Le reste de ton village */}
+</div>
         <img src={choice11} alt=""   className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-72 hidden"/>
         <img src={choice12} alt=""   className="absolute -top-0 left-1/2 -translate-x-1/2 w-[100px] h-20 hidden"/>
 
