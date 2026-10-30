@@ -694,8 +694,6 @@ function Confirm({ option, onCancel, onConfirm, busy }) {
 
           {/* Choix */}
           <div className="mt-6 rounded-2xl border border-[#ddcba9] bg-[#fffaf0] p-5 text-center shadow-sm">
-            <div className="text-4xl">{option.icon}</div>
-
             <h3
               style={{ fontFamily: "'Mountains of Christmas', cursive" }}
               className="mt-2 text-2xl font-bold text-[#24543b]"
@@ -949,17 +947,6 @@ function Confirm({ option, onCancel, onConfirm, busy }) {
                     </p>
                 )}
 
-                {/* Pied de page */}
-                {/* <div className="
-                    relative shrink-0
-                    border-t border-[#c9aa70]/40
-                    bg-[#eadbc6]/50
-                    px-2 py-2 text-center
-                ">
-                    <p className="text-[9px] font-medium tracking-[.12em] text-[#927347] sm:text-[10px]">
-                        ✦ CADA ELECCIÓN ESCRIBE UNA NUEVA PÁGINA DE ESTA HISTORIA ✦
-                    </p>
-                </div> */}
             </section>
         ) : (
         <section className="

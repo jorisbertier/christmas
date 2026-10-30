@@ -17,14 +17,17 @@ import ChristmasAwards from "./Day/ChristmasAwards";
 import ChristmasWheel from "./Day/ChristmasWheel";
 import ChristmasVillageDecisions from "./Day/ChristmasVillageDecisions";
 import GiftChoice from "./Day/GiftChoice";
-import ChristmasPaper from '../component/ChristmasPaper'
+import ChristmasPaper from '../component/ChristmasPaper';
+import ChristmasComplimentMachine from "./Day/ChristmasMachine";
+import UglyChristmasSweater from "./Day/UglyChristmasSweat";
+import ChristmasGifts from "./Day/ChristmasGifts";
 
 const composants = {
   1: SurpriseModal,
   2: SecretNoel,
   3: SecretCard,
   4: GiftSled,
-  5: CadeauTraineau,
+  // 5: CadeauTraineau,
   6: ChristmasBall,
   7: ChristmasAlbum,
   8: PhotoGallery,
@@ -34,27 +37,44 @@ const composants = {
   12: ChristmasLoveLetter,
   13: CinemaIntro,
   // 14: ChristmasScene,
-  15: CoupleQuiz,
+  // 15: CoupleQuiz,
   16: ChristmasAwards,
   17: ChristmasWheel,
   18: ChristmasVillageDecisions,
   19: GiftChoice,
-  20: ChristmasPaper
+  20: ChristmasPaper,
+  21: ChristmasComplimentMachine,
+  22: UglyChristmasSweater,
+  23: ChristmasGifts
 };
 
 // piano
 // judbox
+//Partiiton
+// Concept : elle découvre une partition ancienne intitulée « Nuestra Navidad ».
+
+// Au début, seules quelques notes sont visibles. Elle doit cliquer sur les symboles musicaux pour dévoiler progressivement la partition.
+
+// À la fin :
+// - La partition s'illumine.
+// - La musique se lance.
+// - Un message apparaît avec une photo de vous deux.
+// Message final : « Si nuestra historia fuera una canción, sería mi favorita. »
+
 // cadeau infini
-// le combat de pierre feuille appier cisceaux contre le pere noel
-// village de noel entier (patinage , spain, maison etc) à chaque clique 
+//papilote ( devinette )
+// creer 3 stickers pour son whastapp en mode elle pour noel (tu regalo soy yo elle en mode noel avec des guirlandes electriques au tour d elle comme un sapin)
+// (elle avec un cadeau mi regalo, te estoy vigilando, necesito dinero,te amo, estoy enojada )
+// bon pour voir un film de noel ensemble de son choix
+// les dessins ( on a chacun un truc a dessiner, on le dessine et ensuite on revele ce qu'on a dessiner)
+// dernier jour feliciter + inviter a diner
+// ses diferentes personallites elle clique revealtion titi, germignon, chat genre chat botte, helllo kity ernerve pijama vivre avec elle commencer par les enervee et ensuite les bons
+
+
 // spectacle de danse style moulin rouge ambiance de noel
-// chorale qui chantent ( ce soir les habitants de ton village se sont réunis pour chanter des chants de Noël. Tu peux les écouter et même chanter avec eux !)
-// jeu style le cluedo de noel (avec des indices et des personnages)
-// jeu de devinettes sur noel
 // jeu la machine a pince // jeu de memoire (Une séquence de couleurs et de sons apparaît : rouge, bleu, vert, jaune… Elle doit la reproduire dans le bon ordre. Chaque niveau ajoute une couleur et accélère le rythme.Difficulté : elle doit atteindre le niveau 8 avant la fin du temps.)
 // la chasse au objets (elle doit trouver des objets cachés dans le village de noel et les ramener à la maison du pere noel avant la fin du temps. Chaque objet trouvé rapporte des points. Difficulté : elle doit trouver au moins 10 objets avant la fin du temps.)
 // Une image de Noël remplie de détails apparaît. Elle doit trouver 8 objets précis cachés dans le décor.Difficulté : certains objets sont minuscules ou partiellement dissimulés.
-// remise de prix 2026 
 // la bombe de noel Un compte à rebours démarre. Elle doit résoudre trois petites énigmes : un code numérique, une suite logique et un mot à déchiffrer.
 // constelation de noel
 // choix entre 3  cadeaux (dulce, aventura, romantico) et selon le choix elle a une surprise differente
@@ -62,12 +82,7 @@ const composants = {
 // le musee de couple (avec des photos de nous et des souvenirs)
 // cours de francais
 // quiz duel amoureux 5 questions poser et a la fin elle regarde le match donc 5 questions pour elle et 5 pour moi
-// lettre d amour
-// la liste du pere noel
-// generateur de compliment absurde
-// maison secrete (bonus 25)
-// proposer de rendre le village interactif en ajoutant des éléments cliquables dans le village en fond entre 2 choix 
-// (aurore boreal ou etoiles filantes choix entre 2 chansons au total 5 choix qui affecte sont village etc( avec un localstorage pour ses choix donc ) (ex: patinoire, sapin, maison) qui déclenchent des animations ou des surprises
+// generateur de compliment absurde surprises
 
 export default function SurprisePage({ jour, onClose }) {
   const Composant = composants[jour];
