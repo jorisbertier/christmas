@@ -962,105 +962,104 @@ function Confirm({ option, onCancel, onConfirm, busy }) {
                 </div> */}
             </section>
         ) : (
-           
-<section className="
-    christmas-appear relative flex min-h-0 flex-1 flex-col
-    overflow-hidden rounded-[24px]
-    border border-[#d9c49b]
-    bg-[#f5ead6]
-    p-4 shadow-[0_20px_60px_rgba(0,0,0,0.3)]
-    sm:rounded-[30px] sm:p-7
-">
-    {/* Cadre intérieur */}
-    <div className="pointer-events-none absolute inset-[8px] rounded-[18px] border border-[#d8c49b]/70 sm:inset-[12px] sm:rounded-[22px]" />
+        <section className="
+            christmas-appear relative flex min-h-0 flex-1 flex-col
+            overflow-hidden rounded-[24px]
+            border border-[#d9c49b]
+            bg-[#f5ead6]
+            p-4 shadow-[0_20px_60px_rgba(0,0,0,0.3)]
+            sm:rounded-[30px] sm:p-7
+        ">
+            {/* Cadre intérieur */}
+            <div className="pointer-events-none absolute inset-[8px] rounded-[18px] border border-[#d8c49b]/70 sm:inset-[12px] sm:rounded-[22px]" />
 
-    <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+            <div className="relative z-10 flex min-h-0 flex-1 flex-col">
 
-        {/* En-tête */}
-        <header className="shrink-0 text-center">
-            <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.35em] text-[#9b7544] sm:text-[11px]">
-                El final de nuestro cuento
-            </p>
+                {/* En-tête */}
+                <header className="shrink-0 text-center">
+                    <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.35em] text-[#9b7544] sm:text-[11px]">
+                        El final de nuestro cuento
+                    </p>
 
-            <h2
-                style={{ fontFamily: "'Mountains of Christmas', cursive" }}
-                className="mt-1 text-3xl font-bold leading-tight text-[#762b2b] sm:text-5xl"
-            >
-                El destino del pueblo
-            </h2>
-
-            <p className="mx-auto mt-2 max-w-md font-serif text-xs leading-5 text-[#766a57] sm:text-sm">
-                Cinco decisiones, cinco momentos especiales y una historia que solo tú podías escribir.
-            </p>
-
-            <div className="mx-auto flex items-center justify-center gap-3">
-                <span className="h-px w-12 bg-[#c6a66e]" />
-                <span className="text-lg text-[#b38b4f]">✧</span>
-                <span className="h-px w-12 bg-[#c6a66e]" />
-            </div>
-        </header>
-
-        {/* Les décisions */}
-        <div className="mx-auto mt-4 grid min-h-0 w-full max-w-2xl flex-1 grid-cols-1 content-center gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-3">
-            {decisions.map((decision, index) => {
-                const option = decision.options.find(
-                    (item) => item.id === saved[index + 1]
-                );
-
-                if (!option) return null;
-
-                return (
-                    <div
-                        key={option.id}
-                        className="
-                            relative flex min-w-0 items-center gap-3
-                            border-b border-[#d8c49b]
-                            px-2 py-2.5
-                            sm:py-3
-                        "
+                    <h2
+                        style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+                        className="mt-1 text-3xl font-bold leading-tight text-[#762b2b] sm:text-5xl"
                     >
-                        <span
-                            className="
-                                flex h-8 w-8 shrink-0 items-center justify-center
-                                rounded-full bg-[#24543b]
-                                font-serif text-sm font-bold text-[#f8edda]
-                            "
-                        >
-                            {index + 1}
-                        </span>
+                        El destino del pueblo
+                    </h2>
 
-                        <span className="shrink-0 text-2xl sm:text-3xl">
-                            {option.icon}
-                        </span>
+                    <p className="mx-auto mt-2 max-w-md font-serif text-xs leading-5 text-[#766a57] sm:text-sm">
+                        Cinco decisiones, cinco momentos especiales y una historia que solo tú podías escribir.
+                    </p>
 
-                        <div className="min-w-0 flex-1">
-                            <p className="truncate text-[9px] font-bold uppercase tracking-[0.12em] text-[#9b7544] sm:text-[10px]">
-                                {decision.title}
-                            </p>
-                            <p className="truncate font-serif text-sm font-bold text-[#24543b] sm:text-base">
-                                {option.title}
-                            </p>
-                        </div>
-
-                        <span className="shrink-0 text-[#b38b4f]">✦</span>
+                    <div className="mx-auto flex items-center justify-center gap-3">
+                        <span className="h-px w-12 bg-[#c6a66e]" />
+                        <span className="text-lg text-[#b38b4f]">✧</span>
+                        <span className="h-px w-12 bg-[#c6a66e]" />
                     </div>
-                );
-            })}
-        </div>
+                </header>
 
-        {/* Conclusion */}
-        <footer className="mt-4 shrink-0 text-center sm:mt-5">
-            <div className="mx-auto max-w-xl rounded-2xl bg-[#24543b] px-4 py-4 shadow-lg sm:px-6 sm:py-5">
-                <p
-                    style={{ fontFamily: "'Mountains of Christmas', cursive" }}
-                    className="text-xl font-bold text-[#f7e9cc] sm:text-3xl"
-                >
-                    La historia del pueblo está escrita
-                </p>
+                {/* Les décisions */}
+                <div className="mx-auto mt-4 grid min-h-0 w-full max-w-2xl flex-1 grid-cols-1 content-center gap-2 sm:mt-5 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-3">
+                    {decisions.map((decision, index) => {
+                        const option = decision.options.find(
+                            (item) => item.id === saved[index + 1]
+                        );
+
+                        if (!option) return null;
+
+                        return (
+                            <div
+                                key={option.id}
+                                className="
+                                    relative flex min-w-0 items-center gap-3
+                                    border-b border-[#d8c49b]
+                                    px-2 py-2.5
+                                    sm:py-3
+                                "
+                            >
+                                <span
+                                    className="
+                                        flex h-8 w-8 shrink-0 items-center justify-center
+                                        rounded-full bg-[#24543b]
+                                        font-serif text-sm font-bold text-[#f8edda]
+                                    "
+                                >
+                                    {index + 1}
+                                </span>
+
+                                <span className="shrink-0 text-2xl sm:text-3xl">
+                                    {option.icon}
+                                </span>
+
+                                <div className="min-w-0 flex-1">
+                                    <p className="truncate text-[9px] font-bold uppercase tracking-[0.12em] text-[#9b7544] sm:text-[10px]">
+                                        {decision.title}
+                                    </p>
+                                    <p className="truncate font-serif text-sm font-bold text-[#24543b] sm:text-base">
+                                        {option.title}
+                                    </p>
+                                </div>
+
+                                <span className="shrink-0 text-[#b38b4f]">✦</span>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Conclusion */}
+                <footer className="mt-4 shrink-0 text-center sm:mt-5">
+                    <div className="mx-auto max-w-xl rounded-2xl bg-[#24543b] px-4 py-4 shadow-lg sm:px-6 sm:py-5">
+                        <p
+                            style={{ fontFamily: "'Mountains of Christmas', cursive" }}
+                            className="text-xl font-bold text-[#f7e9cc] sm:text-3xl"
+                        >
+                            La historia del pueblo está escrita
+                        </p>
+                    </div>
+                </footer>
             </div>
-        </footer>
-    </div>
-</section>
+        </section>
 
         )}
 
