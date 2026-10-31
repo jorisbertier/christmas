@@ -68,8 +68,6 @@ const composants = {
 // bon pour voir un film de noel ensemble de son choix
 // les dessins ( on a chacun un truc a dessiner, on le dessine et ensuite on revele ce qu'on a dessiner)
 // dernier jour feliciter + inviter a diner
-// ses diferentes personallites elle clique revealtion titi, germignon, chat genre chat botte, helllo kity ernerve pijama vivre avec elle commencer par les enervee et ensuite les bons
-
 
 // spectacle de danse style moulin rouge ambiance de noel
 // jeu la machine a pince // jeu de memoire (Une séquence de couleurs et de sons apparaît : rouge, bleu, vert, jaune… Elle doit la reproduire dans le bon ordre. Chaque niveau ajoute une couleur et accélère le rythme.Difficulté : elle doit atteindre le niveau 8 avant la fin du temps.)
