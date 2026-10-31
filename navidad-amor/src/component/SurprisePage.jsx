@@ -11,7 +11,6 @@ import Christmaschoir from "./Day/Christmaschoir";
 import ClockMystery from "./Day/Game/ClockMystery";
 import ChristmasLoveLetter from "./Day/ChristmasLoveLetter";
 import CinemaIntro from "./Day/CinemaIntro";
-// import ChristmasScene from "./Day/ChristmasScene";
 import CoupleQuiz from "./Day/CoupleQuiz";
 import ChristmasAwards from "./Day/ChristmasAwards";
 import ChristmasWheel from "./Day/ChristmasWheel";
@@ -21,12 +20,15 @@ import ChristmasPaper from '../component/ChristmasPaper';
 import ChristmasComplimentMachine from "./Day/ChristmasMachine";
 import UglyChristmasSweater from "./Day/UglyChristmasSweat";
 import ChristmasGifts from "./Day/ChristmasGifts";
+import ChristmasDrawingGame from "./Day/ChristmasDrawingGame";
+import InfiniteGift from "./Day/InfiniteGift";
 
 const composants = {
-  1: SurpriseModal,
+  // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
   2: SecretNoel,
   3: SecretCard,
-  4: GiftSled,
+  4: ChristmasDrawingGame,
+  // 4: GiftSled,
   // 5: CadeauTraineau,
   6: ChristmasBall,
   7: ChristmasAlbum,
@@ -35,15 +37,15 @@ const composants = {
   10: Christmaschoir,
   11: ClockMystery,
   12: ChristmasLoveLetter,
-  13: CinemaIntro,
-  // 14: ChristmasScene,
+  // 13: CinemaIntro, refaire style
+  14: InfiniteGift,
   // 15: CoupleQuiz,
   16: ChristmasAwards,
   17: ChristmasWheel,
   18: ChristmasVillageDecisions,
   19: GiftChoice,
   20: ChristmasPaper,
-  21: ChristmasComplimentMachine,
+  // 21: ChristmasComplimentMachine, refaire style
   22: UglyChristmasSweater,
   23: ChristmasGifts
 };
@@ -65,8 +67,6 @@ const composants = {
 //papilote ( devinette )
 // creer 3 stickers pour son whastapp en mode elle pour noel (tu regalo soy yo elle en mode noel avec des guirlandes electriques au tour d elle comme un sapin)
 // (elle avec un cadeau mi regalo, te estoy vigilando, necesito dinero,te amo, estoy enojada )
-// bon pour voir un film de noel ensemble de son choix
-// les dessins ( on a chacun un truc a dessiner, on le dessine et ensuite on revele ce qu'on a dessiner)
 // dernier jour feliciter + inviter a diner
 
 // spectacle de danse style moulin rouge ambiance de noel
