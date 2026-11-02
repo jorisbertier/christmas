@@ -18,12 +18,31 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 
 const DEFAULT_TITLE = "Para mi amor ❤️";
 const DEFAULT_PARAGRAPHS = [
-  "Mi amor, si pudiera regalarte algo esta Navidad, te regalaría la posibilidad de verte a través de mis ojos, para que pudieras comprender lo especial que eres para mí.",
-  "Aunque estemos lejos, quiero que sientas que estoy contigo en cada pequeño momento. La distancia no cambia lo que siento por ti ni las ganas que tengo de construir nuestro futuro juntos.",
-  "Gracias por formar parte de mi vida, por tus abrazos, tus sonrisas y todos esos pequeños momentos que hacen que seas tan importante para mí.",
-  "Esta Navidad, mi deseo más bonito no está debajo del árbol. Es poder seguir compartiendo mi vida contigo, crear recuerdos juntos y abrazarte muy pronto. Te amo, hoy y siempre. ❤️",
+  `Hoy me gustaría hablarte desde el corazón. Existen sentimientos que las palabras no siempre bastan para expresar; emociones que uno siente profundamente en su interior, sin lograr necesariamente explicarlas.
+  
+  Sabes, en este mundo donde las personas se encuentran y, a veces, se separan sin llegar a entender realmente por qué, encontrar a alguien que nos brinde tanta felicidad es un verdadero regalo.
+  
+  Para mí, esa persona eres tú.
+
+  Tienes la capacidad de hacer que los momentos sean valiosos, de darle un valor especial a los días corrientes y de embellecer esos pequeños instantes de la vida a los que no siempre prestamos atención.❤️
+  
+  Pero de vez en cuando, como hoy, reflexiono y me doy cuenta de la suerte que tengo de compartir mi vida con la mujer más maravillosa que he conocido jamás. Sigues fascinándome e inspirándome.
+
+  Me pongo a pensar en todo el camino que hemos recorrido desde que nos conocimos, y me doy cuenta de lo increíble que es nuestra historia.
+
+  Hemos recorrido muchos kilómetros para poder abrazarnos, hemos cruzado fronteras y hemos hecho sacrificios para estar juntos. Y cuando pienso en todo eso, entiendo cuánto hemos construido y cuánto significa nuestra relación para mí.
+
+  Uno de los momentos más especiales de nuestra historia fue convertirnos en marido y mujer. Pensar que aquella persona que conocí hace un tiempo es hoy la persona con la que quiero compartir mi vida me parece algo maravilloso.
+
+  Quiero seguir conociéndote, seguir enamorándome de ti, aprender de nuestros errores y construir poco a poco una vida en la que los dos podamos ser felices.
+
+  Cada recuerdo tiene algo especial, porque todos forman parte de nuestra historia.
+
+  Y si tuviera que volver a empezar, volvería a elegir conocerte, volvería a recorrer todos esos kilómetros y volvería a elegirte a ti.
+
+  `
 ];
-const DEFAULT_SIGNATURE = "Con todo mi amor, para siempre. ❤️";
+const DEFAULT_SIGNATURE = "Con todo mi amor, para siempre";
 
 const PHASES = ["envelope", "opening", "extracting", "unfolding", "reading", "finished"];
 const SCRIPT = "'Pinyon Script', 'Snell Roundhand', 'Brush Script MT', cursive";
@@ -827,13 +846,13 @@ export default function ChristmasLoveLetter({
                 {paragraphs.map((text, i) => {
                   const shownText = visibleText(i, text);
                   return (
-                    <p key={i} ref={(el) => (parRefs.current[i] = el)}>
+                    <p style={{ whiteSpace: "pre-line" }} key={i} ref={(el) => (parRefs.current[i] = el)}>
                       <span className="sr-only">{text}</span>
                       <span aria-hidden="true">
                         {shownText}
                         <span className="opacity-0">{text.slice(shownText.length)}</span>
                       </span>
-                      {done(i) && <Heart className="ml-1.5 inline-block h-4 w-4 align-[-2px]" />}
+                      {/* {done(i) && <Heart className="ml-1.5 inline-block h-4 w-4 align-[-2px]" />} */}
                     </p>
                   );
                 })}
@@ -853,8 +872,8 @@ export default function ChristmasLoveLetter({
                 )}
                 {phase === "finished" && (
                   <>
-                    <button type="button" onClick={reread} className={btn}>Volver a leer</button>
-                    <button type="button" onClick={close} className={`${btn} !bg-[#8a1226] !text-[#fbeec7] hover:!bg-[#a3182c]`}>Cerrar la carta</button>
+                    <button type="button" onClick={reread} className={`${btn} cursor-pointer`}>Volver a leer</button>
+                    <button type="button" onClick={close} className={`${btn} cursor-pointer !bg-[#8a1226] !text-[#fbeec7] hover:!bg-[#a3182c]`}>Cerrar la carta</button>
                   </>
                 )}
               </div>
