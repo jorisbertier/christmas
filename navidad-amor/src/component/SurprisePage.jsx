@@ -2,7 +2,6 @@ import SurpriseModal from "./SurpriseModal";
 import SecretNoel from "./Day/SecretNoel";
 import SecretCard from "./Day/SecretCard";
 import GiftSled from "./Day/GiftSled";
-import CadeauTraineau from "./Day/CadeauTraineau";
 import ChristmasBall from "./Day/ChristmasBall";
 import ChristmasAlbum from "./Day/ChristmasAlbum";
 import PhotoGallery from "./Day/PhotoGallery";
@@ -28,8 +27,7 @@ const composants = {
   2: SecretNoel,
   3: SecretCard,
   4: ChristmasDrawingGame,
-  // 4: GiftSled,
-  // 5: CadeauTraineau,
+  5: GiftSled,
   6: ChristmasBall,
   7: ChristmasAlbum,
   8: PhotoGallery,
@@ -37,8 +35,8 @@ const composants = {
   10: Christmaschoir,
   11: ClockMystery,
   12: ChristmasLoveLetter,
-  // 13: CinemaIntro, refaire style
-  14: InfiniteGift,
+  13: CinemaIntro,
+  // 14: InfiniteGift,
   // 15: CoupleQuiz,
   16: ChristmasAwards,
   17: ChristmasWheel,
