@@ -1,19 +1,22 @@
 import React, { useMemo, useState } from "react";
 
 import maria from '../../assets/album/maria.jpg';
+import joris from '../../assets/album/joris.jpg';
+import couple from '../../assets/album/couple.jpg';
 import vikingcholita from '../../assets/album/viking&cholita.jpg';
 import simpsons from '../../assets/album/simpson.jpg';
 import disney from '../../assets/album/disney.jpg';
+import disney2 from '../../assets/album/disney2.jpg';
 import rickmorty from '../../assets/album/rick&morty.jpg';
 
 const BEFORE_PHOTOS = [
-  { id: "him-child", src: null /* himChild */, caption: "Yo, de pequeño" },
+  { id: "him-child", src: joris /* himChild */, caption: "Yo, de pequeño" },
   { id: "her-child", src: maria /* herChild */, caption: "Tú, de pequeña" },
 ];
 
 const TODAY_PHOTOS = [
-  { id: "him-today", src: null /* himToday */, caption: "Yo, hoy" },
-  { id: "her-today", src: null /* herToday */, caption: "Tú, hoy" },
+  { id: "him-today", src: couple /* himToday */, caption: "Nosotros, hoy" },
+//   { id: "her-today", src: null /* herToday */, caption: "Tú, hoy" },
 ];
 
 // The 4 mystery cards (front = "?", back = the photo)
@@ -21,7 +24,7 @@ const FLIP_CARDS = [
   { id: "simpsons", src: simpsons, caption: "Versión Los Simpson" },
   { id: "pixar", src: disney, caption: "Versión Pixar" },
   { id: "lego", src: vikingcholita, caption: "Versión Lego" },
-  { id: "anime", src: rickmorty, caption: "Versión anime" },
+  { id: "anime", src: disney2, caption: "Versión anime" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -263,7 +266,11 @@ function PhotoPair({ title, photos }) {
     return (
         <section className="mx-auto w-full max-w-[640px]">
         <SectionTitle>{title}</SectionTitle>
-        <div className="grid grid-cols-2 gap-4 sm:gap-10">
+        <div className={`grid mx-auto gap-4 sm:gap-10 ${
+            photos.length === 1
+                ? "grid-cols-1 justify-items-center"
+                : "grid-cols-2"
+            }`}>
             {photos.map((p, i) => (
             <Polaroid key={p.id} photo={p} tilt={i % 2 === 0 ? -3 : 2.5} delay={i * 0.15} />
             ))}
@@ -312,9 +319,9 @@ function FlipCard({ card, index, flipped, onFlip }) {
                     <Placeholder />
                     )}
                 </span>
-                <span className="block px-2 py-2 text-center font-serif text-sm italic text-[#7a0f1a] sm:text-base">
+                {/* <span className="block px-2 py-2 text-center font-serif text-sm italic text-[#7a0f1a] sm:text-base">
                     {card.caption}
-                </span>
+                </span> */}
                 </span>
             </span>
             </span>
