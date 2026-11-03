@@ -25,7 +25,7 @@ import InfiniteGift from "./Day/InfiniteGift";
 const composants = {
   // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
   2: SecretNoel,
-  3: SecretCard,
+  // 3: SecretCard,
   4: ChristmasDrawingGame,
   5: GiftSled,
   6: ChristmasBall,
@@ -43,7 +43,7 @@ const composants = {
   18: ChristmasVillageDecisions,
   19: GiftChoice,
   20: ChristmasPaper,
-  // 21: ChristmasComplimentMachine, refaire style
+  21: ChristmasComplimentMachine,
   22: UglyChristmasSweater,
   23: ChristmasGifts
 };
