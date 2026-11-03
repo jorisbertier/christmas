@@ -21,6 +21,7 @@ import UglyChristmasSweater from "./Day/UglyChristmasSweat";
 import ChristmasGifts from "./Day/ChristmasGifts";
 import ChristmasDrawingGame from "./Day/ChristmasDrawingGame";
 import InfiniteGift from "./Day/InfiniteGift";
+import ChristmasFinalHouse from "./Day/ChristmasFinalHouse";
 
 const composants = {
   // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
@@ -45,7 +46,8 @@ const composants = {
   20: ChristmasPaper,
   21: ChristmasComplimentMachine,
   22: UglyChristmasSweater,
-  23: ChristmasGifts
+  23: ChristmasGifts,
+  24: ChristmasFinalHouse
 };
 
 // piano
