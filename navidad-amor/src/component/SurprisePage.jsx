@@ -22,11 +22,13 @@ import ChristmasGifts from "./Day/ChristmasGifts";
 import ChristmasDrawingGame from "./Day/ChristmasDrawingGame";
 import InfiniteGift from "./Day/InfiniteGift";
 import ChristmasFinalHouse from "./Day/ChristmasFinalHouse";
+import DayOneMusicBox from "./Day/DayOneMusicBox";
 
 const composants = {
   // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
+  1 : DayOneMusicBox,
   2: SecretNoel,
-  // 3: SecretCard,
+  3: SecretCard,
   4: ChristmasDrawingGame,
   5: GiftSled,
   6: ChristmasBall,
@@ -81,6 +83,11 @@ const composants = {
 // cours de francais
 // quiz duel amoureux 5 questions poser et a la fin elle regarde le match donc 5 questions pour elle et 5 pour moi
 // generateur de compliment absurde surprises
+
+// FRIST DAY
+// explication du calendrier de l'avent et petit message d'amour pour elle( pourquoi tu as créé ces 24 jours)
+// allumage du village de noel (elle doit cliquer sur les lampes pour allumer le village de noel et a la fin elle a un message d'amour et une photo de nous deux)
+// Y esto es solo el comienzo... Nos esperan 23 días más de magia.
 
 export default function SurprisePage({ jour, onClose }) {
   const Composant = composants[jour];

@@ -285,7 +285,7 @@ function useCinemaSound() {
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
-export default function CinemaIntro({ videoSrc = null, onFinish }) {
+export default function CinemaIntro({ onFinish }) {
   const [phase, setPhase] = useState("idle"); // idle → count → (video) → reveal
   const [count, setCount] = useState(START);
   const videoRef = useRef(null);
@@ -305,7 +305,7 @@ export default function CinemaIntro({ videoSrc = null, onFinish }) {
   useEffect(() => {
     if (phase !== "count") return undefined;
     const id = setTimeout(() => {
-      if (count <= 1) { setPhase(videoSrc ? "video" : "reveal"); return; }
+      if (count <= 1) { setPhase(VIDEO_SRC ? "video" : "reveal"); return; }
       const next = count - 1;
       setCount(next);
       sound.tick(next);
@@ -325,6 +325,8 @@ export default function CinemaIntro({ videoSrc = null, onFinish }) {
     sound.tick(START);
   };
   const replay = () => { setPhase("idle"); setCount(START); };
+
+  const VIDEO_SRC = "/videos/cinema.mp4";
 
   return (
     <section className={`ci relative isolate flex h-full max-h-full w-full max-w-full items-center justify-center overflow-hidden ${open ? "ci-open" : ""}`}>
@@ -377,8 +379,8 @@ export default function CinemaIntro({ videoSrc = null, onFinish }) {
                 </div>
               )}
 
-              {phase === "video" && videoSrc && (
-                <video ref={videoRef} className="ci-video" src={videoSrc} playsInline controls autoPlay onEnded={() => setPhase("reveal")} />
+              {phase === "video" && VIDEO_SRC && (
+                <video ref={videoRef} className="ci-video" src={VIDEO_SRC} playsInline controls autoPlay onEnded={() => setPhase("reveal")} />
               )}
 
               {phase === "reveal" && (
@@ -388,7 +390,7 @@ export default function CinemaIntro({ videoSrc = null, onFinish }) {
                   <h2 className="ci-wow" style={{ position: "relative" }}>{TEXTS.surprise}</h2>
                   <p className="ci-tonight" style={{ position: "relative" }}>{TEXTS.tonight}</p>
 
-                  <div className="ci-ticket" style={{ position: "relative" }}>
+                  {/* <div className="ci-ticket" style={{ position: "relative" }}>
                     <div className="ci-tk-in">
                       <div className="ci-stub l"><span>{TEXTS.ticketSide}</span></div>
                       <div className="ci-tk-body">
@@ -401,7 +403,17 @@ export default function CinemaIntro({ videoSrc = null, onFinish }) {
                       </div>
                       <div className="ci-stub r"><b aria-hidden="true">🎬</b><i>VIP</i><i>001</i></div>
                     </div>
-                  </div>
+                  </div> */}
+                  <div className="ci-audio-box" style={{ position: "relative" }}>
+                  <p>✦ UN MENSAJE ESPECIAL PARA TI ✦</p>
+{/* 
+                  <audio
+                    className="ci-audio"
+                    src={AUDIO_SRC}
+                    controls
+                    preload="metadata"
+                  /> */}
+                </div>
 
                   <p className="ci-gift" style={{ position: "relative" }}>{TEXTS.gift}</p>
                   <button type="button" className="ci-replay" style={{ position: "relative" }} onClick={replay}>{TEXTS.replay}</button>
