@@ -16,7 +16,6 @@ const BEFORE_PHOTOS = [
 
 const TODAY_PHOTOS = [
   { id: "him-today", src: couple /* himToday */, caption: "Nosotros, hoy" },
-//   { id: "her-today", src: null /* herToday */, caption: "Tú, hoy" },
 ];
 
 // The 4 mystery cards (front = "?", back = the photo)

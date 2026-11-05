@@ -23,6 +23,7 @@ import ChristmasDrawingGame from "./Day/ChristmasDrawingGame";
 import InfiniteGift from "./Day/InfiniteGift";
 import ChristmasFinalHouse from "./Day/ChristmasFinalHouse";
 import DayOneMusicBox from "./Day/DayOneMusicBox";
+import ChristmasMuseum from "./Day/ChristmasMuseum";
 
 const composants = {
   // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
@@ -40,7 +41,7 @@ const composants = {
   12: ChristmasLoveLetter,
   13: CinemaIntro,
   // 14: InfiniteGift,
-  // 15: CoupleQuiz,
+  15: ChristmasMuseum,
   16: ChristmasAwards,
   17: ChristmasWheel,
   18: ChristmasVillageDecisions,
