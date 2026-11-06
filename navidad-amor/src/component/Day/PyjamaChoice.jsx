@@ -5,12 +5,12 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 /*  1) uncomment the imports  2) put each name in the `src` below      */
 /*  (until then, a drawn pyjama is shown as a placeholder)             */
 /* ------------------------------------------------------------------ */
-// import pijama1 from "../../assets/pijamas/pijama1.jpg";
-// import pijama2 from "../../assets/pijamas/pijama2.jpg";
-// import pijama3 from "../../assets/pijamas/pijama3.jpg";
-// import pijama4 from "../../assets/pijamas/pijama4.jpg";
-// import pijama5 from "../../assets/pijamas/pijama5.jpg";
-// import pijama6 from "../../assets/pijamas/pijama6.jpg";
+import pijama1 from "../../assets/pyjamas/pyjama1.jpg";
+import pijama2 from "../../assets/pyjamas/pyjama2.jpg";
+import pijama3 from "../../assets/pyjamas/pyjama3.jpg";
+import pijama4 from "../../assets/pyjamas/pyjama4.png";
+import pijama5 from "../../assets/pyjamas/pyjama5.jpg";
+import pijama6 from "../../assets/pyjamas/pyjama6.jpg";
 
 const LOCKED = true; // true = the choice is final (like a starter). false = she can change her mind
 const STORAGE_KEY = "pijamaElegido";
@@ -23,46 +23,70 @@ const STORAGE_KEY = "pijamaElegido";
 
 const PIJAMAS = [
   {
-    id: "clasico", src: null /* pijama1 */, name: "El Clásico a Cuadros", tagline: "El favorito de toda la vida",
-    types: ["Clásico", "Acogedor"],
-    desc: "Franela suavecita de cuadros rojos y verdes. Perfecto para noches de manta, chocolate caliente y película repetida por décima vez.",
-    stats: { calidez: 5, suavidad: 4, estilo: 3, ternura: 3, ridiculo: 1, cine: 5 },
-    color: "#d9262f", art: { kind: "set", pattern: "tartan", a: "#b3202a", b: "#1f6a4a", trim: "#f6e7c1" },
+    id: "clasico",
+    src: pijama1,
+    name: "Pijama Panda",
+    tagline: "El compañero perfecto para las noches acogedoras",
+    types: ["Animal", "Tierno"],
+    desc: "Un adorable pijama de panda, perfecto para acurrucarse juntos, disfrutar de una película y pasar una noche llena de ternura.",
+    stats: { calidez: 4, suavidad: 5, estilo: 3, ternura: 4, ridiculo: 3, cine: 5 },
+    color: "#d9262f",
+    art: { kind: "set", pattern: "tartan", a: "#b3202a", b: "#1f6a4a", trim: "#f6e7c1" },
   },
   {
-    id: "renos", src: null /* pijama2 */, name: "Los Renos Traviesos", tagline: "Risas garantizadas",
-    types: ["Divertido", "Navideño"],
-    desc: "Lleno de renos con la nariz roja. Garantía de carcajadas, incluso en una videollamada a las tres de la madrugada.",
-    stats: { calidez: 4, suavidad: 4, estilo: 2, ternura: 4, ridiculo: 5, cine: 4 },
-    color: "#e0453d", art: { kind: "set", pattern: "reindeer", a: "#1f6a4a", b: "#0f4a30", trim: "#d9262f" },
+    id: "renos",
+    src: pijama2,
+    name: "Pijama Dinausorio",
+    tagline: "Un compañero prehistórico para tus noches",
+    types: ["Divertido", "Original"],
+    desc: "Un pijama de dinosaurio para sacar tu lado más divertido. Perfecto para hacer el tonto juntos, reírnos y olvidarnos de ser adultos por un rato.",
+    stats: { calidez: 4, suavidad: 5, estilo: 1, ternura: 3, ridiculo: 5, cine: 5 },
+    color: "#e0453d",
+    art: { kind: "set", pattern: "reindeer", a: "#1f6a4a", b: "#0f4a30", trim: "#d9262f" },
   },
   {
-    id: "caramelo", src: null /* pijama3 */, name: "Caramelo de Menta", tagline: "Huele a Navidad solo con mirarlo",
-    types: ["Dulce", "Navideño"],
-    desc: "Rayas rojas y blancas como un bastón de caramelo. Visualmente delicioso, aunque no se come (lo hemos comprobado).",
-    stats: { calidez: 3, suavidad: 5, estilo: 4, ternura: 4, ridiculo: 3, cine: 4 },
-    color: "#ff6b6b", art: { kind: "set", pattern: "candy", a: "#d9262f", b: "#fff6e8", trim: "#1f9a62" },
+    id: "caramelo",
+    src: pijama3,
+    name: "Pijama Dragon",
+    tagline: "Para noches llenas de fantasía",
+    types: ["Fantasía", "Original"],
+    desc: "Un pijama inspirado en los dragones, ideal para dejar volar la imaginación y vivir nuestras propias aventuras incluso antes de dormir.",
+    stats: { calidez: 4, suavidad: 4, estilo: 3, ternura: 4, ridiculo: 3, cine: 5 },
+    color: "#ff6b6b",
+    art: { kind: "set", pattern: "candy", a: "#d9262f", b: "#fff6e8", trim: "#1f9a62" },
   },
   {
-    id: "copos", src: null /* pijama4 */, name: "Noche de Copos", tagline: "Como vivir dentro de una bola de nieve",
-    types: ["Elegante", "Invernal"],
-    desc: "Azul noche con copos de nieve plateados. Sensación de estar dentro de una bola de cristal, pero sin sacudidas.",
-    stats: { calidez: 4, suavidad: 4, estilo: 5, ternura: 3, ridiculo: 1, cine: 4 },
-    color: "#4a7fe0", art: { kind: "set", pattern: "snow", a: "#1c2f66", b: "#101c44", trim: "#c9d6f5" },
+    id: "copos",
+    src: pijama4,
+    name: "El Clásico a Cuadros",
+    tagline: "Un clásico que nunca pasa de moda",
+    types: ["Clásico", "Atemporal"],
+    desc: "El tradicional pijama de cuadros, perfecto para las noches frías de invierno, una manta calentita y una película navideña juntos.",
+    stats: { calidez: 3, suavidad: 4, estilo: 5, ternura: 3, ridiculo: 1, cine: 4 },
+    color: "#4a7fe0",
+    art: { kind: "set", pattern: "snow", a: "#1c2f66", b: "#101c44", trim: "#c9d6f5" },
   },
   {
-    id: "mono", src: null /* pijama5 */, name: "El Mono Abrazable", tagline: "Prohibido tener frío",
-    types: ["Ultra cómodo", "Tierno"],
-    desc: "Pijama entero con capucha y orejitas. Prohibido tener frío. Prohibido, también, ir al baño con prisa.",
-    stats: { calidez: 5, suavidad: 5, estilo: 2, ternura: 5, ridiculo: 4, cine: 5 },
-    color: "#e8a86a", art: { kind: "onesie", pattern: "plain", a: "#e9c9a0", b: "#d9a878", trim: "#f6e7c1" },
+    id: "mono",
+    src: pijama5,
+    name: "Pijama Bonito",
+    tagline: "Demasiado adorable para quitárselo",
+    types: ["Cómodo", "Adorable"],
+    desc: "Un pijama entero para estar calentitos de pies a cabeza. Perfecto para abrazarnos, acurrucarnos y pasar horas juntos sin querer salir de la cama.",
+    stats: { calidez: 5, suavidad: 5, estilo: 4, ternura: 3, ridiculo: 3, cine: 3 },
+    color: "#e8a86a",
+    art: { kind: "onesie", pattern: "plain", a: "#e9c9a0", b: "#d9a878", trim: "#f6e7c1" },
   },
   {
-    id: "saten", src: null /* pijama6 */, name: "Satén de Nochebuena", tagline: "Para cenas, aunque sean por pantalla",
-    types: ["Romántico", "Elegante"],
-    desc: "Burdeos con ribetes dorados. Ideal para brindar a medianoche y fingir que somos muy sofisticados.",
-    stats: { calidez: 2, suavidad: 5, estilo: 5, ternura: 3, ridiculo: 1, cine: 3 },
-    color: "#b01c4a", art: { kind: "set", pattern: "satin", a: "#7a1030", b: "#4a0a1e", trim: "#e8b84a" },
+    id: "saten",
+    src: pijama6,
+    name: "Pijama Gato",
+    tagline: "Elegancia y ternura en una sola prenda",
+    types: ["Animal", "Elegante"],
+    desc: "Un pijama inspirado en los gatos, con un toque elegante y encantador. Perfecto para sentirnos guapos incluso en nuestros momentos más relajados.",
+    stats: { calidez: 3, suavidad: 5, estilo: 1, ternura: 5, ridiculo: 4, cine: 4 },
+    color: "#b01c4a",
+    art: { kind: "set", pattern: "satin", a: "#7a1030", b: "#4a0a1e", trim: "#e8b84a" },
   },
 ];
 
@@ -78,21 +102,21 @@ const STATS = [
 const TYPE_COLORS = { Clásico: "#b3202a", Acogedor: "#c9733a", Divertido: "#f2b632", Navideño: "#1f9a62", Dulce: "#e0527f", Elegante: "#4a7fe0", Invernal: "#1fa3a3", "Ultra cómodo": "#8a4fd0", Tierno: "#ff8fa3", Romántico: "#d9306e" };
 
 const TEXTS = {
-  kicker: "Laboratorio navideño del Profesor Noel",
+  kicker: "Laboratorio navideño del Papa Noel",
   title: "Elige nuestro futuro pijama",
-  intro: "¡Ho, ho, hola! Soy el Profesor Noel. Hoy hay que tomar una decisión importantísima: ¡elegir el futuro pijama de Navidad de los dos! He guardado seis candidatos en estas bolas mágicas.",
+  intro: "¡Ho, ho, hola! Soy el Papa Noel. Hoy hay que tomar una decisión importantísima: ¡elegir el futuro pijama de los dos! He guardado seis candidatos en estas bolas mágicas.",
   prompt: "Toca una bola para ver el pijama de cerca. Piénsalo bien… ¡solo puede quedarse uno!",
   noPrompt: "Vale, vale… ¡tómate tu tiempo! Toca otra bola cuando quieras.",
   ask: (n) => `¿Quieres elegir ${n}?`,
   yes: "Sí",
   no: "No",
-  dex: (n, t) => `Pijadex: ${n} / ${t} vistos`,
+  dex: (n, t) => `Pijama: ${n} / ${t} vistos`,
   seen: "visto",
-  chosenLine: (n) => `¡Excelente elección! ${n} será nuestro pijama de Navidad. ¡Qué ganas de estrenarlo juntos!`,
+  chosenLine: (n) => `¡Excelente elección! ${n} será nuestro pijama de pareja. ¡Qué ganas de estrenarlo juntos!`,
   certTitle: "Certificado oficial",
-  certSub: "Nuestro futuro pijama de Navidad",
+  certSub: "Nuestro futuro pijama de pareja",
   certDate: (d) => `Elegido el ${d}`,
-  certNote: "Firmado: el Profesor Noel y un montón de elfos muy emocionados ✨",
+  certNote: "Firmado: el Papa Noel y un montón de elfos muy emocionados ✨",
   change: "Cambiar de pijama",
   others: "Los otros candidatos",
   sound: "Sonido",

@@ -7,32 +7,32 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 const STORAGE_KEY = "giftChoiceFinal"; // the choice is final, even after a reload
 
 const TEXTS = {
-  title: "Choisis ton cadeau",
-  subtitle: "J'en ai préparé trois… mais tu ne peux en choisir qu'un ❤️",
-  pick: "Choisir ce cadeau",
-  pickTouch: "Touche encore pour choisir",
-  opening: "Une petite magie opère…",
-  close: "Fermer la surprise",
-  reopen: "Relire ma surprise",
-  chosen: "Tu as fait ton choix ❤️",
+  title: "Elige tu regalo",
+  subtitle: "He preparado tres… pero solo puedes elegir uno ❤️",
+  pick: "Elegir este regalo",
+  pickTouch: "Toca otra vez para elegir",
+  opening: "Un poquito de magia está ocurriendo…",
+  close: "Cerrar la sorpresa",
+  reopen: "Volver a leer mi sorpresa",
+  chosen: "Has hecho tu elección ❤️",
 };
 
 // ✏️ colours + the surprise hidden inside each gift
 const GIFTS = [
   {
-    id: "red", name: "Cadeau rouge", pattern: "dots",
+    id: "red", name: "Romántico", pattern: "dots",
     body: "#d9262f", ribbon: "#ffffff", dots: "#ffffff",
-    surprise: { title: "Quelques mots pour toi ❤️", message: "Même lorsque la distance nous sépare, tu gardes une place immense dans mon cœur.", signature: "Avec tout mon amour" },
+    surprise: { title: "Un ramo de flores para ti! 💐", message: "Porque mereces recibir flores y ver una sonrisa en tu rostro. Quiero regalarte este hermoso ramo para recordarte lo especial que eres para mí.", signature: "Con todo mi amor ❤️" },
   },
   {
-    id: "green", name: "Cadeau vert", pattern: "stars",
+    id: "green", name: "Aventura", pattern: "stars",
     body: "#1f9a62", ribbon: "#f6e7c1", dots: "#f6e7c1",
-    surprise: { title: "Un cadeau rien que pour toi 🎁", message: "Ce petit bon est une promesse : un nouveau moment ensemble, préparé avec amour.", signature: "Valable toute l'année" },
+    surprise: { title: "Prepárate para volar! 🎁", message: "Tu regalo es un salto ! Una experiencia llena de adrenalina, emociones y recuerdos inolvidables. Atrévete a dar el salto y disfruta de esta aventura única.", signature: "Que comience la aventura! 🎢" },
   },
   {
-    id: "champagne", name: "Cadeau champagne", pattern: "tone",
+    id: "champagne", name: "Bienestar", pattern: "tone",
     body: "#efd9a6", ribbon: "#8a1a2e", dots: "#d9b878",
-    surprise: { title: "Notre petite histoire ✨", message: "Parmi tous les souvenirs que je pourrais garder, ceux que nous construisons ensemble sont les plus précieux.", signature: "À nous deux" },
+    surprise: { title: "Un masaje para ti! 💆‍♀️", message: "Te espera un masaje en un instituto para que puedas relajarte, desconectar y disfrutar de un momento dedicado únicamente a ti. Porque mereces que te cuiden y te mimen.", signature: "À nous deux" },
   },
 ];
 
@@ -293,7 +293,7 @@ export default function GiftChoice({ className = "" }) {
       </div>
 
       <header className="gc-head" aria-live="polite">
-        <h1 className="gc-title">{TEXTS.title}</h1>
+        <h1 style={{ fontFamily: "'Mountains of Christmas', cursive", fontSize: "62px", fontWeight: "bold" }} className="gc-title">{TEXTS.title}</h1>
         <p className="gc-sub">{choice ? (stage === "opening" ? TEXTS.opening : TEXTS.chosen) : TEXTS.subtitle}</p>
       </header>
 

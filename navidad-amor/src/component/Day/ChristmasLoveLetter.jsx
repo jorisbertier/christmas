@@ -584,6 +584,25 @@ export default function ChristmasLoveLetter({
 
   const letterVisible = PHASES.indexOf(phase) >= 3;
 
+  const letterAudioRef = useRef(null);
+
+  const playLetterMusic = useCallback(() => {
+    if (!soundEnabled) return;
+
+    // Évite de créer plusieurs lecteurs
+    if (!letterAudioRef.current) {
+      letterAudioRef.current = new Audio("/audio/letter.mp3");
+      letterAudioRef.current.loop = true;
+      letterAudioRef.current.volume = 0.10;
+    }
+
+    letterAudioRef.current.currentTime = 0;
+
+    letterAudioRef.current.play().catch((error) => {
+      console.warn("Impossible de lancer la musique :", error);
+    });
+  }, [soundEnabled]);
+
   const later = useCallback((fn, ms) => {
     timers.current.push(setTimeout(fn, ms));
   }, []);
@@ -624,7 +643,13 @@ export default function ChristmasLoveLetter({
     };
   }, [open, clearTimers, later]);
 
-  useEffect(() => () => { try { audioRef.current?.close(); } catch {} }, []);
+  useEffect(() => () => {
+    try {
+      audioRef.current?.close();
+      letterAudioRef.current?.pause();
+      letterAudioRef.current = null;
+    } catch {}
+  }, []);
 
   /* sons synthétisés */
   const getCtx = () => {
@@ -678,6 +703,7 @@ export default function ChristmasLoveLetter({
   openRef.current = () => {
     if (phase !== "envelope" || leaving) return;
     playBell();
+    playLetterMusic();
     if (tiltRef.current) {
       tiltRef.current.style.setProperty("--rx", "0deg");
       tiltRef.current.style.setProperty("--ry", "0deg");
@@ -696,6 +722,10 @@ export default function ChristmasLoveLetter({
     if (leaving) return;
     setLeaving(true);
     clearTimers();
+    if (letterAudioRef.current) {
+      letterAudioRef.current.pause();
+      letterAudioRef.current.currentTime = 0;
+    }
     later(() => cb.current.onClose?.(), 700);
   }, [leaving, clearTimers, later]);
 
