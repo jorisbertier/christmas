@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const GIFTS = [
-  { name: "Un beso mágico", wheelLines: ["Beso", "mágico"], emoji: "💋" },
-  { name: "Chocolate navideño", wheelLines: ["Chocolate", "navideño"], emoji: "🍫" },
-  { name: "Un deseo cumplido", wheelLines: ["Un deseo", "cumplido"], emoji: "⭐" },
-  { name: "Una cita romántica", wheelLines: ["Cita", "romántica"], emoji: "❤️" },
-  { name: "Un abrazo infinito", wheelLines: ["Abrazo", "infinito"], emoji: "🤗" },
-  { name: "Una sorpresa", wheelLines: ["Una", "sorpresa"], emoji: "🎁" },
-  { name: "Un mensaje de amor", wheelLines: ["Mensaje", "de amor"], emoji: "💌" },
-  { name: "Noche de película", wheelLines: ["Noche de", "película"], emoji: "🎬" },
-  { name: "Un baile juntos", wheelLines: ["Un baile", "juntos"], emoji: "💃" },
-  { name: "Un recuerdo especial", wheelLines: ["Un recuerdo", "especial"], emoji: "📸" },
-  { name: "Un vale de mimos", wheelLines: ["Vale de", "mimos"], emoji: "🥰" },
-  { name: "El regalo sorpresa", wheelLines: ["Regalo", "sorpresa"], emoji: "🎀" },
+  { name: "Marsmallow", wheelLines: ["Marshmallow"] , emoji: "🍡" },
+  { name: "Chocolate Cofter Block", wheelLines: ["Chocolate", "Cofter Block"], emoji: "🍫" },
+  { name: "Alfajor Bon o Bon", wheelLines: ["Alfajor", "Bon o Bon"], emoji: "🫓" },
+  { name: "Helado a elección", wheelLines: ["Una", "sorpresa"], emoji: "🍦" },
+  { name: "Mini torta vaso dulsy", wheelLines: ["Mini torta", "vaso dulsy"], emoji: "🍰" },
+  { name: "Chocolate M&M's", wheelLines: ["Chocolate", "M&M's"], emoji: "🍫" }, 
+  { name: "Chocolate Rocklet", wheelLines: ["Chocolate", "Rocklet"], emoji: "🍫" },
+  { name: "Helado pie de limón", wheelLines: ["Helado", "pie de limón"], emoji: "🍦" },
+  { name: "Gomitas a elección", wheelLines: ["Gomitas", "a elección"], emoji: "🍬" },
+  { name: "Helado 1 litro familiar", wheelLines: ["Helado", "1 litro familiar"], emoji: "🍦" },
+  { name: "Tableta de chocolate para ti", wheelLines: ["Tableta de", "chocolate para ti"], emoji: "🍫" },
+  { name: "Pie de limón", wheelLines: ["Pie de", "limón"], emoji: "🍋🍰" },
 ];
 
 const STORAGE_KEY = "navidad_ruleta_giros_2026";

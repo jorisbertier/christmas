@@ -18,7 +18,7 @@ const STORAGE_KEY = "turnIn";
 /* ------------------------------------------------------------------ */
 
 const TEXTS = {
-  day: "Día 1 · La caja de música",
+  day: "Día 1",
   openHint: "Toca la caja de música para abrirla",
   dancing: "Una melodía solo para ti…",
   next: "Seguir ♥",
@@ -27,8 +27,8 @@ const TEXTS = {
     {
       k: "¿Qué es todo esto?",
       p: [
-        "Esto es tu calendario de Adviento, mi amor. Durante 24 días se irá abriendo una casita del pueblo de Navidad, y dentro de cada una encontrarás una sorpresa: juegos, mensajes, recuerdos y algún que otro regalo.",
-        "Cada casita se abre solo cuando llega su día, así que tendrás que tener un poquito de paciencia (lo sé, lo sé… 😉).",
+        "Esto es tu calendario de Adviento, mi amor. Durante 24 días se irá abriendo una casita del pueblo de Navidad, y dentro de cada una encontrarás una sorpresa.",
+        "Cada casita se abre solo cuando llega su día, así que tendrás que tener un poquito de paciencia 😉.",
       ],
     },
     {
@@ -39,13 +39,13 @@ const TEXTS = {
       ],
     },
   ],
-  light: "Enciende el pueblo de Navidad",
+  light: "Enciende tu pueblo de Navidad",
   lightHint: "Toca las lámparas para devolverle la luz",
   lampsLabel: "Lámparas encendidas",
-  allLit: "¡El pueblo brilla gracias a ti! ✨",
+  allLit: "¡Tu pueblo brilla gracias a ti! ✨",
   cont: "Continuar ›",
   lightBtn: "Encender el pueblo ✨",
-  finalKick: "El pueblo está encendido",
+  finalKick: "Tu pueblo está encendido",
   finalTitle: "Eres mi luz favorita",
   finalMsg: [
     "Este pueblo brilla porque tú lo has encendido, igual que iluminas cada día de mi vida.",
@@ -53,7 +53,7 @@ const TEXTS = {
   ],
   photoCaption: "Tú y yo ❤️",
   photoEmpty: "Aquí irá vuestra foto",
-  sign: ["Y esto es solo", "el comienzo...", "Nos esperan 23 días", "más de magia."],
+  sign: ["Y esto es solo", "el comienzo...", "Te esperan 23 días", "más de magia."],
   replay: "↺ Volver a vivir la escena",
 };
 

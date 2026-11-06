@@ -1,4 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import photo1 from "../../assets/museum/1.jpg";
+import photo2 from "../../assets/museum/2.jpg";
+import photo3 from "../../assets/museum/3.jpg";
+import photo4 from "../../assets/museum/4.jpg";
+import photo5 from "../../assets/museum/5.jpg";
+import photo6 from "../../assets/museum/6.jpg";
+import photo7 from "../../assets/museum/7.jpg";
+import photo8 from "../../assets/museum/8.jpg";
+import photo9 from "../../assets/museum/9.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  📸 Your pictures (supplied by you)                                 */
@@ -26,33 +35,33 @@ const ROOMS = [
 
 const EXHIBITS = [
   // ---- Sala 1
-  { id: "e1", room: 0, kind: "photo", frame: "gold", emoji: "📸", src: null /* foto1 */,
-    title: "El día que nos conocimos", date: "La fecha que tú y yo sabemos", technique: "Nervios y sonrisas sobre lienzo de destino",
+  { id: "e1", room: 0, kind: "photo", frame: "gold", emoji: "📸", src: photo1 /* foto1 */,
+    title: "El día que nos conocimos", date: "La fecha que tú y yo sabemos", technique: "Sonrisas sobre lienzo de destino",
     memory: "Nadie sabía todavía lo que iba a pasar, pero algo ya brillaba. Esta es la primera pieza de la colección, y quizás la más importante." },
-  { id: "e2", room: 0, kind: "photo", frame: "wood", emoji: "🌹", src: null /* foto2 */,
-    title: "Nuestra primera cita", date: "Un día que no se olvida", technique: "Mariposas en el estómago, técnica mixta",
-    memory: "Qué nervios, qué risas y qué ganas de que el tiempo no pasara. Desde ese día, cada cita contigo es mi favorita." },
-  { id: "e3", room: 0, kind: "object", emoji: "💬", src: null,
-    title: "La primera conversación", date: "Mensajes que se alargaban hasta la madrugada", technique: "Pantalla, teclado y muchísimo cariño",
-    memory: "Las horas volaban y siempre había un “un minutito más”. Aquí se guardan todas las palabras que fueron construyendo lo nuestro." },
+  { id: "e2", room: 0, kind: "photo", frame: "wood", emoji: "🌹", src: photo2 /* foto2 */,
+    title: "Nuestra primera cita", date: "Un día que no se olvida", technique: "Técnica peligrosa",
+    memory: "En nuestra primera cita fuiste muy peligrosa, no fallaste ni un solo blanco, apuntaste tan bien que ese día te ganaste mi corazón." },
+  { id: "e3", room: 0, kind: "object", emoji: "💬", src: photo3,
+    title: "Nuestro restaurante favorito", date: "A Bernadette", technique: "Descubrimiento de sabores y culturas",
+    memory: "Ese día pudiste conocer un poco más de mi país y, sobre todo, conociste los famosos caracoles; pero hay cosas mucho peores, no te preocupes." },
   // ---- Sala 2
-  { id: "e4", room: 1, kind: "photo", frame: "oval", emoji: "🌍", src: null /* foto4 */,
+  { id: "e4", room: 1, kind: "photo", frame: "oval", emoji: "🌍", src: photo4 /* foto4 */,
     title: "Nuestra aventura favorita", date: "Un viaje, un paseo o una locura compartida", technique: "Risas al aire libre sobre paisaje inolvidable",
     memory: "Da igual el lugar: contigo cualquier plan se convierte en una aventura que merece estar en un museo." },
-  { id: "e5", room: 1, kind: "photo", frame: "gold", emoji: "😴", src: null /* foto5 */,
+  { id: "e5", room: 1, kind: "photo", frame: "gold", emoji: "😴", src: photo5 /* foto5 */,
     title: "Caras de dormidos", date: "Obra espontánea, sin retoque", technique: "Doble autorretrato con ojeras",
     memory: "Sin filtros, sin posados, sin maquillaje. Y aun así, la obra más bonita de toda la sala." },
-  { id: "e6", room: 1, kind: "object", emoji: "🎟️", src: null,
+  { id: "e6", room: 1, kind: "object", emoji: "🎟️", src: photo6,
     title: "Entradas de cine", date: "Noches de película y palomitas", technique: "Papel, tinta y un poquito de magia",
     memory: "Hay películas que se olvidan, pero las noches de cine contigo no." },
   // ---- Sala 3
-  { id: "e7", room: 2, kind: "photo", frame: "gold", emoji: "🎄", src: null /* foto7 */,
+  { id: "e7", room: 2, kind: "photo", frame: "gold", emoji: "🎄", src: photo7 /* foto7 */,
     title: "Nuestra Navidad", date: "Luces, risas y chocolate caliente", technique: "Calidez sobre lienzo de invierno",
     memory: "Aunque este año la distancia nos separa, cada luz de este pueblo lleva tu nombre." },
-  { id: "e8", room: 2, kind: "photo", frame: "wood", emoji: "💻", src: null /* foto8 */,
+  { id: "e8", room: 2, kind: "photo", frame: "wood", emoji: "💻", src: photo8 /* foto8 */,
     title: "Videollamada de domingo", date: "Pantalla pequeña, abrazo gigante", technique: "Píxeles y mucho amor",
     memory: "Qué bonito es encontrarte al otro lado de la pantalla. Cada llamada acorta un poquito la distancia." },
-  { id: "e9", room: 2, kind: "object", emoji: "🎄", src: null,
+  { id: "e9", room: 2, kind: "object", emoji: "🎄", src: photo9,
     title: "Este calendario", date: "La obra más reciente de la colección", technique: "24 casitas, mucho cariño y algo de magia",
     memory: "Veinticuatro días de sorpresas hechas con amor para ti. Cada casita es una pieza más de este museo." },
 ];

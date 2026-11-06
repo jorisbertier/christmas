@@ -23,8 +23,9 @@ import ChristmasDrawingGame from "./Day/ChristmasDrawingGame";
 import InfiniteGift from "./Day/InfiniteGift";
 import ChristmasFinalHouse from "./Day/ChristmasFinalHouse";
 import DayOneMusicBox from "./Day/DayOneMusicBox";
-import ChristmasMuseum from "./Day/ChristmasMuseum";
+import ChristmasMuseum from "./Day/ChristmasMuseem";
 import ChristmasPapillotes from "./Day/ChristmasPapillotes";
+import PyjamaChoice from "./Day/PyjamaChoice";
 
 const composants = {
   // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
@@ -34,7 +35,8 @@ const composants = {
   4: ChristmasDrawingGame,
   5: GiftSled,
   6: ChristmasBall,
-  7: ChristmasAlbum,
+  // 7: ChristmasAlbum,
+  7: PyjamaChoice,
   8: PhotoGallery,
   9: ChristmasVillage,
   10: Christmaschoir,

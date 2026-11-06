@@ -7,12 +7,12 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useSta
 /* ------------------------------------------------------------------ */
 
 const CATS = {
-  broma: { icon: "😂", label: "Broma", color: "#f2b632" },
-  adivinanza: { icon: "🧩", label: "Adivinanza", color: "#2f6fd0" },
-  meditar: { icon: "🧘", label: "Para meditar", color: "#8a4fd0" },
-  curioso: { icon: "✨", label: "¿Sabías que…?", color: "#1f9a62" },
-  reto: { icon: "🎯", label: "Mini reto", color: "#d9262f" },
-  amor: { icon: "💌", label: "Con amor", color: "#e0527f" },
+    broma: { icon: "😂", label: "Broma", color: "#f2b632" },
+    adivinanza: { icon: "🧩", label: "Adivinanza", color: "#2f6fd0" },
+    meditar: { icon: "🧘", label: "Para meditar", color: "#8a4fd0" },
+    curioso: { icon: "✨", label: "¿Sabías que…?", color: "#1f9a62" },
+    reto: { icon: "🎯", label: "Mini reto", color: "#d9262f" },
+    amor: { icon: "💌", label: "Con amor", color: "#e0527f" },
 };
 
 const MESSAGES = [
