@@ -10,18 +10,6 @@ import photo8 from "../../assets/museum/8.jpg";
 import photo9 from "../../assets/museum/9.jpg";
 
 /* ------------------------------------------------------------------ */
-/*  📸 Your pictures (supplied by you)                                 */
-/*  1) uncomment an import  2) put its name in the `src` of the piece  */
-/* ------------------------------------------------------------------ */
-// import foto1 from "../../assets/museo/foto1.jpg";
-// import foto2 from "../../assets/museo/foto2.jpg";
-// import foto4 from "../../assets/museo/foto4.jpg";
-// import foto5 from "../../assets/museo/foto5.jpg";
-// import foto7 from "../../assets/museo/foto7.jpg";
-// import foto8 from "../../assets/museo/foto8.jpg";
-// (the 3 "object" pieces can also get a picture of the real souvenir: src: objeto3, etc.)
-
-/* ------------------------------------------------------------------ */
 /*  ✏️ The collection — edit the texts / dates / memories freely        */
 /*  kind: "photo" (framed picture) or "object" (souvenir in a vitrine) */
 /*  frame: "gold" | "wood" | "oval"                                    */
@@ -35,35 +23,35 @@ const ROOMS = [
 
 const EXHIBITS = [
   // ---- Sala 1
-  { id: "e1", room: 0, kind: "photo", frame: "gold", emoji: "📸", src: photo1 /* foto1 */,
-    title: "El día que nos conocimos", date: "La fecha que tú y yo sabemos", technique: "Sonrisas sobre lienzo de destino",
+  { id: "e1", room: 0, kind: "photo", frame: "gold", emoji: "📸", src: photo1,
+    title: "El día que nos conocimos", date: "Mayo 2025", technique: "Sonrisas sobre lienzo de destino",
     memory: "Nadie sabía todavía lo que iba a pasar, pero algo ya brillaba. Esta es la primera pieza de la colección, y quizás la más importante." },
-  { id: "e2", room: 0, kind: "photo", frame: "wood", emoji: "🌹", src: photo2 /* foto2 */,
+  { id: "e2", room: 0, kind: "photo", frame: "wood", emoji: "🌹", src: photo2,
     title: "Nuestra primera cita", date: "Un día que no se olvida", technique: "Técnica peligrosa",
     memory: "En nuestra primera cita fuiste muy peligrosa, no fallaste ni un solo blanco, apuntaste tan bien que ese día te ganaste mi corazón." },
   { id: "e3", room: 0, kind: "object", emoji: "💬", src: photo3,
     title: "Nuestro restaurante favorito", date: "A Bernadette", technique: "Descubrimiento de sabores y culturas",
     memory: "Ese día pudiste conocer un poco más de mi país y, sobre todo, conociste los famosos caracoles; pero hay cosas mucho peores, no te preocupes." },
   // ---- Sala 2
-  { id: "e4", room: 1, kind: "photo", frame: "oval", emoji: "🌍", src: photo4 /* foto4 */,
-    title: "Nuestra aventura favorita", date: "Un viaje, un paseo o una locura compartida", technique: "Risas al aire libre sobre paisaje inolvidable",
+  { id: "e4", room: 1, kind: "photo", frame: "oval", emoji: "🌍", src: photo4,
+    title: "Nuestra aventura favorita", date: "Salar de Uyuni", technique: "Al aire libre sobre paisaje inolvidable",
     memory: "Da igual el lugar: contigo cualquier plan se convierte en una aventura que merece estar en un museo." },
-  { id: "e5", room: 1, kind: "photo", frame: "gold", emoji: "😴", src: photo5 /* foto5 */,
-    title: "Caras de dormidos", date: "Obra espontánea, sin retoque", technique: "Doble autorretrato con ojeras",
-    memory: "Sin filtros, sin posados, sin maquillaje. Y aun así, la obra más bonita de toda la sala." },
+  { id: "e5", room: 1, kind: "photo", frame: "gold", emoji: "😴", src: photo5,
+    title: "Día random", date: "Obra espontánea, sin retoque", technique: "Doble autorretrato con ojeras",
+    memory: "Una foto que no conocías. Y aun así, salió esa obra de arte." },
   { id: "e6", room: 1, kind: "object", emoji: "🎟️", src: photo6,
-    title: "Entradas de cine", date: "Noches de película y palomitas", technique: "Papel, tinta y un poquito de magia",
-    memory: "Hay películas que se olvidan, pero las noches de cine contigo no." },
+    title: "Viajes", date: "Septiembre 2026", technique: "Papel, tinta y un poquito de magia",
+    memory: "Hay viajes que terminan, pero los recuerdos contigo se quedan para siempre." },
   // ---- Sala 3
-  { id: "e7", room: 2, kind: "photo", frame: "gold", emoji: "🎄", src: photo7 /* foto7 */,
-    title: "Nuestra Navidad", date: "Luces, risas y chocolate caliente", technique: "Calidez sobre lienzo de invierno",
+  { id: "e7", room: 2, kind: "photo", frame: "gold", emoji: "🎄", src: photo7,
+    title: "Nuestra Navidad", date: "Diciembre 2025", technique: "Calidez sobre lienzo de invierno",
     memory: "Aunque este año la distancia nos separa, cada luz de este pueblo lleva tu nombre." },
-  { id: "e8", room: 2, kind: "photo", frame: "wood", emoji: "💻", src: photo8 /* foto8 */,
+  { id: "e8", room: 2, kind: "photo", frame: "wood", emoji: "💻", src: photo8,
     title: "Videollamada de domingo", date: "Pantalla pequeña, abrazo gigante", technique: "Píxeles y mucho amor",
-    memory: "Qué bonito es encontrarte al otro lado de la pantalla. Cada llamada acorta un poquito la distancia." },
+    memory: "La cara del domingo que duró, pero qué bonito es encontrarte al otro lado de la pantalla. Cada llamada acorta un poquito la distancia." },
   { id: "e9", room: 2, kind: "object", emoji: "🎄", src: photo9,
-    title: "Este calendario", date: "La obra más reciente de la colección", technique: "24 casitas, mucho cariño y algo de magia",
-    memory: "Veinticuatro días de sorpresas hechas con amor para ti. Cada casita es una pieza más de este museo." },
+    title: "Nuestro hijo imaginario", date: "La obra más imaginaria de la colección", technique: "24 casitas, mucho cariño y algo de magia",
+    memory: "Nuestro hijo, quién hubiera imaginado que sería una llama." },
 ];
 
 const TEXTS = {
@@ -90,7 +78,110 @@ const TEXTS = {
   doneMsg: "Pero la colección no termina aquí: cada día que pasamos juntos, añadimos una obra nueva. ❤️",
   doneBtn: "Seguir paseando",
   seeNote: "Ver la pieza",
+  musicOn: "Silenciar la música",
+  musicOff: "Activar la música",
 };
+
+
+/* ------------------------------------------------------------------ */
+/*  Soft background music (Web Audio, original, no file needed)        */
+/*  - starts when she enters the museum                                */
+/*  - keeps playing while the audio guide talks, but is silenced       */
+/*    (volume → 0) and fades back in when the audio guide stops        */
+/* ------------------------------------------------------------------ */
+
+const BAR = 4.8; // seconds per chord (slow, calm)
+const CHORDS = [
+  { root: 65.41, pad: [261.63, 329.63, 392.0, 493.88], arp: [523.25, 659.25, 783.99, 987.77, 783.99, 659.25] }, // Cmaj7
+  { root: 55.0, pad: [220.0, 261.63, 329.63, 392.0], arp: [440.0, 523.25, 659.25, 783.99, 659.25, 523.25] }, // Am7
+  { root: 43.65, pad: [174.61, 220.0, 261.63, 329.63], arp: [349.23, 440.0, 523.25, 659.25, 523.25, 440.0] }, // Fmaj7
+  { root: 49.0, pad: [196.0, 246.94, 293.66, 329.63], arp: [392.0, 493.88, 587.33, 659.25, 587.33, 493.88] }, // G6
+];
+const MUSIC_LEVEL = 0.55;
+
+function useAmbient() {
+  const ctxRef = useRef(null);
+  const masterRef = useRef(null);
+  const verbRef = useRef(null);
+  const timerRef = useRef(0);
+  const nextRef = useRef(0);
+  const barRef = useRef(0);
+  const playingRef = useRef(false);
+  const duckRef = useRef(false);
+  const onRef = useRef(true);
+  const [on, setOn] = useState(true);
+  onRef.current = on;
+
+  // volume = music level, or 0 when muted / while the audio guide speaks
+  const applyGain = useCallback((slow) => {
+    const ctx = ctxRef.current; const m = masterRef.current;
+    if (!ctx || !m) return;
+    const target = onRef.current && !duckRef.current ? MUSIC_LEVEL : 0;
+    m.gain.cancelScheduledValues(ctx.currentTime);
+    m.gain.setTargetAtTime(target, ctx.currentTime, slow ? 1.2 : 0.35);
+  }, []);
+
+  const ensure = useCallback(() => {
+    if (!ctxRef.current) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      const ctx = new AC();
+      const master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+      const len = Math.floor(ctx.sampleRate * 3.2);
+      const buf = ctx.createBuffer(2, len, ctx.sampleRate);
+      for (let c = 0; c < 2; c++) { const d = buf.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.4); }
+      const conv = ctx.createConvolver(); conv.buffer = buf;
+      const wet = ctx.createGain(); wet.gain.value = 0.55; conv.connect(wet); wet.connect(master);
+      ctxRef.current = ctx; masterRef.current = master; verbRef.current = conv;
+    }
+    if (ctxRef.current.state === "suspended") ctxRef.current.resume().catch(() => {});
+    return ctxRef.current;
+  }, []);
+
+  const tone = useCallback((f, t, dur, vol, attack, type = "sine", detune = 0) => {
+    const ctx = ctxRef.current; if (!ctx) return;
+    const o = ctx.createOscillator(); const g = ctx.createGain();
+    o.type = type; o.frequency.value = f; o.detune.value = detune;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(vol, t + attack);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(masterRef.current); g.connect(verbRef.current);
+    o.start(t); o.stop(t + dur + 0.1);
+  }, []);
+
+  const scheduleBar = useCallback((i, t) => {
+    const ch = CHORDS[i % CHORDS.length];
+    tone(ch.root, t, BAR + 1.2, 0.07, 0.6);                          // warm bass
+    ch.pad.forEach((f, k) => { tone(f, t + k * 0.05, BAR + 1.4, 0.026, 1.5, "sine", k % 2 ? 4 : -4); }); // soft pad
+    ch.arp.forEach((f, k) => {                                           // gentle bell arpeggio
+      const tt = t + 0.4 + k * 0.72;
+      tone(f, tt, 2.4, 0.05, 0.01, "sine");
+      tone(f * 2.005, tt, 1.2, 0.016, 0.01, "sine");
+    });
+  }, [tone]);
+
+  const pump = useCallback(() => {
+    const ctx = ctxRef.current; if (!ctx || !playingRef.current) return;
+    while (nextRef.current < ctx.currentTime + 2) { scheduleBar(barRef.current, nextRef.current); nextRef.current += BAR; barRef.current += 1; }
+  }, [scheduleBar]);
+
+  const start = useCallback(() => {
+    const ctx = ensure(); if (!ctx || playingRef.current) return;
+    playingRef.current = true;
+    nextRef.current = ctx.currentTime + 0.2; barRef.current = 0;
+    pump(); timerRef.current = setInterval(pump, 500);
+    applyGain(true); // slow fade-in
+  }, [ensure, pump, applyGain]);
+
+  const toggle = useCallback(() => { setOn((v) => { onRef.current = !v; return !v; }); }, []);
+  useEffect(() => { applyGain(false); }, [on, applyGain]);
+
+  // true while the audio guide is talking: the music keeps running but cannot be heard
+  const setDuck = useCallback((d) => { duckRef.current = d; applyGain(false); }, [applyGain]);
+
+  useEffect(() => () => { playingRef.current = false; clearInterval(timerRef.current); if (ctxRef.current) ctxRef.current.close().catch(() => {}); }, []);
+  return { start, setDuck, toggle, on };
+}
 
 function rng(seed) {
   let s = seed;
@@ -126,6 +217,9 @@ const CSS = `
 .mu-dot.on{background:radial-gradient(circle at 35% 30%,#fff3bf,#e8b84a);transform:scale(1.35);box-shadow:0 0 10px rgba(255,214,120,.7)}
 .mu-count{margin:0;font-weight:700;font-size:clamp(11px,min(1.7cqw,2.2cqh),15px);letter-spacing:.1em;color:#ffeab1;white-space:nowrap}
 .mu-hint{margin:0;font-style:italic;font-size:clamp(10px,1.5cqw,13px);color:rgba(255,233,201,.7)}
+
+.mu-snd{flex:none;margin-left:auto;margin-right:clamp(6px,2cqw,22px);width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(246,210,122,.7);background:rgba(0,0,0,.45);color:#f8dd86;cursor:pointer;font-size:16px;transition:background .2s ease}
+.mu-snd:hover{background:rgba(246,210,122,.25)}.mu-snd:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
 /* the rooms */
 .mu-view{position:relative;flex:1 1 0;min-height:0;width:100%;overflow:hidden;margin-top:calc(-1 * clamp(10px,2cqh,22px));margin-bottom:calc(-1 * clamp(10px,2cqh,22px))}
@@ -417,6 +511,7 @@ export default function ChristmasMuseum() {
   const [showDone, setShowDone] = useState(false);
   const doneShown = useRef(false);
   const timers = useRef([]);
+  const ambient = useAmbient();
 
   const total = EXHIBITS.length;
   const canSpeak = typeof window !== "undefined" && "speechSynthesis" in window;
@@ -424,7 +519,7 @@ export default function ChristmasMuseum() {
   const stopSpeech = useCallback(() => { if (canSpeak) window.speechSynthesis.cancel(); setSpeaking(false); }, [canSpeak]);
   useEffect(() => () => { timers.current.forEach(clearTimeout); if (typeof window !== "undefined" && "speechSynthesis" in window) window.speechSynthesis.cancel(); }, []);
 
-  const enter = () => { setEntered(true); timers.current.push(setTimeout(() => setGone(true), 1900)); };
+  const enter = () => { ambient.start(); setEntered(true); timers.current.push(setTimeout(() => setGone(true), 1900)); };
   const openEx = (i) => { stopSpeech(); setOpen(i); setVisited((v) => new Set(v).add(EXHIBITS[i].id)); };
   const closeEx = useCallback(() => { stopSpeech(); setOpen(null); }, [stopSpeech]);
   const step = (d) => { const i = (open + d + total) % total; openEx(i); setRoom(EXHIBITS[i].room); };
@@ -438,6 +533,9 @@ export default function ChristmasMuseum() {
     u.onend = () => setSpeaking(false); u.onerror = () => setSpeaking(false);
     window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); setSpeaking(true);
   };
+
+  // the music keeps playing but is silenced while the audio guide talks
+  useEffect(() => { ambient.setDuck(speaking); }, [speaking]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // finished the whole collection → little celebration (once)
   useEffect(() => {
@@ -478,6 +576,9 @@ export default function ChristmasMuseum() {
           <p className="mu-bk">{TEXTS.edition}</p>
           <h1 className="mu-bt">{TEXTS.museum}</h1>
         </div>
+        <button type="button" className="mu-snd" onClick={ambient.toggle} aria-pressed={ambient.on} aria-label={ambient.on ? TEXTS.musicOn : TEXTS.musicOff} title={ambient.on ? TEXTS.musicOn : TEXTS.musicOff}>
+          {speaking ? "🎧" : ambient.on ? "♫" : "♪"}
+        </button>
         <div className="mu-room-t" key={room}>
           <p className="mu-rn">{TEXTS.room} {room + 1} · {ROOMS[room].name}</p>
           <p className="mu-rs">{ROOMS[room].sub}</p>
