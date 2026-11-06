@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import strawberry from "../../assets/first.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  📸 Your pictures (supplied by you)                                 */
@@ -46,7 +47,7 @@ const TEXTS = {
   cont: "Continuar ›",
   lightBtn: "Encender el pueblo ✨",
   finalKick: "Tu pueblo está encendido",
-  finalTitle: "Eres mi luz favorita",
+  finalTitle: "Tu primer reagalo de Adviento",
   finalMsg: [
     "Este pueblo brilla porque tú lo has encendido, igual que iluminas cada día de mi vida.",
     "Gracias por dejarme quererte, incluso a kilómetros de distancia. Eres lo mejor que me ha pasado, mi amor. ❤️",
@@ -806,13 +807,14 @@ export default function DayOneMusicBox({ onComplete, onClose }) {
           </div>
           <div className="d1-final">
             <div className="d1-polaroid">
-              {PHOTO ? <img className="d1-pic" src={PHOTO} alt="Nosotros dos" /> : <div className="d1-pic"><span><b aria-hidden="true">🎄</b>{TEXTS.photoEmpty}</span></div>}
+              {/* {PHOTO ? <img className="d1-pic" src={PHOTO} alt="Nosotros dos" /> : <div className="d1-pic"><span><b aria-hidden="true">🎄</b>{TEXTS.photoEmpty}</span></div>} */}
+              {TEXTS.finalMsg.map((t, i) => <p key={i}>{t}</p>)}
               <span className="d1-cap">{TEXTS.photoCaption}</span>
             </div>
 
             <div className="d1-msg">
+              <img src={strawberry} alt="" aria-hidden="true" />
               <h2>{TEXTS.finalTitle}</h2>
-              {TEXTS.finalMsg.map((t, i) => <p key={i}>{t}</p>)}
             </div>
 
             <div className="d1-plush">

@@ -1313,11 +1313,12 @@ export default function ChristmasChoir() {
   // const musique = new Audio("/audio/choir/choir1.mp3");
   useSnow(canvasRef);
   const CHOIR_TRACKS = [
-  "/audio/choir/choir1.mp3",
-  "/audio/choir/choir2.mp3",
-  "/audio/choir/choir3.mp3",
-  "/audio/choir/choir4.mp3",
-  "/audio/choir/choir5.mp3",
+    "/audio/choir/choir1.mp3",
+    "/audio/choir/choir2.mp3",
+    "/audio/choir/choir3.mp3",
+    "/audio/choir/choir6.mp3",
+    "/audio/choir/choir5.mp3",
+    "/audio/choir/choir4.mp3",
 ];
 const trackIndexRef = useRef(0);
 

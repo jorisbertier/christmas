@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import uglysweat from "../../assets/choice/uglysweat.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  Configuration                                                      */
@@ -361,6 +362,7 @@ export default function UglyChristmasSweater({ jerseyImage = "/images/pull-joris
                         <span className="ug-btn-n">1</span>
                         <h4>Encuentra tu jersey</h4>
                         <p>Busca por tu cuenta el jersey navideño más espantoso que puedas encontrar. Colores imposibles, motivos ridículos y combinaciones de mal gusto. ¡No se lo enseñes todavía a Joris! Debe ser una sorpresa.</p>
+                        <p>***hay la obligacion que sea en el tema de navidad***</p>
                       </div>
                       <div className="ug-step">
                         <span className="ug-btn-n">2</span>
@@ -387,7 +389,7 @@ export default function UglyChristmasSweater({ jerseyImage = "/images/pull-joris
                       <p className="ug-kicker">02 — El veredicto</p>
                       <h3>Las reglas del concurso</h3>
                       <p style={{ margin: "0 0 14px", fontSize: "clamp(16px,1.7vw,18px)", lineHeight: 1.55, color: "#dfe6d6" }}>
-                        Cuando ambos tengáis vuestro jersey, llegará el momento de compararlos. Tendréis que debatir los tres criterios y asignar una puntuación de <strong style={{ color: "#f8dd86" }}>0 a 5 puntos</strong> a cada jersey en cada categoría.
+                        Cuando ambos tengáis vuestro jersey, llegará el momento de compararlos. Tendréis que debatir los tres criterios y  decidir cuál de los dos es el ganador. El jersey ganador recibirá <strong style={{ color: "#f8dd86" }}>1 punto</strong> y el perdedor <strong style={{ color: "#f8dd86" }}>0 puntos</strong>.
                       </p>
                       {criteria.map((item, i) => (
                         <div key={item.number} className="ug-patch" style={{ "--p": ["linear-gradient(135deg,#c8202e,#8a1520)", "linear-gradient(135deg,#2a9a62,#13603c)", "linear-gradient(135deg,#d9822a,#a5481a)"][i] }}>
@@ -433,7 +435,7 @@ export default function UglyChristmasSweater({ jerseyImage = "/images/pull-joris
                   <div className="ug-card">
                     {imgFailed
                       ? <div className="ug-ph" role="img" aria-label="El jersey navideño elegido por Joris">🧶</div>
-                      : <img className="ug-photo" src={jerseyImage} alt="El jersey navideño elegido por Joris" onError={() => setImgFailed(true)} />}
+                      : <img className="ug-photo" src={uglysweat} alt="El jersey navideño elegido por Joris" onError={() => setImgFailed(true)} />}
                     <div className="ug-cap">
                       <p>EL JERSEY DE JORIS</p>
                       <p>¡Menuda elección! 😂</p>
