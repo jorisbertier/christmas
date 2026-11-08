@@ -27,6 +27,7 @@ import maison21 from '../assets/house/Maison 21.png';
 import maison22 from '../assets/house/Maison 22.png';
 import maison23 from '../assets/house/Maison 23.png';
 import maison24 from '../assets/house/Maison 24.png';
+import church from '../assets/house/Church.png';
 import SecretNoel from './Day/SecretNoel';
 
 import choice11 from '../assets/choice/11.png';
@@ -65,8 +66,10 @@ export default function Village() {
     const choixPereNoel = villageDecisions[5];
 
   // Tableau associant les composants importés aux positions Figma d'origine
+  //150px =
     const maisons = [
-        { id: 20, src: maison20, taille: 'w-[150px] h-[150px]', position: 'top-[10px] right-[560px] z-0' },
+        { id: 25, src: church, taille: 'w-[180px] h-[230px]', position: '-top-[30px] right-[650px] z-0' },
+        { id: 20, src: maison20, taille: 'w-[14%] h-[150px]', position: 'top-[10px] right-[560px] z-0' },
         { id: 24, src: maison24, taille: 'w-[210px] h-[210px]', position: 'top-[10px] right-[365px] z-0' },
         { id: 4, src: maison4, taille: 'w-[170px] h-[170px]', position: 'top-[50px] right-[240px] z-0' },
         { id: 18, src: maison18, taille: 'w-[150px] h-[150px]', position: 'top-[70px] right-[450px] z-0' },
@@ -172,7 +175,7 @@ export default function Village() {
         </div>
 
         {/** CHOICE */}
-      <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none hidden">
+      <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none">
           <svg viewBox="0 0 800 700" className="h-auto w-full">
             <IceSkating x={400} y={553} />
           </svg>
