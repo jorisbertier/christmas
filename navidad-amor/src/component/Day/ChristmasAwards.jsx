@@ -8,41 +8,43 @@ import letter from '../../assets/Ceremony/letter.jpg';
 /*  replace `photo: null` with the imported name.                      */
 /* ------------------------------------------------------------------ */
 
-// import photo1 from "../../assets/awards/prize-1.jpg";
-// import photo2 from "../../assets/awards/prize-2.jpg";
-// import photo3 from "../../assets/awards/prize-3.jpg";
+import photo1 from "../../assets/1.jpg";
+import photo2 from "../../assets/2.jpg";
+import photo3 from "../../assets/3.jpg";
 
-const WINNER = "Mi Amor"; // ✏️ her name, shown in gold when the prize is announced
+const WINNER = "Margo";
 const YEAR = 2026;
 
 const PRIZES = [
   {
     id: "cabezota",
-    title: "La más cabezota",
-    tagline: "Premio a la terquedad más adorable del año",
-    phrase: "Cuando decides algo, ni un huracán te mueve. Y aun así, es una de las cosas que más me gustan de ti.",
-    photo: null, // photo1
+    title: "El mejor vestido",
+    tagline: "Premio al vestido más espectacular",
+    // tagline: "Premio al estilo más espectacular",
+    phrase: "Entre todos los looks, el tuyo se lleva el premio. ¡Tienes un estilo único y hasta con el pijama consigues conquistarme!",
+    photo: photo1, // photo1
     ratio: "4 / 3", // "4 / 3" landscape, "3 / 4" portrait, "1 / 1" square
     trophy: "cup",
   },
   {
-    id: "sonrisa",
-    title: "La sonrisa más bonita",
-    tagline: "Premio a la luz que no se apaga ni en invierno",
-    phrase: "Tu sonrisa ilumina más que todas las luces de Navidad juntas.",
-    photo: null, // photo2
+    id: "disfraz_sexy",
+    title: "El disfraz más sexy",
+    tagline: "Premio a quien consigue subir la temperatura",
+    phrase: "No sé si es el disfraz o eres tú, pero desde luego has conseguido que me quede sin palabras. ¡Qué difícil es apartar la mirada de ti!",
+    photo: photo2,
     ratio: "4 / 3",
     trophy: "star",
   },
   {
     id: "compania",
-    title: "La mejor compañera de aventuras",
-    tagline: "Premio al hogar que se lleva puesto",
-    phrase: "Contigo cualquier plan es una aventura, y cualquier invierno, un hogar.",
-    photo: null, // photo3
+    id: "reina_de_la_fabada",
+    title: "La reina de mi corazón",
+    tagline: "Premio a la reina que encontró su corona",
+    phrase: "Encontraste la figurita y te llevaste la corona, pero la verdad es que no necesitabas ninguna prueba para ser mi reina. ¡Ese puesto ya era tuyo! ❤️",
+    photo: photo3,
     ratio: "4 / 3",
     trophy: "heart",
-  },
+},
 ];
 
 const TEXTS = {
@@ -53,7 +55,7 @@ const TEXTS = {
   intro: [
     "Bienvenida a la gala más esperada del invierno.",
     `Esta noche entregaremos tres premios navideños ${YEAR}.`,
-    "Y tengo la sensación de que ya sabes quién se los va a llevar…",
+    "Toma asiento y difruta de esa ceremonia inolvidable",
   ],
   startAwards: "Comenzar la entrega de premios",
   award: (n, total) => `Premio ${n} de ${total}`,
@@ -443,8 +445,9 @@ const CSS = `
 }
 
 /* content */
-.pr-main{position:absolute;left:11cqw;right:11cqw;top:12cqh;bottom:14.5cqh;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2cqh;text-align:center;min-height:0}
+.pr-main{position:absolute;left:6cqw;right:6cqw;top:7cqh;bottom:7cqh;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2cqh;text-align:center;min-height:0}
 .pr-kicker{margin:0;font-style:italic;font-weight:600;color:#fcd34d;letter-spacing:.14em;font-size:clamp(13px,min(2cqw,3.2cqh),24px)}
+.pr-kickers{margin:0;font-style:italic;font-weight:600;color:#fcd34d;letter-spacing:.14em;font-size: 36px}
 .pr-gold{background:linear-gradient(180deg,#fffbe0 0%,#f8dd86 32%,#d9a336 58%,#fbe493 82%,#b8822a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 rgba(58,0,12,.6)) drop-shadow(0 0 18px rgba(255,200,90,.35))}
 .pr-h1{margin:0;font-style:italic;font-weight:700;line-height:1.02;font-size:clamp(34px,min(8cqw,13cqh),120px)}
 .pr-h2{margin:0;font-style:italic;font-weight:700;line-height:1.05;font-size:clamp(26px,min(5.2cqw,9cqh),84px)}
@@ -3909,8 +3912,8 @@ export default function ChristmasAwards() {
 
         {phase === "reveal" && (
           <>
-            <p className="pr-kicker pr-in">{prize.title}</p>
-            <h2 className="pr-h1 pr-gold pr-zoom" style={{ fontSize: "clamp(30px,min(7.4cqw,11cqh),104px)", animationDelay: ".1s" }}>{WINNER}</h2>
+            <p className="pr-kickers pr-in">{prize.title}</p>
+            <h2 className="pr-h1 pr-gold pr-zoom" style={{ fontSize: "36px", animationDelay: ".1s" }}>{WINNER}</h2>
             <div className="pr-slot pr-zoom" style={{ animationDelay: ".6s" }}><PhotoFrame prize={prize} /></div>
             <p className="pr-hand" style={{ minHeight: "2.4em" }}>{phrase}</p>
             <button className="pr-btn pulse pr-in" style={{ animationDelay: "3s" }} onClick={nextPrize}>{index < PRIZES.length - 1 ? TEXTS.next : TEXTS.finale}</button>
