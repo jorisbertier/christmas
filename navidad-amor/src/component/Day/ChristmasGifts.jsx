@@ -15,6 +15,7 @@ import daisy from "../../assets/gifts/daisy.gif";
 
 const FUN_MUSIC = "/music/fun.mp3";
 const LOVE_MUSIC = "/music/romantic.mp3";
+const BACKGROUND_MUSIC = "/audio/christmasgifts.mp3";
 
 // Remplace simplement les chemins par tes propres GIFs.
 const stages = [
@@ -288,25 +289,71 @@ export default function ChristmasGifts() {
   const isLove = current >= 5;
   const stage = stages[current];
   const theme = isLove || finished ? "love" : "fun";
-
-  useEffect(() => () => {
-    clearTimeout(twistTimer.current);
-    if (audioRef.current) audioRef.current.pause();
-  }, []);
-
-  const playMusic = (src) => {
-    const audio = audioRef.current;
-    if (!audio || !soundOn) return;
-
-    audio.src = src;
-    audio.volume = 0.45;
-    audio.load();
-
-    audio.play().catch(() => {
-      // La lecture peut être bloquée par le navigateur.
-    });
+useEffect(() => {
+  // Arrête la musique lorsque la page est fermée
+  const handlePageHide = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
   };
 
+  // Arrête la musique lorsque l'onglet devient invisible
+  const handleVisibilityChange = () => {
+    if (document.hidden && audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  };
+
+  window.addEventListener("pagehide", handlePageHide);
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+
+  return () => {
+    clearTimeout(twistTimer.current);
+
+    window.removeEventListener("pagehide", handlePageHide);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
+
+    // Ne pas arrêter la musique ici :
+    // cela pourrait couper la musique lors d'un remontage React.
+  };
+}, []);
+
+  useEffect(() => {
+    playMusic(BACKGROUND_MUSIC);
+  }, []);
+
+  // const playMusic = (src) => {
+  //   const audio = audioRef.current;
+  //   if (!audio || !soundOn) return;
+
+  //   audio.src = src;
+  //   audio.volume = 0.45;
+  //   audio.load();
+
+  //   audio.play().catch(() => {
+  //     // La lecture peut être bloquée par le navigateur.
+  //   });
+  // };
+
+  const playMusic = (src = BACKGROUND_MUSIC) => {
+  const audio = audioRef.current;
+  if (!audio || !soundOn) return;
+
+  if (audio.src !== new URL(src, window.location.href).href) {
+    audio.src = src;
+  }
+
+  audio.volume = 0.45;
+  audio.loop = true;
+
+  audio.play()
+    .then(() => setMusicStarted(true))
+    .catch((error) => {
+      console.warn("Lecture automatique bloquée par le navigateur :", error);
+    });
+};
   const toggleSound = () => {
     const audio = audioRef.current;
 
@@ -329,14 +376,14 @@ export default function ChristmasGifts() {
     if (current === -1) {
       setCurrent(0);
       setMusicStarted(true);
-      playMusic(FUN_MUSIC);
+      // playMusic(FUN_MUSIC);
       return;
     }
 
     // Le grand retournement : passage à la musique romantique
     if (current === 4) {
       setCurrent(5);
-      playMusic(LOVE_MUSIC);
+      // playMusic(LOVE_MUSIC);
       setTwist((t) => t + 1);
       clearTimeout(twistTimer.current);
       twistTimer.current = setTimeout(() => setTwist(0), 1800);
@@ -355,7 +402,7 @@ export default function ChristmasGifts() {
   const restart = () => {
     setCurrent(-1);
     setFinished(false);
-    setMusicStarted(false);
+    // setMusicStarted(false);
     setTwist(0);
 
     if (audioRef.current) {

@@ -39,6 +39,7 @@ import choice42 from '../assets/choice/42.png';
 import IceSkating from "./Choice/IceSkating";
 import SantaCrossing from "../component/Choice/SantaCrossing";
 import SantaLottie from './Choice/SantaLottie';
+import Creche from './Choice/Creche';
 
 export default function Village() {
     const [joursOuverts, setJoursOuverts] = useState({});
@@ -175,10 +176,16 @@ export default function Village() {
             <div className="absolute top-0 right-5 w-16 h-16 bg-[#1b1947] rounded-full"></div>
         </div>
 
-        {/** CHOICE */}
-      <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none">
+          {/** CHOICE */}
+        <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none hidden">
           <svg viewBox="0 0 800 700" className="h-auto w-full">
             <IceSkating x={400} y={553} />
+          </svg>
+        </div>
+          {/** CHOICE */}
+        <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none">
+          <svg viewBox="0 0 800 700" className="h-auto w-full">
+            <Creche x={500} y={540} scale={0.8} />  
           </svg>
         </div>
 

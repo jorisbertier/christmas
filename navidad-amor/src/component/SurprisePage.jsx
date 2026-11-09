@@ -28,33 +28,78 @@ import ChristmasPapillotes from "./Day/ChristmasPapillotes";
 import PyjamaChoice from "./Day/PyjamaChoice";
 
 const composants = {
-  // 1: SurpriseModal, premiere photo comment tout a commencer et aussi petit message pour elle plus explication des regles du calnedrier de l'avent
-  1 : DayOneMusicBox,
-  2: SecretNoel,
-  3: SecretCard,
-  4: ChristmasDrawingGame,
-  5: GiftSled,
-  6: ChristmasBall,
-  // 7: ChristmasAlbum,
-  7: PyjamaChoice,
-  8: PhotoGallery,
-  9: ChristmasVillage,
-  10: Christmaschoir,
-  11: ClockMystery,
-  12: ChristmasLoveLetter,
-  13: ChristmasPapillotes,
-  14: CinemaIntro,
-  15: ChristmasMuseum,
-  16: ChristmasAwards,
-  17: ChristmasWheel,
-  18: ChristmasVillageDecisions,
-  19: GiftChoice,
-  20: ChristmasPaper,
-  21: ChristmasComplimentMachine,
-  22: UglyChristmasSweater,
-  23: ChristmasGifts,
+  // 1: DayOneMusicBox,
+  // 2: SecretNoel,
+  // 3: SecretCard,
+  // 4: ChristmasDrawingGame,
+  // 5: GiftSled,
+  // 6: ChristmasBall,
+  // 7: PyjamaChoice,
+  // 8: PhotoGallery,
+  // 9: ChristmasVillage,
+  // 10: Christmaschoir,
+  // 11: ClockMystery,
+  // 12: ChristmasLoveLetter,
+  // 13: ChristmasPapillotes,
+  // 14: CinemaIntro,
+  // 15: ChristmasMuseum,
+  // 16: ChristmasAwards,
+  // 17: ChristmasWheel,
+  // 18: ChristmasVillageDecisions,
+  // 19: GiftChoice,
+  // 20: ChristmasPaper,
+  // 21: ChristmasComplimentMachine,
+  // 22: UglyChristmasSweater,
+  // 23: ChristmasGifts,
+  // 24: ChristmasFinalHouse
+  1: DayOneMusicBox,
+  2: ChristmasMuseum,
+  3: ChristmasBall,
+  4: GiftSled,
+  5: UglyChristmasSweater,
+  6: ChristmasVillage,
+  7: ChristmasLoveLetter,
+  8: Christmaschoir,
+  9: ClockMystery,
+  10: CinemaIntro,
+  11: ChristmasPapillotes,
+  12: PyjamaChoice,
+  13: ChristmasPaper,
+  14: ChristmasGifts,
+  15: ChristmasWheel,
+  16: ChristmasDrawingGame,
+  17: SecretNoel,
+  18: ChristmasComplimentMachine,
+  19: ChristmasVillageDecisions,
+  20: SecretCard,
+  21: ChristmasAwards,
+  22: GiftChoice,
+  23: PhotoGallery,
   24: ChristmasFinalHouse
 };
+
+//  gift     SecretNoel, giftsled, christmaswheel, christmasgifts
+// game      clockmystery, christmasdrawinggame, uglysweater, pyjamachoive, christmaspaper, christmasdecisions
+// fun       christmascompliments, christmaspapillotes, christmasvillage
+// detente   christmaschoir, christmasball
+//souvenir    cinemaintro, christmasmuseum, christmasgifts, christmasawards, photogallery
+// lettre     christmasletter, secretcard
+
+//  gift     SecretNoel
+// game      christmasdrawinggame
+// fun       christmascompliments
+// detente   
+//souvenir    , photogallery
+// lettre     
+
+// 1er et 24eme jour
+
+//1, 2: christmasmuseum 3: christmasball 4:giftsled, 5: uglysweater, 6 : Miniaturevillage
+// 7:christmasletter 8: christmaschoir, 9: clockmystery,10: cinemaintro,11: christmaspapilottes , 12 pyjama 13 : secredcard, 
+//14: christmasgifts, 15: christmaswheel, 16 christmasdrawing,17 secretnoel, 18 complimennt 19: Villagedecision, 20: christmaspaper,
+//21 christmasawards,22: choice, 23: photogallery, 24
+
+
 
 // piano
 // judbox

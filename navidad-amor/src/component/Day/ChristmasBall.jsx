@@ -564,7 +564,7 @@ export default function ChristmasBall() {
 
   return (
     <div
-      className="relative flex max-h-screen flex-col items-center justify-center overflow-hidden px-4 py-10 text-amber-50"
+      className="relative flex max-h-screen flex-col items-center justify-center overflow-hidden h-full w-full text-amber-50"
     >
       <div
         className="absolute inset-0 -z-20 scale-105"
@@ -604,7 +604,7 @@ export default function ChristmasBall() {
 <div className="mt-7 w-full max-w-5xl text-center  text-amber-50 absolute bottom-0 ">
 
   <h2 className="mb-1 font-serif text-md font-semibold tracking-wide text-amber-100 sm:text-md">
-    🎄✨ Hoy es una clase de yoga en modo Christmas
+    🎄✨ Hoy es una clase de yoga en modo Christmas con nuestra futura casa en una bola
   </h2>
 
   <div className="mx-auto h-px w-20 bg-amber-200/60" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-const SECRET_CODE = "2412";
+const SECRET_CODE = "4747";
 
 function rng(seed) {
   let s = seed;
@@ -244,15 +244,29 @@ export default function SecretNoel() {
                     <span className="sn-tape" aria-hidden="true" />
                     <p className="sn-pk">✧ El enigma de Navidad ✧</p>
                     <p className="sn-riddle">
-                      "No soy un regalo, pero traigo muchos.<br />
-                      No soy un sueño, pero estoy lleno de magia.<br />
-                      Llego una vez al año y todos me esperan con ilusión.<br />
-                      ¿Qué día soy?"
+                      "No soy un objeto, pero puedo abrirse.<br />
+                        No soy un secreto, pero guardo uno.<br />
+                        Me encuentras cuando sumas lo que no se ve<br />
+                        y restas lo que siempre está ahí.<br /><br />
                     </p>
                     <div className="sn-rule" />
-                    <div className="sn-clue"><span className="sn-seal">1</span><p><b>Primera pista:</b> El número de horas que tiene un día.</p></div>
-                    <div className="sn-clue"><span className="sn-seal">2</span><p><b>Segunda pista:</b> El número de meses que tiene un año.</p></div>
-                    <div className="sn-clue"><span className="sn-seal">3</span><p><b>Última pista:</b> La fecha en la que celebramos la Nochebuena.</p></div>
+                    <div className="sn-clue"><span className="sn-seal">2</span><p><b>Primera pista:</b> Nací antes que los regalos, antes que los árboles 
+    y antes que las estrellas de Navidad. Sin mí, nada de esto tendría sentido.</p></div>
+                    <div className="sn-clue"><span className="sn-seal">1</span><p><b>Segunda pista:</b> Estoy presente en cada regalo que realmente importa, 
+    aunque no se pueda envolver.</p></div>
+                    <div className="sn-clue">
+                      <span className="sn-seal">3</span>
+                      <p>
+                        <b>Última pista:</b> Soy lo único que no se puede comprar, 
+                        ni envolver, ni devolver… y sin embargo es el mejor regalo 
+                        que alguien puede darte esta Navidad.
+                      </p>
+                    </div>
+                    <div className="sn-clue">
+                      **La fórmula secreta:**<br></br>
+
+Suma el valor de cada letra según su posición en el alfabeto. Después, escribe el resultado dos veces seguidas para obtener un código de 4 cifras. ❤️
+</div>
                   </div>
 
                   {/* Cerradura */}
