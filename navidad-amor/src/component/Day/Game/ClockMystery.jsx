@@ -42,7 +42,7 @@ const CSS = `
 .mm-phase{display:flex;align-items:center;gap:.5em;font-size:clamp(11px,min(1.5cqw,2.3cqh),15px);color:#d9c9a0}
 .mm-candles{display:flex;gap:4px}.mm-candles i{width:9px;height:9px;border-radius:50%;border:1px solid #e8b84a;display:block}
 .mm-candles i.on{background:radial-gradient(circle at 35% 30%,#fff,#ffd45a 55%,#c98a1e);box-shadow:0 0 8px #ffd45a}
-.mm-nav{display:flex;flex-wrap:wrap;gap:.35em}
+.mm-nav{display:flex;flex-wrap:wrap;gap:.35em;}
 @container (max-width:600px){.mm-nav{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:.2em}.mm-btn{font-size:13px;padding:.3em .7em}.mm-title{font-size:19px}}
 .mm-btn{padding:.35em .85em;border-radius:999px;border:1px solid rgba(232,184,74,.55);background:rgba(8,18,40,.78);color:#f3e9d2;cursor:pointer;
   font-family:inherit;font-weight:600;font-size:clamp(13px,min(1.7cqw,2.6cqh),18px);transition:all .15s ease;white-space:nowrap}
@@ -939,7 +939,7 @@ export default function ClockMystery({ onComplete }) {
     <div className="mm-stage relative h-full min-h-[100svh] w-full max-h-full max-w-full overflow-hidden">
       <style>{CSS}</style>
 
-      <header className="mm-bar">
+      <header className="mm-bar top-10">
         <div>
           <h1 className="mm-title">{TITLE}</h1>
           <div className="mm-phase"><span className="mm-candles" aria-hidden="true">{PHASES.map((_, i) => <i key={i} className={i < phase ? "on" : ""} />)}</span><span>{T.phase} {phase} · {PHASES[phase - 1]}</span></div>
