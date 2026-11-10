@@ -31,7 +31,8 @@ import church from '../assets/house/Church.png';
 import SecretNoel from './Day/SecretNoel';
 
 import choice11 from '../assets/choice/11.png';
-import choice12 from '../assets/choice/12.png';
+import choice12 from '../assets/choice/12.jpg';
+import Meteors from './Choice/Meteors';
 import choice21 from '../assets/choice/21.png';
 import choice22 from '../assets/choice/22.png';
 import choice41 from '../assets/choice/41.png';
@@ -40,10 +41,55 @@ import IceSkating from "./Choice/IceSkating";
 import SantaCrossing from "../component/Choice/SantaCrossing";
 import SantaLottie from './Choice/SantaLottie';
 import Creche from './Choice/Creche';
+import Aurora from './Choice/Aurora';
+
+const AVAILABLE_CHOICES = [
+    11, 12, 21, 22, 31, 32, 41, 42, 51, 52
+];
+
+const STORAGE_KEYS = [
+    "navidad_pueblo_decision_1",
+    "navidad_pueblo_decision_2",
+    "navidad_pueblo_decision_3",
+    "navidad_pueblo_decision_4",
+    "navidad_pueblo_decision_5",
+];
+
+const getSelectedChoices = () => {
+    try {
+        return [1, 2, 3, 4, 5]
+            .map((i) => {
+                const value = localStorage.getItem(
+                    `navidad_pueblo_decision_${i}`
+                );
+
+                if (value === null || value.trim() === "") return null;
+
+                const number = Number(value);
+
+                return AVAILABLE_CHOICES.includes(number) ? number : null;
+            })
+            .filter((value) => value !== null);
+    } catch {
+        return [];
+    }
+};
+
 
 export default function Village() {
     const [joursOuverts, setJoursOuverts] = useState({});
+    const selectedChoices = getSelectedChoices();
 
+    const isVisible = (number) => selectedChoices.includes(number);
+
+    const houseClass = (number, baseClass) => `
+        ${baseClass}
+        transition-all duration-700
+        ${isVisible(number)
+            ? "visible"
+            : "hidden"
+        }
+    `;
     const toggleJour = (id) => {
         setJoursOuverts(prev => ({ ...prev, [id]: !prev[id] }));
     };
@@ -59,6 +105,8 @@ export default function Village() {
 
         setVillageDecisions(result);
     }, []);
+
+    // CHOICE 
     
     const choixCiel = villageDecisions[1];
     const choixArbre = villageDecisions[2];
@@ -66,9 +114,6 @@ export default function Village() {
     const choixDouceurs = villageDecisions[4];
     const choixPereNoel = villageDecisions[5];
 
-  // Tableau associant les composants importés aux positions Figma d'origine
-  //w 150px =     180px= 17%  210px = 20%
-  //h 140px = 25%
     const maisons = [
         { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: '-top-[5%] right-[60%] z-0' },
         { id: 20, src: maison20, taille: 'w-[14%] h-[27%]', position: 'top-[1%] right-[52%] z-0' },
@@ -146,6 +191,18 @@ export default function Village() {
 
     return (
         <div className="relative w-full h-full min-h-0 overflow-hidden">
+        <Aurora
+          speed={1}
+          intensity="medium"
+          className={houseClass(11, "absolute inset-0 z-0 pointer-events-none")}
+        />
+          <Meteors
+            count={35}
+            speed={1}
+            meteorColor="#fff8dc"
+            tailColor="rgba(191, 219, 254, 0.55)"
+            className={houseClass(12, "absolute inset-0 z-50 pointer-events-none")}
+          />
         {/* EFFET DE NEIGE TOMBANTE */}
         <div className="absolute inset-0 pointer-events-none z-50">
             {[...Array(40)].map((_, i) => (
@@ -177,28 +234,27 @@ export default function Village() {
         </div>
 
           {/** CHOICE */}
-        <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none hidden">
+        <div className={houseClass(31, "absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none")}>
           <svg viewBox="0 0 800 700" className="h-auto w-full">
             <IceSkating x={400} y={553} />
           </svg>
         </div>
           {/** CHOICE */}
-        <div className="absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none">
+        <div className={houseClass(32, "absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none")}>
           <svg viewBox="0 0 800 700" className="h-auto w-full">
             <Creche x={500} y={540} scale={0.8} />  
           </svg>
         </div>
 
-        <img src={choice11} alt=""   className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-72 hidden"/>
-        <img src={choice12} alt=""   className="absolute -top-0 left-1/2 -translate-x-1/2 w-[100px] h-20 hidden"/>
+        <img src={choice11} alt="" className={houseClass(11, "absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-72")}/>
 
-        <img src={choice21} alt=""   className="absolute bottom-[30%] right-[12%] -translate-x-1/2 w-[150px] h-72 z-0 hidden"/>
-        <img src={choice22} alt=""   className="absolute bottom-[30%] right-[6%] -translate-x-1/2 w-[250px] h-72 z-0 hidden"/>
+        <img src={choice21} alt=""   className={houseClass(21, "absolute bottom-[30%] right-[12%] -translate-x-1/2 w-[150px] h-72 z-0")}/>
+        <img src={choice22} alt=""   className={houseClass(22, "absolute bottom-[30%] right-[6%] -translate-x-1/2 w-[250px] h-72 z-0")}/>
 
-        <img src={choice41} alt=""   className="absolute bottom-[29%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0 hidden"/>
-        <img src={choice42} alt=""   className="absolute bottom-[30%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0 hidden"/>
+        <img src={choice41} alt=""   className={houseClass(41, "absolute bottom-[29%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0")}/>
+        <img src={choice42} alt=""   className={houseClass(42, "absolute bottom-[30%] left-[23%] -translate-x-1/2 w-[200px] h-72 z-0")}/>
 
-        <div className="relative z-0 hidden">
+        <div className={houseClass(51, "absolute top-10 left-[60%] z-0")}>
           <SantaCrossing
             delay={0}
             duration={15000}
@@ -206,8 +262,8 @@ export default function Village() {
             bottom={100}
           />
         </div>
-        <div className="absolute top-10 left-[60%] z-0 hidden">
-          <SantaLottie width={180} />
+        <div className={houseClass(52, "absolute top-[12%] left-[62%] z-0")}>
+          <SantaLottie width={130} />
         </div>
 
         {/* CLUSTER CENTRAL DU VILLAGE */}
@@ -363,7 +419,7 @@ export default function Village() {
 // import SecretNoel from './Day/SecretNoel';
 
 // import choice11 from '../assets/choice/11.png';
-// import choice12 from '../assets/choice/12.png';
+// import choice12 from '../assets/choice/12.jpg';
 // import choice21 from '../assets/choice/21.png';
 // import choice22 from '../assets/choice/22.png';
 // import choice41 from '../assets/choice/41.png';

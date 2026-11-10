@@ -10,7 +10,6 @@ import card7 from "../../assets/choice/card7.png";
 import card8 from "../../assets/choice/card8.png";
 import card9 from "../../assets/choice/card9.png";
 import card10 from "../../assets/choice/card6.png";
-import star from "../../assets/choice/12.png";
 import background from "../../assets/BG/bgChristmasDecisions.jpg";
 import ball from "../../assets/ball.png";
 import snowflake from "../../assets/choice/snowflake.png";
