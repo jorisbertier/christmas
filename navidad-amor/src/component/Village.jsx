@@ -71,30 +71,30 @@ export default function Village() {
   //h 140px = 25%
     const maisons = [
         { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: '-top-[5%] right-[60%] z-0' },
-        { id: 20, src: maison20, taille: 'w-[14%] h-[150px]', position: 'top-[10px] right-[560px] z-0' },
-        { id: 24, src: maison24, taille: 'w-[20%] h-[210px]', position: 'top-[10px] right-[365px] z-0' },
-        { id: 4, src: maison4, taille: 'w-[16%] h-[170px]', position: 'top-[50px] right-[240px] z-0' },
-        { id: 18, src: maison18, taille: 'w-[14%] h-[150px]', position: 'top-[70px] right-[450px] z-0' },
-        { id: 16, src: maison16, taille: 'w-[16%] h-[170px]', position: 'top-[70px] right-[160px] z-0' },
-        { id: 8, src: maison8, taille: 'w-[15%] h-[160px]', position: 'top-[95px] right-[520px] z-0' },
-        { id: 14, src: maison14, taille: 'w-[13%] h-[140px]', position: 'top-[116px] right-[600px] z-0' },
-        { id: 15, src: maison15, taille: 'w-[16%] h-[170px]', position: 'top-[260px] right-[525px] z-10' },
-        { id: 9, src: maison9, taille: 'w-[13%] h-[140px]', position: 'top-[95px] right-[740px] z-0' },
-        { id: 12, src: maison12, taille: 'w-[10%] h-[110px]', position: 'top-[272px] right-[630px] z-10' },
-        { id: 13, src: maison13, taille: 'w-[13%] h-[140px]', position: 'top-[260px] right-[410px] z-10' },
-        { id: 10, src: maison10, taille: 'w-[16%] h-[170px]', position: 'top-[200px] right-[310px] z-10' },
-        { id: 1, src: maison1, taille: 'w-[10%] h-[110px]', position: 'top-[288px] left-1/2 -translate-x-1/2 z-10'},
-        { id: 23, src: maison23, taille: 'w-[13%] h-[140px]', position: 'top-[174px] right-[440px] z-0' },
+        { id: 20, src: maison20, taille: 'w-[14%] h-[27%]', position: 'top-[1%] right-[52%] z-0' },
+        { id: 24, src: maison24, taille: 'w-[20%] h-[39%]', position: 'top-[2%] right-[34%] z-0' },
+        { id: 4, src: maison4, taille: 'w-[16%] h-[31%]', position: 'top-[9%] right-[22%] z-0' },
+        { id: 18, src: maison18, taille: 'w-[14%] h-[30%]', position: 'top-[12%] right-[42%] z-0' },
+        { id: 16, src: maison16, taille: 'w-[16%] h-[31%]', position: 'top-[12%] right-[15%] z-0' },
+        { id: 8, src: maison8, taille: 'w-[15%] h-[29%]', position: 'top-[17%] right-[48%] z-0' },
+        { id: 14, src: maison14, taille: 'w-[13%] h-[25%]', position: 'top-[21%] right-[56%] z-0' },
+        { id: 15, src: maison15, taille: 'w-[16%] h-[31%]', position: 'top-[47%] right-[49%] z-10' },
+        { id: 9, src: maison9, taille: 'w-[13%] h-[26%]', position: 'top-[17%] right-[69%] z-0' },
+        { id: 12, src: maison12, taille: 'w-[10%] h-[20%]', position: 'top-[49%] right-[59%] z-10' },
+        { id: 13, src: maison13, taille: 'w-[13%] h-[25%]', position: 'top-[47%] right-[38%] z-10' },
+        { id: 10, src: maison10, taille: 'w-[16%] h-[31%]', position: 'top-[36%] right-[29%] z-10' },
+        { id: 1, src: maison1, taille: 'w-[10%] h-[20%]', position: 'top-[52%] left-1/2 -translate-x-1/2 z-10'},
+        { id: 23, src: maison23, taille: 'w-[13%] h-[25%]', position: 'top-[31%] right-[41%] z-0' },
         { id: 3, src: maison3, taille: 'w-[13%] h-[25%]', position: 'top-[25%] right-[63%] z-0' },
-        { id: 6, src: maison6, taille: 'w-[13%] h-[140px]', position: 'top-[210px] right-[525px] z-0' },
-        { id: 17, src: maison17, taille: 'w-[13%] h-[140px]', position: 'top-[195px] right-[600px] z-0' },
-        { id: 21, src: maison21, taille: 'w-[13%] h-[140px]', position: 'top-[80px] right-[330px] z-0' },
-        { id: 2, src: maison2, taille: 'w-[13%] h-[140px]', position: 'top-[160px] right-[350px] z-0' },
-        { id: 5, src: maison5, taille: 'w-[13%] h-[140px]', position: 'top-[146px] right-[250px] z-0' },
-        { id: 11, src: maison11, taille: 'w-[16%] h-[170px]', position: 'top-[190px] right-[140px] z-0' },
-        { id: 7, src: maison7, taille: 'w-[18%] h-[190px]', position: 'top-[155px] right-[740px] z-0' },
+        { id: 6, src: maison6, taille: 'w-[13%] h-[25%]', position: 'top-[37%] right-[49%] z-0' },
+        { id: 17, src: maison17, taille: 'w-[13%] h-[25%]', position: 'top-[35%] right-[56%] z-0' },
+        { id: 21, src: maison21, taille: 'w-[13%] h-[25%]', position: 'top-[15%] right-[31%] z-0' },
+        { id: 2, src: maison2, taille: 'w-[13%] h-[25%]', position: 'top-[29%] right-[33%] z-0' },
+        { id: 5, src: maison5, taille: 'w-[13%] h-[25%]', position: 'top-[27%] right-[23%] z-0' },
+        { id: 11, src: maison11, taille: 'w-[16%] h-[31%]', position: 'top-[35%] right-[13%] z-0' },
+        { id: 7, src: maison7, taille: 'w-[18%] h-[34%]', position: 'top-[28%] right-[68%] z-0' },
         { id: 19, src: maison19, taille: 'w-[13%] h-[25%]', position: 'top-[43%] right-[63%] z-0' },
-        { id: 22, src: maison22, taille: 'w-[13%] h-[140px]', position: 'top-[232px] right-[245px] z-0' },
+        { id: 22, src: maison22, taille: 'w-[13%] h-[25%]', position: 'top-[41%] right-[23%] z-0' },
     ];
 
     // débloquer les maisons en fonction de la date actuelle
@@ -212,6 +212,7 @@ export default function Village() {
 
         {/* CLUSTER CENTRAL DU VILLAGE */}
         <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-24 mb-12">
+        {/* <div className="relative flex-1 w-[100%] mx-auto h-[100vh] bg-red-300"> */}
 
         {maisons.map((m) => {
           const ouvert = joursOuverts[m.id];
@@ -325,9 +326,11 @@ export default function Village() {
     );
 }
 
+
+
 /// ICI NORMALEMENT BON REPSONSIVE A POSSITIONNER
 
-// import React, { useState, useEffect, useId } from 'react';
+// import React, { useState, useEffect, useId, useRef, useLayoutEffect } from 'react';
 // // import { surprises } from "../data/surprises";
 // import SurprisePage from "./SurprisePage";
 
@@ -369,8 +372,60 @@ export default function Village() {
 // import SantaCrossing from "../component/Choice/SantaCrossing";
 // import SantaLottie from './Choice/SantaLottie';
 
+
+// /**
+//  * Keeps a scene IDENTICAL on every screen size.
+//  *
+//  * You design the scene once, in pixels, on a "design canvas" (for example 1920 × 950).
+//  * This hook measures the real container and tells you:
+//  *   - scale : how much to zoom the canvas so that it fits
+//  *   - offsetX / offsetY : where to put it so that it stays centred
+//  *
+//  * fit = "contain" → the whole scene is always visible (bars on the sides if the ratio differs)
+//  * fit = "cover"   → the scene fills everything (the edges may be cropped)
+//  * fit = "width"   → always the full width (aligned on top, may scroll/crop at the bottom)
+//  */
+// function useDesignScale(ref, design, fit = "contain") {
+//   const [box, setBox] = useState({ scale: 1, offsetX: 0, offsetY: 0 });
+
+//   useLayoutEffect(() => {
+//     const el = ref.current;
+//     if (!el) return undefined;
+
+//     const update = () => {
+//       const { width, height } = el.getBoundingClientRect();
+//       if (!width || !height) return;
+//       const sx = width / design.w;
+//       const sy = height / design.h;
+//       const scale = fit === "cover" ? Math.max(sx, sy) : fit === "width" ? sx : Math.min(sx, sy);
+//       setBox({
+//         scale,
+//         offsetX: (width - design.w * scale) / 2,
+//         offsetY: fit === "width" ? 0 : (height - design.h * scale) / 2,
+//       });
+//     };
+
+//     update();
+//     const ro = new ResizeObserver(update);
+//     ro.observe(el);
+//     window.addEventListener("orientationchange", update);
+//     return () => { ro.disconnect(); window.removeEventListener("orientationchange", update); };
+//   }, [ref, design.w, design.h, fit]);
+
+//   return box;
+// }
+
 // export default function Village() {
 //     const [joursOuverts, setJoursOuverts] = useState({});
+
+//         const sceneRef = useRef(null);
+
+//           const { scale, offsetX, offsetY } = useDesignScale(
+//               sceneRef,
+//               { w: 1920, h: 1080 },
+//               "contain"
+//           );
+
 
 //     const toggleJour = (id) => {
 //         setJoursOuverts(prev => ({ ...prev, [id]: !prev[id] }));
@@ -398,7 +453,7 @@ export default function Village() {
 //   //w 150px =     180px= 17%  210px = 20%
 //   //h 140px = 25%
 //     const maisons = [
-//         { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: '-top-[5%] right-[60%] z-0' },
+//         { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: 'top-[5%] right-[60%] z-0' },
 //         { id: 20, src: maison20, taille: 'w-[14%] h-[150px]', position: 'top-[10px] right-[560px] z-0' },
 //         { id: 24, src: maison24, taille: 'w-[20%] h-[210px]', position: 'top-[10px] right-[365px] z-0' },
 //         { id: 4, src: maison4, taille: 'w-[16%] h-[170px]', position: 'top-[50px] right-[240px] z-0' },
@@ -406,22 +461,22 @@ export default function Village() {
 //         { id: 16, src: maison16, taille: 'w-[16%] h-[170px]', position: 'top-[70px] right-[160px] z-0' },
 //         { id: 8, src: maison8, taille: 'w-[15%] h-[160px]', position: 'top-[95px] right-[520px] z-0' },
 //         { id: 14, src: maison14, taille: 'w-[13%] h-[140px]', position: 'top-[116px] right-[600px] z-0' },
-//         { id: 15, src: maison15, taille: 'w-[16%] h-[170px]', position: 'top-[260px] right-[525px] z-10' },
-//         { id: 9, src: maison9, taille: 'w-[13%] h-[140px]', position: 'top-[95px] right-[740px] z-0' },
-//         { id: 12, src: maison12, taille: 'w-[10%] h-[110px]', position: 'top-[272px] right-[630px] z-10' },
-//         { id: 13, src: maison13, taille: 'w-[13%] h-[140px]', position: 'top-[260px] right-[410px] z-10' },
+//         { id: 15, src: maison15, taille: 'w-[16%] h-[36%]', position: 'top-[53%] right-[47%] z-10' },
+//         { id: 9, src: maison9, taille: 'w-[13%] h-[25%]', position: 'top-[28%] right-[70%] z-0' },
+//         { id: 12, src: maison12, taille: 'w-[10%] h-[19%]', position: 'top-[59%] right-[57%] z-10' },
+//         { id: 13, src: maison13, taille: 'w-[13%] h-[28%]', position: 'top-[51%] right-[34%] z-10' },
 //         { id: 10, src: maison10, taille: 'w-[16%] h-[170px]', position: 'top-[200px] right-[310px] z-10' },
-//         { id: 1, src: maison1, taille: 'w-[10%] h-[110px]', position: 'top-[288px] left-1/2 -translate-x-1/2 z-10'},
+//         { id: 1, src: maison1, taille: 'w-[10%] h-[22%]', position: 'top-[57%] right-[42%] z-10'},
 //         { id: 23, src: maison23, taille: 'w-[13%] h-[140px]', position: 'top-[174px] right-[440px] z-0' },
-//         { id: 3, src: maison3, taille: 'w-[13%] h-[25%]', position: 'top-[25%] right-[63%] z-0' },
+//         { id: 3, src: maison3, taille: 'w-[13%] h-[25%]', position: 'top-[36%] right-[63%] z-0' },
 //         { id: 6, src: maison6, taille: 'w-[13%] h-[140px]', position: 'top-[210px] right-[525px] z-0' },
 //         { id: 17, src: maison17, taille: 'w-[13%] h-[140px]', position: 'top-[195px] right-[600px] z-0' },
 //         { id: 21, src: maison21, taille: 'w-[13%] h-[140px]', position: 'top-[80px] right-[330px] z-0' },
 //         { id: 2, src: maison2, taille: 'w-[13%] h-[140px]', position: 'top-[160px] right-[350px] z-0' },
 //         { id: 5, src: maison5, taille: 'w-[13%] h-[140px]', position: 'top-[146px] right-[250px] z-0' },
 //         { id: 11, src: maison11, taille: 'w-[16%] h-[170px]', position: 'top-[190px] right-[140px] z-0' },
-//         { id: 7, src: maison7, taille: 'w-[18%] h-[190px]', position: 'top-[155px] right-[740px] z-0' },
-//         { id: 19, src: maison19, taille: 'w-[13%] h-[25%]', position: 'top-[43%] right-[63%] z-0' },
+//         { id: 7, src: maison7, taille: 'w-[18%] h-[32%]', position: 'top-[39%] right-[70%] z-0' },
+//         { id: 19, src: maison19, taille: 'w-[13%] h-[25%]', position: 'top-[52%] right-[63%] z-0' },
 //         { id: 22, src: maison22, taille: 'w-[13%] h-[140px]', position: 'top-[232px] right-[245px] z-0' },
 //     ];
 
@@ -473,7 +528,20 @@ export default function Village() {
 
 
 //     return (
-//         <div className="relative w-full h-full min-h-0 overflow-hidden">
+//         <div
+//           ref={sceneRef}
+//           className="relative w-full h-screen overflow-hidden"
+//         >
+//                   {/* CANEVAS FIXE DE 1920 × 1080 */}
+//         <div
+//             className="absolute w-full h-full"
+//             style={{
+//                 left: `${offsetX}px`,
+//                 top: `${offsetY}px`,
+//                 transform: `scale(${scale})`,
+//                 transformOrigin: "top left"
+//             }}
+//         >
 //         {/* EFFET DE NEIGE TOMBANTE */}
 //         <div className="absolute inset-0 pointer-events-none z-50">
 //             {[...Array(40)].map((_, i) => (
@@ -533,7 +601,13 @@ export default function Village() {
 //         </div>
 
 //         {/* CLUSTER CENTRAL DU VILLAGE */}
-//         <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-24 mb-12">
+//         <div
+//     className="absolute w-[1344px] h-[864px]"
+//     style={{
+//         left: "288px",
+//         top: "96px"
+//     }}
+// >
 
 //         {maisons.map((m) => {
 //           const ouvert = joursOuverts[m.id];
@@ -643,6 +717,7 @@ export default function Village() {
 
 //         {/* FINITION OMBRE DE NEIGE SOL */}
 //         <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-slate-900/30 to-transparent z-40 pointer-events-none"></div>
+//         </div>
 //         </div>
 //     );
 // }

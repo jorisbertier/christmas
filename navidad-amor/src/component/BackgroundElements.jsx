@@ -16,25 +16,25 @@ export default function BackgroundElements() {
             <img
                 src={dunegauche}
                 alt=""
-                className="absolute h-[400px] w-[700px] top-[120px] left-0"
+                className="absolute h-[58%] w-[46%] top-[17%] left-0"
             />
 
             <img
                 src={dunedroite}
                 alt=""
-                className="absolute h-[400px] w-[700px] top-[120px] right-0"
+                className="absolute h-[58%] w-[46%] top-[17%] right-0"
             />
 
             <img
                 src={dune3}
                 alt=""
-                className="absolute h-[400px] w-[520px] top-[100px] right-0"
+                className="absolute h-[58%] w-[34%] top-[14%] right-0"
             />
 
             <img
                 src={dune4}
                 alt=""
-            className="absolute h-[300px] w-[450px] top-[200px] -left-10"
+            className="absolute h-[45%] w-[35%] top-[30%] -left-10"
             />
 
             <img
@@ -52,7 +52,7 @@ export default function BackgroundElements() {
             <img
                 src={secondplan}
                 alt=""
-                className="absolute h-[72%] w-full bottom-0 left-1/2 -translate-x-1/2 z-20"
+                className="absolute h-[72%] w-[100%] bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
             
             <div className="absolute bottom-0 inset-x-0 aspect-[1440/370]">

@@ -155,7 +155,7 @@ export default function SurprisePage({ jour, onClose }) {
 
   // Les autres composants dédiés sont affichés en plein écran.
   return (
-    <div className="fixed inset-0 z-[200] overflow-y-auto bg-[#071923]">
+    <div className="fixed inset-0 z-200 overflow-y-auto bg-[#071923]">
       <button
         onClick={() => {
           window.dispatchEvent(new Event("stop-christmas-choir"));
