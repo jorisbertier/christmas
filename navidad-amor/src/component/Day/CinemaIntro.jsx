@@ -437,7 +437,7 @@ export default function CinemaIntro({ onFinish }) {
         <Seats />
       </div>
 
-      <p className="ci-foot">{TEXTS.footer}</p>
+      {/* <p className="ci-foot">{TEXTS.footer}</p> */}
     </section>
   );
 }
