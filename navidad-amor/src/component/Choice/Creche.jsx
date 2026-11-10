@@ -232,20 +232,6 @@ function King({ robe, trim, skin, beard, hair, gift, delay = 0 }) {
   );
 }
 
-function Camel({ p }) {
-  return (
-    <g>
-      <ellipse cx="0" cy="1" rx="26" ry="3" fill="#000" opacity=".26" />
-      {[-19, -13, 10, 16].map((x, i) => <rect key={i} x={x - 2} y="-21" width="4" height="21" rx="1.6" fill={i % 2 ? "#a07c52" : "#8a6440"} />)}
-      <ellipse cx="0" cy="-28" rx="24" ry="10" fill={`url(#${p}Camel)`} className="cr-breathe" />
-      <path d="M-13 -35Q-10 -46 -3 -36Q2 -47 9 -36Z" fill={`url(#${p}Camel)`} />
-      <path d="M22 -31Q35 -39 34 -50" fill="none" stroke="#b08a5a" strokeWidth="6.6" strokeLinecap="round" />
-      <ellipse cx="36" cy="-52" rx="7" ry="4.4" fill="#c9a070" /><circle cx="34" cy="-53" r=".9" fill="#2a1a10" />
-      <path d="M-15 -33Q-3 -38 10 -33L10 -27Q-3 -22 -15 -27Z" fill="#c8202e" opacity=".9" /><path d="M-15 -30Q-3 -26 10 -30" fill="none" stroke="#f2c24a" strokeWidth="1.2" />
-    </g>
-  );
-}
-
 function Angel({ p, music }) {
   return (
     <g className="cr-float">
@@ -299,7 +285,6 @@ export default function Creche({
         <linearGradient id={`${p}Gold`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#fff3bf" /><stop offset=".5" stopColor="#e8b84a" /><stop offset="1" stopColor="#a8721f" /></linearGradient>
         <linearGradient id={`${p}Fur`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9a6a42" /><stop offset="1" stopColor="#6a4026" /></linearGradient>
         <linearGradient id={`${p}Gray`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#a6a6b4" /><stop offset="1" stopColor="#6e6e80" /></linearGradient>
-        <linearGradient id={`${p}Camel`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#c9a070" /><stop offset="1" stopColor="#8a6440" /></linearGradient>
         <linearGradient id={`${p}Beam`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fff3bf" stopOpacity=".5" /><stop offset="1" stopColor="#fff3bf" stopOpacity="0" /></linearGradient>
         <radialGradient id={`${p}Glow`}><stop offset="0" stopColor="#fff6c8" stopOpacity=".95" /><stop offset=".4" stopColor="#ffd45a" stopOpacity=".5" /><stop offset="1" stopColor="#ffd45a" stopOpacity="0" /></radialGradient>
         <radialGradient id={`${p}Warm`}><stop offset="0" stopColor="#ffb347" stopOpacity=".65" /><stop offset="1" stopColor="#ffb347" stopOpacity="0" /></radialGradient>
@@ -373,10 +358,9 @@ export default function Creche({
         </g>
       )}
 
-      {/* Rois mages et chameau (à gauche) */}
+      {/* Rois mages (à gauche) */}
       {showKings && (
         <g>
-          <g transform="translate(-118 -6)"><Camel p={p} /></g>
           <g transform="translate(-84 4)"><King robe="#c8202e" trim="#f2c24a" skin="#f2c9a5" beard="#f4f4f0" hair="#f4f4f0" gift="gold" /></g>
           <g transform="translate(-104 9)"><King robe="#2f7a4a" trim="#f6e7c1" skin="#e8b88a" beard="#6a3a20" hair="#6a3a20" gift="incense" delay={0.4} /></g>
           <g transform="translate(-64 12)"><King robe="#6a3a9a" trim="#f2c24a" skin="#7a4a2a" gift="myrrh" delay={0.8} /></g>

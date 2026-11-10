@@ -346,7 +346,7 @@ const Envelope = memo(
             trigger();
           }
         }}
-        className={`group relative select-none rounded-2xl outline-none focus-visible:ring-4 focus-visible:ring-[#f3cf6b]/80 focus-visible:ring-offset-8 focus-visible:ring-offset-transparent ${idle ? "cursor-pointer" : "cursor-default"}`}
+        className={`group relative select-none rounded-2xl outline-none ${idle ? "cursor-pointer focus-visible:ring-4 focus-visible:ring-[#f3cf6b]/80 focus-visible:ring-offset-8 focus-visible:ring-offset-transparent" : "cursor-default"}`}
       >
         <Defs t={t} />
 
@@ -580,6 +580,17 @@ export default function ChristmasLoveLetter({
   const parRefs = useRef([]);
   const musicPaused = useRef(false);
   const cb = useRef({});
+  const kbd = useRef(false);
+  useEffect(() => {
+    const onKey = () => { kbd.current = true; };
+    const onPointer = () => { kbd.current = false; };
+    window.addEventListener("keydown", onKey, true);
+    window.addEventListener("pointerdown", onPointer, true);
+    return () => {
+      window.removeEventListener("keydown", onKey, true);
+      window.removeEventListener("pointerdown", onPointer, true);
+    };
+  }, []);
   cb.current = { onClose, onComplete, onMusicPause, onMusicResume };
 
   const letterVisible = PHASES.indexOf(phase) >= 3;
@@ -630,7 +641,7 @@ export default function ChristmasLoveLetter({
     setLeaving(false);
     setShown(false);
     const raf = requestAnimationFrame(() => setShown(true));
-    later(() => btnRef.current?.focus({ preventScroll: true }), 700);
+    later(() => { if (kbd.current) btnRef.current?.focus({ preventScroll: true }); }, 700);
     cb.current.onMusicPause?.();
     musicPaused.current = true;
     return () => {
