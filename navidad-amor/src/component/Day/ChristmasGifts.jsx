@@ -405,10 +405,10 @@ useEffect(() => {
     // setMusicStarted(false);
     setTwist(0);
 
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    }
+    // if (audioRef.current) {
+    //   audioRef.current.pause();
+    //   audioRef.current.currentTime = 0;
+    // }
   };
 
   const snow = useMemo(() => { const r = rng(7); return Array.from({ length: 30 }, (_, i) => ({ id: i, left: r() * 100, size: r() * 4 + 2, dur: r() * 7 + 9, delay: -r() * 14, o: 0.35 + r() * 0.5 })); }, []);
