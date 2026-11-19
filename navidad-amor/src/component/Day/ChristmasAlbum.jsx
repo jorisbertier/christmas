@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from "react";
 
-import maria from '../../assets/album/maria.jpg';
-import joris from '../../assets/album/joris.jpg';
-import couple from '../../assets/album/couple.jpg';
-import vikingcholita from '../../assets/album/viking&cholita.jpg';
-import simpsons from '../../assets/album/simpson.jpg';
-import disney from '../../assets/album/disney.jpg';
-import disney2 from '../../assets/album/disney2.jpg';
-import rickmorty from '../../assets/album/rick&morty.jpg';
+import maria from '../../assets/Album/maria.jpg';
+import joris from '../../assets/Album/joris.jpg';
+import couple from '../../assets/Album/couple.jpg';
+import vikingcholita from '../../assets/Album/viking&cholita.jpg';
+import simpsons from '../../assets/Album/simpson.jpg';
+import disney from '../../assets/Album/disney.jpg';
+import disney2 from '../../assets/Album/disney2.jpg';
+import rickmorty from '../../assets/Album/rick&morty.jpg';
 
 const BEFORE_PHOTOS = [
   { id: "him-child", src: joris /* himChild */, caption: "Yo, de pequeño" },
