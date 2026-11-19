@@ -64,7 +64,7 @@ const composants = {
   10: CinemaIntro,
   11: ChristmasPapillotes,
   12: PyjamaChoice,
-  13: ChristmasPaper,
+  13: PyjamaChoice,
   14: ChristmasGifts,
   15: ChristmasWheel,
   16: ChristmasDrawingGame,
