@@ -27,7 +27,7 @@ import maison21 from '../assets/house/Maison 21.png';
 import maison22 from '../assets/house/Maison 22.png';
 import maison23 from '../assets/house/Maison 23.png';
 import maison24 from '../assets/house/Maison 24.png';
-import church from '../assets/house/Church.png';
+// import church from '../assets/house/Church.png';
 import SecretNoel from './Day/SecretNoel';
 
 import choice11 from '../assets/choice/11.png';
@@ -115,7 +115,7 @@ export default function Village() {
     const choixPereNoel = villageDecisions[5];
 
     const maisons = [
-        { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: '-top-[5%] right-[60%] z-0' },
+        // { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: '-top-[5%] right-[60%] z-0' },
         { id: 20, src: maison20, taille: 'w-[14%] h-[27%]', position: 'top-[1%] right-[52%] z-0' },
         { id: 24, src: maison24, taille: 'w-[20%] h-[39%]', position: 'top-[2%] right-[34%] z-0' },
         { id: 4, src: maison4, taille: 'w-[16%] h-[31%]', position: 'top-[9%] right-[22%] z-0' },
@@ -155,9 +155,9 @@ export default function Village() {
         ? 0
         : maintenant.getFullYear() > 2026
         ? 24
-        : maintenant.getMonth() < 9
+        : maintenant.getMonth() < 11
             ? 0
-            : maintenant.getMonth() > 9
+            : maintenant.getMonth() > 11
             ? 24
             : Math.min(maintenant.getDate(), 24);
     // decembre = 11
@@ -355,18 +355,12 @@ export default function Village() {
             animate-pulse
           ">
             <p className="font-serif text-lg">
-              🔒 Encore un peu de patience...
+              🔒 Un poco más de paciencia...
             </p>
             <p className="mt-1 text-sm">
-              Ta surprise du {messageInterdit} décembre
-              n'est pas encore disponible 🎁
+              Tu sorpresa del {messageInterdit} de diciembre
+              aún no está disponible 🎁
             </p>
-            <button
-              onClick={() => setMessageInterdit(null)}
-              className="mt-2 text-xs text-amber-300 underline pointer-events-auto"
-            >
-              D'accord ❤️
-            </button>
           </div>
         )}
         <SurprisePage
