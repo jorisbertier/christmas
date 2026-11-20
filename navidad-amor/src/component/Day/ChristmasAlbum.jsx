@@ -20,10 +20,10 @@ const TODAY_PHOTOS = [
 
 // The 4 mystery cards (front = "?", back = the photo)
 const FLIP_CARDS = [
-  { id: "simpsons", src: simpsons, caption: "Versión Los Simpson" },
-  { id: "pixar", src: disney, caption: "Versión Pixar" },
-  { id: "lego", src: vikingcholita, caption: "Versión Lego" },
-  { id: "anime", src: disney2, caption: "Versión anime" },
+    { id: "simpsons", src: simpsons, caption: "Versión Los Simpson" },
+    { id: "pixar", src: disney, caption: "Versión Pixar" },
+    { id: "lego", src: vikingcholita, caption: "Versión Lego" },
+    { id: "anime", src: disney2, caption: "Versión anime" },
 ];
 
 /* ------------------------------------------------------------------ */

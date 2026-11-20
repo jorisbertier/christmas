@@ -116,24 +116,24 @@ export default function Village() {
 
     const maisons = [
         // { id: 25, src: church, taille: 'w-[17%] h-[41%]', position: '-top-[5%] right-[60%] z-0' },
-        { id: 20, src: maison20, taille: 'w-[14%] h-[27%]', position: 'top-[1%] right-[52%] z-0' },
-        { id: 24, src: maison24, taille: 'w-[20%] h-[39%]', position: 'top-[2%] right-[34%] z-0' },
+        { id: 20, src: maison20, taille: ':w-[14%] h-[27%]', position: 'top-[1%] right-[52%] z-0' },
+        { id: 24, src: maison24, taille: 'w-[20%] h-[39%]', position: 'top-[3%] right-[34%] z-0' },
         { id: 4, src: maison4, taille: 'w-[16%] h-[31%]', position: 'top-[9%] right-[22%] z-0' },
         { id: 18, src: maison18, taille: 'w-[14%] h-[30%]', position: 'top-[12%] right-[42%] z-0' },
-        { id: 16, src: maison16, taille: 'w-[16%] h-[31%]', position: 'top-[12%] right-[15%] z-0' },
+        { id: 16, src: maison16, taille: 'w-[16%] h-[31%]', position: 'top-[13%] right-[15%] z-0' },
         { id: 8, src: maison8, taille: 'w-[15%] h-[29%]', position: 'top-[17%] right-[48%] z-0' },
         { id: 14, src: maison14, taille: 'w-[13%] h-[25%]', position: 'top-[21%] right-[56%] z-0' },
-        { id: 15, src: maison15, taille: 'w-[16%] h-[31%]', position: 'top-[47%] right-[49%] z-10' },
+        { id: 15, src: maison15, taille: 'w-[16%] h-[31%]', position: 'top-[48%] right-[49%] z-10' },
         { id: 9, src: maison9, taille: 'w-[13%] h-[26%]', position: 'top-[17%] right-[69%] z-0' },
         { id: 12, src: maison12, taille: 'w-[10%] h-[20%]', position: 'top-[49%] right-[59%] z-10' },
         { id: 13, src: maison13, taille: 'w-[13%] h-[25%]', position: 'top-[47%] right-[38%] z-10' },
         { id: 10, src: maison10, taille: 'w-[16%] h-[31%]', position: 'top-[36%] right-[29%] z-10' },
-        { id: 1, src: maison1, taille: 'w-[10%] h-[20%]', position: 'top-[52%] left-1/2 -translate-x-1/2 z-10'},
-        { id: 23, src: maison23, taille: 'w-[13%] h-[25%]', position: 'top-[31%] right-[41%] z-0' },
-        { id: 3, src: maison3, taille: 'w-[13%] h-[25%]', position: 'top-[25%] right-[63%] z-0' },
+        { id: 1, src: maison1, taille: 'w-[10%] h-[20%]', position: 'top-[53%] left-1/2 -translate-x-1/2 z-10'},
+        { id: 23, src: maison23, taille: 'w-[13%] h-[25%]', position: 'top-[32%] right-[41%] z-0' },
+        { id: 3, src: maison3, taille: 'w-[13%] h-[25%]', position: 'top-[26%] right-[63%] z-0' },
         { id: 6, src: maison6, taille: 'w-[13%] h-[25%]', position: 'top-[37%] right-[49%] z-0' },
-        { id: 17, src: maison17, taille: 'w-[13%] h-[25%]', position: 'top-[35%] right-[56%] z-0' },
-        { id: 21, src: maison21, taille: 'w-[13%] h-[25%]', position: 'top-[15%] right-[31%] z-0' },
+        { id: 17, src: maison17, taille: 'w-[13%] h-[25%]', position: 'top-[36%] right-[56%] z-0' },
+        { id: 21, src: maison21, taille: 'w-[13%] h-[25%]', position: 'top-[17%] right-[31%] z-0' },
         { id: 2, src: maison2, taille: 'w-[13%] h-[25%]', position: 'top-[29%] right-[33%] z-0' },
         { id: 5, src: maison5, taille: 'w-[13%] h-[25%]', position: 'top-[27%] right-[23%] z-0' },
         { id: 11, src: maison11, taille: 'w-[16%] h-[31%]', position: 'top-[35%] right-[13%] z-0' },
@@ -188,9 +188,23 @@ export default function Village() {
         return () => clearTimeout(timer);
     }, [messageInterdit]);
 
+const s = document.scrollingElement;
+console.log('document', s.scrollWidth, s.clientWidth, s.scrollHeight, s.clientHeight);
+
+[...document.querySelectorAll('*')].forEach(e => {
+  const cs = getComputedStyle(e);
+  const sx = e.scrollWidth > e.clientWidth + 1;
+  const sy = e.scrollHeight > e.clientHeight + 1;
+  if ((sx || sy) && /auto|scroll/.test(cs.overflowX + cs.overflowY)) {
+    console.log(e.tagName, e.className, 'W', e.scrollWidth, e.clientWidth, 'H', e.scrollHeight, e.clientHeight);
+  }
+});
+
+console.log('html overflow:', getComputedStyle(document.documentElement).overflow,
+            '| body overflow:', getComputedStyle(document.body).overflow);
 
     return (
-        <div className="relative w-full h-full min-h-0 overflow-hidden">
+        <div className="relative w-full h-dvh min-h-0 max-w-screen max-h-screen overflow-hidden">
         <Aurora
           speed={1}
           intensity="medium"
@@ -267,7 +281,7 @@ export default function Village() {
         </div>
 
         {/* CLUSTER CENTRAL DU VILLAGE */}
-        <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-24 mb-12">
+        <div className="relative flex-1 w-[70%] mx-auto h-[80vh] mt-[14vh] lg:mt-24 lg:mb-12">
         {/* <div className="relative flex-1 w-[100%] mx-auto h-[100vh] bg-red-300"> */}
 
         {maisons.map((m) => {

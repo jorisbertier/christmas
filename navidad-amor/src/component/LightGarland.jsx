@@ -10,7 +10,7 @@ export default function LightGarland({ className = "", width = 150, numberBulbs 
   return (
     <svg
       viewBox="0 0 270 55"
-      style={{ width: typeof width === "number" ? `${width}%` : width }}
+      // style={{ width: typeof width === "number" ? `${width}%` : width }}
       className={`absolute h-10 overflow-visible ${className}`}
       xmlns="http://www.w3.org/2000/svg"
     >
