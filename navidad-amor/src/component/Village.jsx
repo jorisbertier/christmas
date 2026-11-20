@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useId } from 'react';
 // import { surprises } from "../data/surprises";
 import SurprisePage from "./SurprisePage";
+import Snow from "./Snow";
 
 // IMPORTATION EXPLICITE DE TOUTES LES MAISONS
 import maison1 from '../assets/house/Maison 1.png';
@@ -188,21 +189,6 @@ export default function Village() {
         return () => clearTimeout(timer);
     }, [messageInterdit]);
 
-const s = document.scrollingElement;
-console.log('document', s.scrollWidth, s.clientWidth, s.scrollHeight, s.clientHeight);
-
-[...document.querySelectorAll('*')].forEach(e => {
-  const cs = getComputedStyle(e);
-  const sx = e.scrollWidth > e.clientWidth + 1;
-  const sy = e.scrollHeight > e.clientHeight + 1;
-  if ((sx || sy) && /auto|scroll/.test(cs.overflowX + cs.overflowY)) {
-    console.log(e.tagName, e.className, 'W', e.scrollWidth, e.clientWidth, 'H', e.scrollHeight, e.clientHeight);
-  }
-});
-
-console.log('html overflow:', getComputedStyle(document.documentElement).overflow,
-            '| body overflow:', getComputedStyle(document.body).overflow);
-
     return (
         <div className="relative w-full h-dvh min-h-0 max-w-screen max-h-screen overflow-hidden">
         <Aurora
@@ -218,22 +204,7 @@ console.log('html overflow:', getComputedStyle(document.documentElement).overflo
             className={houseClass(12, "absolute inset-0 z-50 pointer-events-none")}
           />
         {/* EFFET DE NEIGE TOMBANTE */}
-        <div className="absolute inset-0 pointer-events-none z-50">
-            {[...Array(40)].map((_, i) => (
-            <div
-                key={i}
-                className="absolute bg-white rounded-full opacity-80"
-                style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${Math.random() * 5 + 2}px`,
-                height: `${Math.random() * 5 + 2}px`,
-                animation: `fall ${Math.random() * 4 + 4}s linear infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-                }}
-            />
-            ))}
-        </div>
+        <Snow count={40} className="z-50" />
         <style>{`
             @keyframes fall {
             0% { transform: translateY(-10px) translateX(0); }
@@ -243,10 +214,16 @@ console.log('html overflow:', getComputedStyle(document.documentElement).overflo
         `}</style>
 
         {/* DÉCORATION DE FOND (LUNE) */}
-        <div className="absolute top-16 left-32 w-20 h-20 bg-amber-100 rounded-full blur-[1px] opacity-90 shadow-[0_0_40px_#fef08a]">
-            <div className="absolute top-0 right-5 w-16 h-16 bg-[#1b1947] rounded-full"></div>
+        <div
+          className="
+            absolute top-[10%] left-[12%]
+            w-[clamp(48px,7vw,96px)] aspect-square
+            bg-amber-100 rounded-full blur-[1px] opacity-90
+            shadow-[0_0_40px_#fef08a]
+          "
+        >
+          <div className="absolute top-0 right-[25%] w-[80%] aspect-square bg-[#1b1947] rounded-full" />
         </div>
-
           {/** CHOICE */}
         <div className={houseClass(31, "absolute -bottom-[50px] left-1/2 z-30 w-full max-w-[700px] -translate-x-1/2 pointer-events-none")}>
           <svg viewBox="0 0 800 700" className="h-auto w-full">
@@ -368,10 +345,10 @@ console.log('html overflow:', getComputedStyle(document.documentElement).overflo
             text-center text-amber-100 shadow-xl
             animate-pulse
           ">
-            <p className="font-serif text-lg">
+            <p className="font-serif text-md lg:text-lg">
               🔒 Un poco más de paciencia...
             </p>
-            <p className="mt-1 text-sm">
+            <p className="mt-1 text-sm lg:text-base">
               Tu sorpresa del {messageInterdit} de diciembre
               aún no está disponible 🎁
             </p>

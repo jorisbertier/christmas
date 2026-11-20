@@ -40,7 +40,7 @@ export default function BackgroundElements() {
             <img
                 src={nuage}
                 alt=""
-                className="absolute h-[100px] w-[200px] top-[80px] left-[65%] -translate-x-1/2"
+                className="absolute h-[15%] w-[13%] top-[11%] left-[65%] -translate-x-1/2"
             />
 
             <img
@@ -52,7 +52,7 @@ export default function BackgroundElements() {
             <img
                 src={secondplan}
                 alt=""
-                className="absolute h-[70%] lg:h-[72%] lg:w-[100%] bottom-0 left-1/2 -translate-x-1/2 z-20"
+                className="absolute h-[70%] lg:h-[72%] w-[100%] bottom-0 left-1/2 -translate-x-1/2 z-20"
             />
             
             <div className="absolute bottom-0 inset-x-0 aspect-[1440/370]">
