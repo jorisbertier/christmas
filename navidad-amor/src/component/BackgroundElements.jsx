@@ -46,7 +46,7 @@ export default function BackgroundElements() {
             <img
                 src={subtract}
                 alt=""
-                className="absolute h-[10%] w-[42%] bottom-[20%] left-1/2 -translate-x-1/2 z-20"
+                className="absolute hidden lg:visible h-[10%] w-[42%] bottom-[20%] left-1/2 -translate-x-1/2 z-20"
             />
 
             <img
