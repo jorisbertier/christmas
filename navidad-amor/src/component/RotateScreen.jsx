@@ -18,7 +18,7 @@ export default function RotateScreen() {
     <div
     // hidden portrait:max-[800px]:flex
     className="
-        hidden max-[800px]:flex
+        hidden max-[600px]:flex
         fixed inset-0 z-200 overflow-hidden
         flex-col items-center justify-center px-8 text-center
         bg-[radial-gradient(ellipse_at_50%_0%,#3b3a8f_0%,#1b1947_45%,#0c0a2b_100%)]
